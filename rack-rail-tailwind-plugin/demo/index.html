@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rack & Rail Grid System Demo</title>
+  <link href="./styles.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: #1f2937;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1, h2, h3 {
+      margin: 2rem 0 1rem;
+    }
+    
+    .page-wrapper {
+      max-width: 1736px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .viewport-info {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.875rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
+    
+    /* Demo column styling */
+    .rack > div, .rail > div {
+      padding: 1rem;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+    }
+    
+    .rail > div {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+    }
+    
+    /* Toggle for demo */
+    .toggle-container {
+      margin: 2rem 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .toggle-switch {
+      background: #e5e7eb;
+      border-radius: 9999px;
+      padding: 0.25rem;
+      display: flex;
+      width: fit-content;
+    }
+    
+    .toggle-switch label {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 9999px;
+      transition: all 0.2s;
+    }
+    
+    input[name="container-type"] {
+      display: none;
+    }
+    
+    #rack-toggle:checked ~ .toggle-switch .rack-label {
+      background: #3b82f6;
+      color: #fff;
+    }
+    
+    #rail-toggle:checked ~ .toggle-switch .rail-label {
+      background: #8b5cf6;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewport-info">
+    Viewport: <span id="viewport-size">Loading...</span>
+  </div>
+  
+  <div class="page-wrapper">
+    <h1>Rack & Rail Grid System</h1>
+    
+    <p>A responsive grid system with two container types: <strong>Rack</strong> (end-to-end columns that wrap) and <strong>Rail</strong> (horizontally scrollable rows).</p>
+    
+    <h2>Breakpoint Reference</h2>
+    <div class="breakpoint-reference">
+      <p><strong>sm:</strong> 375px viewport (335px available)</p>
+      <p><strong>md:</strong> 770px viewport (690px available)</p>
+      <p><strong>lg:</strong> 1450px viewport (1386px available)</p>
+      <p><strong>xl:</strong> 1800px viewport (1736px available)</p>
+    </div>
+  </div>
+  
+  <section>
+    <div class="page-wrapper">
+      <h2>Column Width Demo</h2>
+      <div class="toggle-container">
+        <input type="radio" name="container-type" id="rack-toggle" checked>
+        <input type="radio" name="container-type" id="rail-toggle">
+        
+        <div class="toggle-switch">
+          <label for="rack-toggle" class="rack-label">Rack Container</label>
+          <label for="rail-toggle" class="rail-label">Rail Container</label>
+        </div>
+      </div>
+      
+      <div id="rack-code-block">
+        <pre><code>&lt;div class="rack"&gt;
+  &lt;div class="col-1"&gt;Column 1&lt;/div&gt;
+  &lt;div class="col-2"&gt;Column 2&lt;/div&gt;
+  &lt;div class="col-3"&gt;Column 3&lt;/div&gt;
+  &lt;div class="col-6"&gt;Column 6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+      
+      <div id="rail-code-block" style="display: none;">
+        <pre><code>&lt;div class="rail"&gt;
+  &lt;div class="col-1"&gt;Column 1&lt;/div&gt;
+  &lt;div class="col-2"&gt;Column 2&lt;/div&gt;
+  &lt;div class="col-3"&gt;Column 3&lt;/div&gt;
+  &lt;div class="col-6"&gt;Column 6&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+    
+    <div id="demo-container" class="rack">
+      <div class="col-1">
+        <strong>Column 1</strong>
+        <div>Small, fixed-width column</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>Medium-width column</div>
+      </div>
+      <div class="col-3">
+        <strong>Column 3</strong>
+        <div>Larger column</div>
+      </div>
+      <div class="col-6">
+        <strong>Column 6</strong>
+        <div>Half-width column (on large screens)</div>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="page-wrapper">
+      <h2>12-Column Layout Example</h2>
+      <p>All twelve columns, from col-1 to col-12</p>
+    </div>
+    
+    <div class="rack">
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+      <div class="col-1">
+        <strong>col-1</strong>
+      </div>
+    </div>
+    
+    <div class="rack">
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+      <div class="col-2">
+        <strong>col-2</strong>
+      </div>
+    </div>
+    
+    <div class="rack">
+      <div class="col-3">
+        <strong>col-3</strong>
+      </div>
+      <div class="col-3">
+        <strong>col-3</strong>
+      </div>
+      <div class="col-3">
+        <strong>col-3</strong>
+      </div>
+      <div class="col-3">
+        <strong>col-3</strong>
+      </div>
+    </div>
+    
+    <div class="rack">
+      <div class="col-4">
+        <strong>col-4</strong>
+      </div>
+      <div class="col-4">
+        <strong>col-4</strong>
+      </div>
+      <div class="col-4">
+        <strong>col-4</strong>
+      </div>
+    </div>
+    
+    <div class="rack">
+      <div class="col-6">
+        <strong>col-6</strong>
+      </div>
+      <div class="col-6">
+        <strong>col-6</strong>
+      </div>
+    </div>
+    
+    <div class="rack">
+      <div class="col-12">
+        <strong>col-12</strong>
+      </div>
+    </div>
+  </section>
+  
+  <section>
+    <div class="page-wrapper">
+      <h2>Rail Container Example (Scroll Horizontally)</h2>
+      <p>Try scrolling this container horizontally to see all columns</p>
+    </div>
+    
+    <div class="rail">
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>Scroll horizontally</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>to see</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>all</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>these</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>columns</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>in a row</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>without wrapping</div>
+      </div>
+      <div class="col-2">
+        <strong>Column 2</strong>
+        <div>to the next line</div>
+      </div>
+    </div>
+  </section>
+  
+  <footer class="page-wrapper" style="margin-top: 2rem; padding-bottom: 2rem;">
+    <p>Rack & Rail Grid System - Tailwind CSS Plugin Demo</p>
+  </footer>
+  
+  <script>
+    // Show viewport size
+    function updateViewportSize() {
+      document.getElementById('viewport-size').textContent = 
+        `${window.innerWidth}px × ${window.innerHeight}px`;
+    }
+    
+    window.addEventListener('resize', updateViewportSize);
+    updateViewportSize();
+    
+    // Toggle between rack and rail for demo
+    document.getElementById('rack-toggle').addEventListener('change', function() {
+      if (this.checked) {
+        document.getElementById('demo-container').className = 'rack';
+        document.getElementById('rack-code-block').style.display = 'block';
+        document.getElementById('rail-code-block').style.display = 'none';
+      }
+    });
+    
+    document.getElementById('rail-toggle').addEventListener('change', function() {
+      if (this.checked) {
+        document.getElementById('demo-container').className = 'rail';
+        document.getElementById('rack-code-block').style.display = 'none';
+        document.getElementById('rail-code-block').style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html> 

@@ -1,0 +1,382 @@
+/* 
+ * Demo styles for the Rack & Rail Grid System
+ * These styles are specific to the demo page and not part of the core grid system
+ */
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+  min-width: 320px; /* Ensure minimum width for small screens */
+}
+
+.page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+section {
+  margin-bottom: 2.5rem; /* 40px */
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+.toggle-container {
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.toggle-switch {
+  display: flex;
+  margin-bottom: 1.25rem; /* 20px */
+  max-width: 18.75rem; /* 300px */
+}
+
+.toggle-switch label {
+  flex: 1;
+  text-align: center;
+  padding: 0.625rem; /* 10px */
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-switch label:first-child {
+  border-radius: 0.25rem 0 0 0.25rem; /* 4px */
+}
+
+.toggle-switch label:last-child {
+  border-radius: 0 0.25rem 0.25rem 0; /* 4px */
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#rack-toggle:checked ~ .toggle-switch .rack-label {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+#rail-toggle:checked ~ .toggle-switch .rail-label {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.grid-container {
+  margin-top: 1.25rem; /* 20px */
+  width: 100%;
+  /* Remove any inherited padding that might affect the grid layout */
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.grid-container .container {
+  padding-left: var(--container-padding, 1.25rem);
+  padding-right: var(--container-padding, 1.25rem);
+  box-sizing: border-box;
+}
+
+/* Style for actual column display */
+.column {
+  padding: 0.625rem; /* 10px */
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.25rem; /* 4px */
+  margin-bottom: 0.625rem; /* 10px */
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  min-height: 5rem; /* Ensure minimum height for display */
+  word-break: break-word; /* Prevent overflow of long text */
+}
+
+.column-info {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem; /* 4px */
+  width: 100%; /* Ensure the column info takes full width */
+  box-sizing: border-box;
+  line-height: 1.3;
+}
+
+.viewport-info {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  right: 0.625rem; /* 10px */
+  background-color: #0ea5e9;
+  color: white;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  border-radius: 0.25rem; /* 4px */
+  font-size: 0.75rem;
+  z-index: 100;
+}
+
+/* Highlight the column with blue top border */
+.column::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.25rem; /* 4px */
+  background-color: #3b82f6;
+}
+
+/* Debug info box */
+.debug-info {
+  margin-top: 1.25rem; /* 20px */
+  padding: 0.625rem; /* 10px */
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.25rem; /* 4px */
+  font-family: monospace;
+  white-space: pre-wrap;
+  overflow-x: auto; /* Add horizontal scrolling for wide content */
+}
+
+.breakpoint-badge {
+  display: inline-block;
+  padding: 0.125rem 0.375rem; /* 2px 6px */
+  border-radius: 0.25rem; /* 4px */
+  margin-right: 0.313rem; /* 5px */
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.breakpoint-sm { background-color: #e5e7eb; color: #4b5563; }
+.breakpoint-md { background-color: #93c5fd; color: #1e40af; }
+.breakpoint-lg { background-color: #a7f3d0; color: #065f46; }
+.breakpoint-xl { background-color: #fde68a; color: #92400e; }
+
+/* Demo spacing */
+.demo-marginY {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Handle columns with large percentages */
+.rack .col-1, .rack .col-2, .rack .col-3, 
+.rack .col-4, .rack .col-5, .rack .col-6,
+.rack .col-7, .rack .col-8, .rack .col-9,
+.rack .col-10, .rack .col-11, .rack .col-12 {
+  max-width: 100%; /* Ensure no column exceeds 100% in small screens */
+}
+
+/* Fix for nested padding in offset examples */
+.no-nested-padding .page-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.no-nested-padding .page-wrapper > h2, 
+.no-nested-padding .page-wrapper > p,
+.no-nested-padding .page-wrapper > .formulas {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.no-nested-padding .grid-container {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 100%;
+}
+
+/* Offset demo styling */
+/* Enhance the offset demo to better illustrate grid layout */
+.offset-demo .container {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 0.75rem; /* Reduce spacing between container rows */
+}
+
+.offset-demo .container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--container-padding);
+  right: var(--container-padding);
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(209, 213, 219, 0.2),
+    rgba(209, 213, 219, 0.2) 8.33%,
+    rgba(209, 213, 219, 0.1) 8.33%,
+    rgba(209, 213, 219, 0.1) 16.66%
+  );
+  z-index: -1;
+  border-left: 1px dashed rgba(59, 130, 246, 0.3);
+  border-right: 1px dashed rgba(59, 130, 246, 0.3);
+}
+
+.offset-demo .column {
+  padding: 0.5rem;
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 0.25rem;
+  height: 100%;
+}
+
+.offset-demo .column::before {
+  background-color: #ec4899;
+}
+
+/* Visualization for offset starting point */
+.offset-demo [class*="offset-"] {
+  position: relative;
+}
+
+.offset-demo [class*="offset-"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background-color: #ec4899;
+  z-index: 1;
+}
+
+/* Formulas styling */
+.formulas {
+  background-color: rgba(209, 213, 219, 0.2);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.formulas ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.formulas li {
+  font-family: monospace;
+  margin-bottom: 0.25rem;
+}
+
+/* Demo styles */
+
+/* Breakpoint visualization */
+.demo-breakpoint {
+  padding: 0.5rem;
+  display: inline-block;
+  margin-right: 0.625rem;
+}
+
+.demo-viewport-info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  font-family: monospace;
+}
+
+.demo-debug-info {
+  font-family: monospace;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 2rem;
+  font-size: 0.875rem;
+}
+
+.demo-toggle-container {
+  margin-bottom: 1rem;
+}
+
+.demo-toggle-container input[type="radio"] {
+  display: none;
+}
+
+.demo-toggle-switch {
+  display: flex;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.demo-toggle-switch label {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#rack-toggle:checked ~ .demo-toggle-switch .demo-rack-label {
+  background-color: #007bff;
+  color: white;
+}
+
+#rail-toggle:checked ~ .demo-toggle-switch .demo-rail-label {
+  background-color: #007bff;
+  color: white;
+}
+
+.demo-grid-container {
+  margin-bottom: 2rem;
+}
+
+.demo-column {
+  background-color: #e9ecef;
+  padding: 1rem;
+  border-radius: 4px;
+  height: 100%;
+}
+
+.demo-column-info {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+.demo-marginY {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.demo-offset-demo .demo-column {
+  background-color: #e3f2fd;
+}
+
+.demo-breakpoint-sm, .demo-breakpoint-md, .demo-breakpoint-lg, .demo-breakpoint-xl {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.demo-breakpoint-sm {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+.demo-breakpoint-md {
+  background-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+.demo-breakpoint-lg {
+  background-color: #bbdefb;
+  color: #0d47a1;
+}
+
+.demo-breakpoint-xl {
+  background-color: #d1c4e9;
+  color: #4527a0;
+} 

@@ -1,0 +1,576 @@
+/* 
+ * Decoration styles for the Rack & Rail Grid System Demo
+ * These styles are specific to the demo page and not part of the core grid system
+ */
+
+/* Base styles */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  margin: 0;
+  min-width: 320px; /* Ensure minimum width for small screens */
+  padding-top: 3rem; /* Add space for fixed top elements */
+}
+
+.page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+section {
+  margin-bottom: 2.5rem; /* 40px */
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+/* Top nav elements (viewport info and debug toggle) */
+.viewport-info {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  right: 0.625rem; /* 10px */
+  background-color: #0ea5e9;
+  color: white;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  border-radius: 0.25rem; /* 4px */
+  font-size: 0.75rem;
+  z-index: 100;
+}
+
+.debug-toggle-container {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  left: 0.625rem; /* 10px */
+  z-index: 100;
+  margin: 0;
+}
+
+.debug-toggle-label {
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  background-color: #e2e8f0;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+body.debug-mode .debug-toggle-label {
+  background-color: #f97316;
+  color: white;
+}
+
+.debug-toggle-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Breakpoint reference styles */
+.breakpoint-reference {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.breakpoint {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem; /* Lozenge shape */
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.breakpoint:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breakpoint.breakpoint-sm {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.breakpoint.breakpoint-md {
+  background-color: #93c5fd;
+  color: #1e40af;
+}
+
+.breakpoint.breakpoint-lg {
+  background-color: #a7f3d0;
+  color: #065f46;
+}
+
+.breakpoint.breakpoint-xl {
+  background-color: #fde68a;
+  color: #92400e;
+}
+
+/* Toggle styles */
+.toggle-container {
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.toggle-switch {
+  display: flex;
+  margin-bottom: 1.25rem; /* 20px */
+  max-width: 18.75rem; /* 300px */
+}
+
+.toggle-switch label {
+  flex: 1;
+  text-align: center;
+  padding: 0.625rem; /* 10px */
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-switch label:first-child {
+  border-radius: 0.25rem 0 0 0.25rem; /* 4px */
+}
+
+.toggle-switch label:last-child {
+  border-radius: 0 0.25rem 0.25rem 0; /* 4px */
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#rack-toggle:checked ~ .toggle-switch .rack-label {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+#rail-toggle:checked ~ .toggle-switch .rail-label {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+/* Column styles - applied to direct children of columns */
+.rack > [class*="col-"] > div,
+.rail > [class*="col-"] > div {
+  padding: 0.625rem; /* 10px */
+  border-radius: 0.25rem; /* 4px */
+  margin-bottom: 0.625rem; /* 10px */
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  min-height: 5rem; /* Ensure minimum height for display */
+  word-break: break-word; /* Prevent overflow of long text */
+}
+
+/* Common ::before styling for all column accent bars */
+.rack > [class*="col-"] > div::before,
+.rail > [class*="col-"] > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.25rem; /* 4px */
+}
+
+/* Simplified column colors - just two colors */
+.rack > [class*="col-"] > div {
+  background-color: #f3e8ff; /* Light purple */
+  border: 1px solid #d8b4fe; /* Purple border */
+}
+
+.rail > [class*="col-"] > div {
+  background-color: #ffedd5; /* Light orange */
+  border: 1px solid #fdba74; /* Orange border */
+  overflow: visible; /* Ensure content isn't cut off */
+  padding-top: 0.75rem; /* Slightly more top padding for content */
+}
+
+/* Column accent bars */
+.rack > [class*="col-"] > div::before {
+  background-color: #8b5cf6; /* Purple */
+}
+
+.rail > [class*="col-"] > div::before {
+  background-color: #f97316; /* Orange */
+}
+
+/* Info styles - updated to target both structures */
+.rack > [class*="col-"] > div > div,
+.rail > [class*="col-"] > div > div,
+.rack > [class*="col-"] > div > .column-info,
+.rail > [class*="col-"] > div > .column-info {
+  font-size: 0.75rem;
+  margin-top: 0.25rem; /* 4px */
+  width: 100%; /* Ensure the column info takes full width */
+  box-sizing: border-box;
+  line-height: 1.3;
+}
+
+/* Text color adjustments for better contrast with background */
+.rack > [class*="col-"] > div > div,
+.rack > [class*="col-"] > div > .column-info {
+  color: #5b21b6; /* Dark purple */
+}
+
+.rail > [class*="col-"] > div > div,
+.rail > [class*="col-"] > div > .column-info {
+  color: #9a3412; /* Dark orange */
+}
+
+/* Breakpoint badges */
+.breakpoint-badge,
+[class^="breakpoint-"] {
+  display: inline-block;
+  padding: 0.125rem 0.375rem; /* 2px 6px */
+  border-radius: 0.25rem; /* 4px */
+  margin-right: 0.313rem; /* 5px */
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.breakpoint-sm { background-color: #e5e7eb; color: #4b5563; }
+.breakpoint-md { background-color: #93c5fd; color: #1e40af; }
+.breakpoint-lg { background-color: #a7f3d0; color: #065f46; }
+.breakpoint-xl { background-color: #fde68a; color: #92400e; }
+
+/* Offset example styling */
+.offset-demo .rack {
+  margin-bottom: 1rem;
+}
+
+.offset-demo .rack > [class*="col-"] > div {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.offset-demo .rack > [class*="col-"] > div::before {
+  background-color: #3b82f6;
+}
+
+/* Formula section styles */
+.formulas {
+  background-color: #f9fafb;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formulas ul {
+  margin-top: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.formulas li {
+  margin-bottom: 0.5rem;
+}
+
+/* Code block styles */
+.code-block {
+  background-color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-x: auto;
+  color: #334155;
+}
+
+/* Debug mode styles */
+.debug-mode .rack,
+.debug-mode .rail {
+  position: relative;
+  background-color: rgba(239, 246, 255, 0.5);
+  border: 1px dashed #93c5fd;
+  /* Keep the same padding and gap as non-debug mode */
+  /* These styles are already defined in main.css */
+  overflow: visible; /* Ensure content is not cropped in debug mode */
+}
+
+/* Debug mode column and gap overlay */
+.debug-mode .rack::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  z-index: 1;
+  pointer-events: none; /* make the overlay transparent to clicks */
+  /* Remove the border highlights, we'll include them in the gradient */
+  border-left: none;
+  border-right: none;
+}
+
+/* Removing rail overlay completely */
+.debug-mode .rail::after {
+  display: none;
+}
+
+/* Responsive gradient patterns for different screen sizes */
+@media (min-width: 20rem) {
+  .debug-mode .rack::after {
+    background-position: 0 0; /* Start from the left edge */
+    background-image: 
+      linear-gradient(
+        to right,
+        /* Left padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) 0,
+        rgba(59, 130, 246, 0.15) 1.5rem,
+        /* 2 columns with 1 gap between */
+        rgba(59, 130, 246, 0.05) 1.5rem,
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 1rem) / 2),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 1rem) / 2),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 1rem) / 2 + 1rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 1rem) / 2 + 1rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 2 * (100% - 3rem - 1rem) / 2 + 1rem),
+        /* Right padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 2 * (100% - 3rem - 1rem) / 2 + 1rem),
+        rgba(59, 130, 246, 0.15) 100%
+      );
+  }
+}
+
+@media (min-width: 43.125rem) {
+  .debug-mode .rack::after {
+    background-position: 0 0; /* Start from the left edge */
+    background-image: 
+      linear-gradient(
+        to right,
+        /* Left padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) 0,
+        rgba(59, 130, 246, 0.15) 1.5rem,
+        /* First column */
+        rgba(59, 130, 246, 0.05) 1.5rem,
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 5rem) / 6),
+        /* First gap */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 5rem) / 6),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 5rem) / 6 + 1rem),
+        /* Second column */
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 5rem) / 6 + 1rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 2 * (100% - 3rem - 5rem) / 6 + 1rem),
+        /* Second gap */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 2 * (100% - 3rem - 5rem) / 6 + 1rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 2 * (100% - 3rem - 5rem) / 6 + 2rem),
+        /* Third column */
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 2 * (100% - 3rem - 5rem) / 6 + 2rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 3 * (100% - 3rem - 5rem) / 6 + 2rem),
+        /* Third gap */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 3 * (100% - 3rem - 5rem) / 6 + 2rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 3 * (100% - 3rem - 5rem) / 6 + 3rem),
+        /* Fourth column */
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 3 * (100% - 3rem - 5rem) / 6 + 3rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 4 * (100% - 3rem - 5rem) / 6 + 3rem),
+        /* Fourth gap */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 4 * (100% - 3rem - 5rem) / 6 + 3rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 4 * (100% - 3rem - 5rem) / 6 + 4rem),
+        /* Fifth column */
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 4 * (100% - 3rem - 5rem) / 6 + 4rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 5 * (100% - 3rem - 5rem) / 6 + 4rem),
+        /* Fifth gap */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 5 * (100% - 3rem - 5rem) / 6 + 4rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 5 * (100% - 3rem - 5rem) / 6 + 5rem),
+        /* Sixth column */
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 5 * (100% - 3rem - 5rem) / 6 + 5rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 6 * (100% - 3rem - 5rem) / 6 + 5rem),
+        /* Right padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 6 * (100% - 3rem - 5rem) / 6 + 5rem),
+        rgba(59, 130, 246, 0.15) 100%
+      );
+  }
+}
+
+@media (min-width: 86rem) {
+  .debug-mode .rack::after {
+    background-position: 0 0; /* Start from the left edge */
+    background-image: 
+      linear-gradient(
+        to right,
+        /* Left padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) 0,
+        rgba(59, 130, 246, 0.15) 1.5rem,
+        /* Columns and gaps */
+        rgba(59, 130, 246, 0.05) 1.5rem,
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 11rem) / 12),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 11rem) / 12),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + (100% - 3rem - 11rem) / 12 + 1rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + (100% - 3rem - 11rem) / 12 + 1rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 2 * (100% - 3rem - 11rem) / 12 + 1rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 2 * (100% - 3rem - 11rem) / 12 + 1rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 2 * (100% - 3rem - 11rem) / 12 + 2rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 2 * (100% - 3rem - 11rem) / 12 + 2rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 3 * (100% - 3rem - 11rem) / 12 + 2rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 3 * (100% - 3rem - 11rem) / 12 + 2rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 3 * (100% - 3rem - 11rem) / 12 + 3rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 3 * (100% - 3rem - 11rem) / 12 + 3rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 4 * (100% - 3rem - 11rem) / 12 + 3rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 4 * (100% - 3rem - 11rem) / 12 + 3rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 4 * (100% - 3rem - 11rem) / 12 + 4rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 4 * (100% - 3rem - 11rem) / 12 + 4rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 5 * (100% - 3rem - 11rem) / 12 + 4rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 5 * (100% - 3rem - 11rem) / 12 + 4rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 5 * (100% - 3rem - 11rem) / 12 + 5rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 5 * (100% - 3rem - 11rem) / 12 + 5rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 6 * (100% - 3rem - 11rem) / 12 + 5rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 6 * (100% - 3rem - 11rem) / 12 + 5rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 6 * (100% - 3rem - 11rem) / 12 + 6rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 6 * (100% - 3rem - 11rem) / 12 + 6rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 7 * (100% - 3rem - 11rem) / 12 + 6rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 7 * (100% - 3rem - 11rem) / 12 + 6rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 7 * (100% - 3rem - 11rem) / 12 + 7rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 7 * (100% - 3rem - 11rem) / 12 + 7rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 8 * (100% - 3rem - 11rem) / 12 + 7rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 8 * (100% - 3rem - 11rem) / 12 + 7rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 8 * (100% - 3rem - 11rem) / 12 + 8rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 8 * (100% - 3rem - 11rem) / 12 + 8rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 9 * (100% - 3rem - 11rem) / 12 + 8rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 9 * (100% - 3rem - 11rem) / 12 + 8rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 9 * (100% - 3rem - 11rem) / 12 + 9rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 9 * (100% - 3rem - 11rem) / 12 + 9rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 10 * (100% - 3rem - 11rem) / 12 + 9rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 10 * (100% - 3rem - 11rem) / 12 + 9rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 10 * (100% - 3rem - 11rem) / 12 + 10rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 10 * (100% - 3rem - 11rem) / 12 + 10rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 11 * (100% - 3rem - 11rem) / 12 + 10rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 11 * (100% - 3rem - 11rem) / 12 + 10rem),
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 11 * (100% - 3rem - 11rem) / 12 + 11rem),
+        
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 11 * (100% - 3rem - 11rem) / 12 + 11rem),
+        rgba(59, 130, 246, 0.05) calc(1.5rem + 12 * (100% - 3rem - 11rem) / 12 + 11rem),
+        
+        /* Right padding - using gap color for visibility */
+        rgba(59, 130, 246, 0.15) calc(1.5rem + 12 * (100% - 3rem - 11rem) / 12 + 11rem),
+        rgba(59, 130, 246, 0.15) 100%
+      );
+  }
+}
+
+/* Rail container has fixed column sizes regardless of screen width */
+.debug-mode .rail::after {
+  background-position: 0 0; /* Start from the left edge */
+  background-image: 
+    linear-gradient(
+      to right,
+      /* Left padding - light purple */
+      rgba(139, 92, 246, 0.025) 0,
+      rgba(139, 92, 246, 0.025) 1.5rem,
+      /* Column */
+      rgba(139, 92, 246, 0.05) 1.5rem,
+      rgba(139, 92, 246, 0.05) calc(1.5rem + (20rem - 1rem)),
+      /* Gap */
+      rgba(139, 92, 246, 0.15) calc(1.5rem + (20rem - 1rem)),
+      rgba(139, 92, 246, 0.15) calc(1.5rem + 20rem),
+      /* Repeat as needed for rail pattern */
+      /* Right padding - light purple */
+      rgba(139, 92, 246, 0.025) calc(98.5%),
+      rgba(139, 92, 246, 0.025) 100%
+    );
+}
+
+.debug-mode .rack::before {
+  content: "Rack Container";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: #dbeafe;
+  color: #1e40af;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  z-index: 10;
+}
+
+.debug-mode .rail::before {
+  content: "Rail Container";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: #ede9fe;
+  color: #5b21b6;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  z-index: 10;
+}
+
+/* Enhanced debug mode column styles */
+.debug-mode .rack > [class*="col-"] {
+  position: relative;
+  /* Removing background color as requested */
+}
+
+.debug-mode .rack > [class*="col-"]::after {
+  content: attr(class);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  background-color: #60a5fa;
+  color: white;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+.debug-mode .rack > [class*="col-"] > div {
+  /* No styling to match non-debug mode exactly */
+}
+
+.debug-mode .rail > [class*="col-"] {
+  position: relative;
+  /* Removing background color as requested */
+}
+
+.debug-mode .rail > [class*="col-"]::after {
+  content: attr(class);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  background-color: #a78bfa;
+  color: white;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  white-space: nowrap;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+.debug-mode .rail > [class*="col-"] > div {
+  /* No styling to match non-debug mode exactly */
+} 

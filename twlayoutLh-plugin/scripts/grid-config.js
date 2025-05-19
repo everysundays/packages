@@ -4,79 +4,15 @@
  * Edit these values to customize the grid system's behavior.
  */
 
-// Define types for the grid configuration
-export interface GridViewport {
-  viewportWidth: number;
-  minWidth: string;
-  containerPadding: number;
-  availableSpace: number;
-}
-
-export interface GridViewports {
-  sm: GridViewport;
-  md: GridViewport;
-  lg: GridViewport;
-  xl: GridViewport;
-}
-
-export interface GridColumns {
-  [key: number]: string;
-}
-
-export interface GridColumnsByBreakpoint {
-  sm: GridColumns;
-  md: GridColumns;
-  lg: GridColumns;
-  xl: GridColumns;
-}
-
-export interface GridOffsets {
-  [key: number]: string;
-}
-
-export interface GridOffsetsByBreakpoint {
-  sm: GridOffsets;
-  md: GridOffsets;
-  lg: GridOffsets;
-  xl: GridOffsets;
-}
-
-export interface SystemConfig {
-  CONTAINER_PADDING: string;
-  GAP: string;
-  DEBUG_MODE_KEY: string;
-}
-
-export interface GridColors {
-  rack: {
-    background: string;
-    border: string;
-    highlight: string;
-    text: string;
-  };
-  rail: {
-    background: string;
-    border: string;
-    highlight: string;
-    text: string;
-  };
-  debug: {
-    gridLines: string;
-    rackColumnBg: string;
-    railColumnBg: string;
-    offsetHighlight: string;
-  };
-}
-
 // System-wide constants
-export const SYSTEM: SystemConfig = {
+export const SYSTEM = {
   CONTAINER_PADDING: '1.5rem',  // 24px - Standard padding for all containers
   GAP: '1rem',                  // 16px - Standard gap between columns
   DEBUG_MODE_KEY: 'rack-rail-debug-mode'  // localStorage key for debug mode
 };
 
 // Viewport breakpoints configuration
-export const VIEWPORTS: GridViewports = {
+export const VIEWPORTS = {
   sm: {
     viewportWidth: 375,
     minWidth: '20rem',       // 375px in rem
@@ -104,7 +40,7 @@ export const VIEWPORTS: GridViewports = {
 };
 
 // Rack column width percentages based on available space
-export const RACK_COLUMNS: GridColumnsByBreakpoint = {
+export const RACK_COLUMNS = {
   sm: {
     1: '48.06%',   // 161px / 335px
     2: '100%',     // 335px / 335px
@@ -164,7 +100,7 @@ export const RACK_COLUMNS: GridColumnsByBreakpoint = {
 };
 
 // Rail column widths (fixed widths that don't stretch)
-export const RAIL_COLUMNS: GridColumnsByBreakpoint = {
+export const RAIL_COLUMNS = {
   sm: {
     1: '16.25rem',   // 260px
     2: '20rem',      // 320px
@@ -224,7 +160,7 @@ export const RAIL_COLUMNS: GridColumnsByBreakpoint = {
 };
 
 // Column offsets (percentage-based)
-export const OFFSETS: GridOffsetsByBreakpoint = {
+export const OFFSETS = {
   sm: {
     0: '0%',         // 0px additional offset (container already has padding)
     1: '0%',         // 0px additional offset (20px already in container)
@@ -284,7 +220,7 @@ export const OFFSETS: GridOffsetsByBreakpoint = {
 };
 
 // Appearance/Debug styling options
-export const GRID_COLORS: GridColors = {
+export const GRID_COLORS = {
   rack: {
     background: '#f3f4f6',
     border: '#e5e7eb',

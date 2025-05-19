@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rack & Rail Grid System</title>
+  <link href="./styles/main.css" rel="stylesheet">
+  <link href="./styles/decoration.css" rel="stylesheet">
+  <link href="./styles/layout.css" rel="stylesheet">
+</head>
+<body>
+  <div class="viewport-info">
+    Viewport: <span id="viewport-size">Loading...</span>
+  </div>
+  
+  <div class="debug-toggle-container">
+    <input type="checkbox" id="debug-mode-toggle">
+    <label for="debug-mode-toggle" class="debug-toggle-label">Debug Mode</label>
+  </div>
+  
+  <div class="page-wrapper">
+    <h1>Rack & Rail Grid System</h1>
+    
+    <p>A responsive grid system with two container types: <strong>Rack</strong> (end-to-end columns that wrap) and <strong>Rail</strong> (horizontally scrollable rows).</p>
+    
+    <h2>Breakpoint Reference</h2>
+    <div class="breakpoint-reference">
+      <span class="breakpoint breakpoint-sm"><strong>sm:</strong> 375px viewport (335px available)</span>
+      <span class="breakpoint breakpoint-md"><strong>md:</strong> 770px viewport (690px available)</span>
+      <span class="breakpoint breakpoint-lg"><strong>lg:</strong> 1450px viewport (1386px available)</span>
+      <span class="breakpoint breakpoint-xl"><strong>xl:</strong> 1800px viewport (1736px available)</span>
+    </div>
+  </div>
+  
+  <section>
+    <div class="page-wrapper">
+      <h2>Column Width Demo</h2>
+      <div class="toggle-container">
+        <input type="radio" name="container-type" id="rack-toggle" checked>
+        <input type="radio" name="container-type" id="rail-toggle">
+        
+        <div class="toggle-switch">
+          <label for="rack-toggle" class="rack-label">Rack Container</label>
+          <label for="rail-toggle" class="rail-label">Rail Container</label>
+        </div>
+      </div>
+      
+      <div id="rack-code-block" class="code-block">
+        <pre>&lt;div class="rack"&gt;
+  &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+  &lt;div class="col-2"&gt;col-2&lt;/div&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+  ...
+&lt;/div&gt;</pre>
+        </div>
+        
+        <div id="rail-code-block" class="code-block" style="display: none;">
+          <pre>&lt;div class="rail"&gt;
+  &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+  &lt;div class="col-2"&gt;col-2&lt;/div&gt;
+  &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+  &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+  ...
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+        
+        <div class="rack">
+          <div class="col-1">
+            <strong>Column 1</strong>
+            <div id="col-1-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-2">
+            <strong>Column 2</strong>
+            <div id="col-2-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-3">
+            <strong>Column 3</strong>
+            <div id="col-3-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-4">
+            <strong>Column 4</strong>
+            <div id="col-4-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-5">
+            <strong>Column 5</strong>
+            <div id="col-5-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-6">
+            <strong>Column 6</strong>
+            <div id="col-6-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-7">
+            <strong>Column 7</strong>
+            <div id="col-7-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-8">
+            <strong>Column 8</strong>
+            <div id="col-8-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-9">
+            <strong>Column 9</strong>
+            <div id="col-9-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-10">
+            <strong>Column 10</strong>
+            <div id="col-10-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-11">
+            <strong>Column 11</strong>
+            <div id="col-11-info">
+              Loading...
+            </div>
+          </div>
+          <div class="col-12">
+            <strong>Column 12</strong>
+            <div id="col-12-info">
+              Loading...
+            </div>
+          </div>
+        </div>
+      </section>
+     
+      <section>
+        <div class="page-wrapper">
+          <h2>Complementary Offset Examples</h2>
+          <p>Demonstration of how offsets interact with complementary column sizes (offset + column = 12)</p>
+          <p>Each example shows how different offset values create space before the column, showing full-width utilization. Notice how the offset percentages and column percentages add up to 100% of the available space at each breakpoint.</p>
+          <div class="formulas">
+            <strong>Formula:</strong>
+            <ul>
+              <li>offset-X + col-(12-X) = 100% width</li>
+              <li>Example: offset-3 + col-9 = full width</li>
+              <li>Example: offset-8 + col-4 = full width</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="offset-demo">
+          <div class="rack">
+            <div class="col-12">
+              <strong>offset-0 + col-12</strong>
+              <div>
+                <span>No offset (0%) + Full width column (100%)</span>
+              </div>
+            </div>
+            
+            <div class="col-11 offset-1">
+              <strong>offset-1 + col-11</strong>
+              <div id="offset-1-info" data-offset="1">
+                Loading...
+              </div>
+            </div>
+            
+            <div class="col-10 offset-2">
+              <strong>offset-2 + col-10</strong>
+              <div id="offset-2-info" data-offset="2">
+                Loading...
+              </div>
+            </div>
+            
+            <div class="col-9 offset-3">
+              <strong>offset-3 + col-9</strong>
+              <div id="offset-3-info" data-offset="3">
+                Loading...
+              </div>
+            </div>
+            
+            <div class="col-8 offset-4">
+              <strong>offset-4 + col-8</strong>
+              <div id="offset-4-info" data-offset="4">
+                Loading...
+              </div>
+            </div>
+            
+            <div class="col-7 offset-5">
+              <strong>offset-5 + col-7</strong>
+              <div id="offset-5-info" data-offset="5">
+                Loading...
+              </div>
+            </div>
+            
+            <div class="col-6 offset-6">
+              <strong>offset-6 + col-6</strong>
+              <div id="offset-6-info" data-offset="6">
+                Loading...
+              </div>
+            </div>
+          
+            <div class="col-5 offset-7">
+              <strong>offset-7 + col-5</strong>
+              <div id="offset-7-info" data-offset="7">
+                Loading...
+              </div>
+            </div>
+          
+            <div class="col-4 offset-8">
+              <strong>offset-8 + col-4</strong>
+              <div id="offset-8-info" data-offset="8">
+                Loading...
+              </div>
+            </div>
+          
+            <div class="col-3 offset-9">
+              <strong>offset-9 + col-3</strong>
+              <div id="offset-9-info" data-offset="9">
+                Loading...
+              </div>
+            </div>
+          
+            <div class="col-2 offset-10">
+              <strong>offset-10 + col-2</strong>
+              <div id="offset-10-info" data-offset="10">
+                Loading...
+              </div>
+            </div>
+          
+            <div class="col-1 offset-11">
+              <strong>offset-11 + col-1</strong>
+              <div id="offset-11-info" data-offset="11">
+                Loading...
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="page-wrapper">
+          <h2 id="responsive-columns">Responsive Columns Example (Rack Container Only)</h2>
+          <p>These columns automatically adjust their width according to the breakpoint without needing explicit classes for each viewport. Note how shorter columns can inline with longer ones depending on the viewport size.</p>
+        </div>
+        
+        <div class="rack">
+          <div class="col-12">
+              <strong>col-12</strong>
+              <div id="responsive-col-12-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-6">
+              <strong>col-6</strong>
+              <div id="responsive-col-6-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-6">
+              <strong>col-6</strong>
+              <div id="responsive-col-6-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-8">
+              <strong>col-8</strong>
+              <div id="responsive-col-8-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-9">
+              <strong>col-9</strong>
+              <div id="responsive-col-9-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-2">
+              <strong>col-2</strong>
+              <div id="responsive-col-2-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-10">
+              <strong>col-10</strong>
+              <div id="responsive-col-10-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-9">
+              <strong>col-9</strong>
+              <div id="responsive-col-9-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-6">
+              <strong>col-6</strong>
+              <div id="responsive-col-6-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-2">
+              <strong>col-2</strong>
+              <div id="responsive-col-2-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-6">
+              <strong>col-6</strong>
+              <div id="responsive-col-6-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-2">
+              <strong>col-2</strong>
+              <div id="responsive-col-2-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-2">
+              <strong>col-2</strong>
+              <div id="responsive-col-2-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-1">
+              <strong>col-1</strong>
+              <div id="responsive-col-1-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-6">
+              <strong>col-6</strong>
+              <div id="responsive-col-6-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-2">
+              <strong>col-2</strong>
+              <div id="responsive-col-2-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-5">
+              <strong>col-5</strong>
+              <div id="responsive-col-5-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-3">
+              <strong>col-3</strong>
+              <div id="responsive-col-3-info">
+                Loading...
+              </div>
+            </div>
+            <div class="col-4">
+              <strong>col-4</strong>
+              <div id="responsive-col-4-info">
+                Loading...
+              </div>
+            </div>  
+          </div>
+        </div>
+      </section>
+      
+      <section>
+        <div class="page-wrapper">
+          <h2>Customization Guide</h2>
+          <p>The grid system constants can be easily modified to adjust column ratios and other properties.</p>
+          
+          <div class="formulas">
+            <strong>How to Customize:</strong>
+            <ul>
+              <li>Edit the <code>src/scripts/grid-config.js</code> file to adjust column percentages, widths, and spacing</li>
+              <li>Modify <code>RACK_COLUMNS</code> to change the percentage-based column widths</li>
+              <li>Modify <code>RAIL_COLUMNS</code> to change the fixed-width columns in the rail container</li>
+              <li>Adjust <code>SYSTEM.CONTAINER_PADDING</code> to change the standard padding (currently 1.5rem)</li>
+              <li>Adjust <code>SYSTEM.GAP</code> to change the standard gap between columns (currently 1rem)</li>
+              <li>The <code>GRID_COLORS</code> object allows customization of the visual appearance</li>
+            </ul>
+          </div>
+          
+          <div class="formulas">
+            <strong>Project Structure:</strong>
+            <ul>
+              <li><code>src/scripts/grid-config.js</code>: Contains all configuration settings</li>
+              <li><code>src/scripts/constants.js</code>: Re-exports configuration (for backward compatibility)</li>
+              <li><code>src/styles/main.css</code>: Core grid system CSS</li>
+              <li><code>src/styles/decoration.css</code>: Demo styling (not part of the core system)</li>
+              <li><code>src/scripts/demo.js</code>: Demo page functionality</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      
+      <script type="module" src="./scripts/demo.js"></script>
+      
+      <script>
+        // Toggle between rack and rail code blocks
+        document.getElementById('rack-toggle').addEventListener('change', function() {
+          document.getElementById('rack-code-block').style.display = 'block';
+          document.getElementById('rail-code-block').style.display = 'none';
+        });
+        
+        document.getElementById('rail-toggle').addEventListener('change', function() {
+          document.getElementById('rack-code-block').style.display = 'none';
+          document.getElementById('rail-code-block').style.display = 'block';
+        });
+      </script>
+    </body>
+    </html>

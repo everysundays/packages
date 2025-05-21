@@ -1,0 +1,29 @@
+{
+    "name": "twlayout-plugin",
+    "version": "1.0.0",
+    "description": "Tailwind CSS Rack & Rail Grid System - Complete Package",
+    "main": "src/scripts/twlayout-plugin.ts",
+    "scripts": {
+        "build:css": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css",
+        "watch:css": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css --watch",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "tailwind",
+        "tailwindcss",
+        "plugin",
+        "grid",
+        "layout"
+    ],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@tailwindcss/cli": "^4.1.7",
+        "@types/node": "^22.15.21",
+        "@types/tailwindcss": "^3.1.0",
+        "autoprefixer": "^10.4.21",
+        "postcss": "^8.5.3",
+        "tailwindcss": "^4.1.5"
+    },
+    "dependencies": {}
+}

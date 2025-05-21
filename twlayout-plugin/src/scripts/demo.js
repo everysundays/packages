@@ -1,6 +1,6 @@
 /**
- * Rack & Rail Grid System Demo Script
- * Handles the interactive elements of the demo page
+ * Rack & Rail Grid System Demo Script. Handles the interactive elements of the demo page
+ * These scripts are specific to the demo page and not part of the core grid system
  */
 
 import { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from './grid-config.js';
@@ -144,6 +144,19 @@ function updateOffsetInfo() {
     `;
   }
 }
+
+// Toggle between rack and rail code blocks
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('rack-toggle').addEventListener('change', function() {
+    document.getElementById('rack-code-block').style.display = 'block';
+    document.getElementById('rail-code-block').style.display = 'none';
+  });
+  
+  document.getElementById('rail-toggle').addEventListener('change', function() {
+    document.getElementById('rack-code-block').style.display = 'none';
+    document.getElementById('rail-code-block').style.display = 'block';
+  });
+});
 
 // Call both update functions on load and resize
 window.addEventListener('load', function() {

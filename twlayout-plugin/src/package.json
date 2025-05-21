@@ -1,0 +1,20 @@
+{
+  "name": "twlayout-plugin",
+  "version": "1.0.0",
+  "description": "Tailwind CSS Plugin for Rack & Rail Grid System",
+  "main": "scripts/twlayout-plugin.ts",
+  "scripts": {
+  },
+  "keywords": [
+    "tailwindcss",
+    "plugin",
+    "grid",
+    "layout",
+    "responsive"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "tailwindcss": "^4.1.5"
+  }
+} 

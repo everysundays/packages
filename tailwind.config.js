@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-      "index.html",
-      "./workfiles/**/*.{html,js,jsx,ts,tsx}"
+      "./workfiles/**/*.html",
+      "./workfiles/**/*.{js,jsx,ts,tsx}",
+      "./twlayout-plugin/demo/**/*.html"
   ],
   theme: {
     extend: {},

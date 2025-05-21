@@ -10,7 +10,7 @@ Follow these steps to set up the project:
 2. Open Terminal
 3. npm init -y
 4. npm install tailwindcss@4.1.5 @tailwindcss/cli autoprefixer postcss @types/node @types/tailwindcss --save-dev
-5. rm package.json
+5. rm package.json package-lock.json
    (Because we will use ones from git)
 6. git init
 7. git remote add origin https://github.com/everysundays/psp-designertools.git

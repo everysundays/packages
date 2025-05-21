@@ -8,7 +8,7 @@ This repository contains various design tools and plugins created for PSP.
 
 A Tailwind CSS plugin that implements the Rack & Rail Grid System. This plugin provides advanced layout capabilities beyond what's available in standard CSS grid systems.
 
-- [View Documentation](./psp-designertools/twlayout-plugin/README.md)
+- [View Documentation](./twlayout-plugin/README.md)
 
 ## Repository Structure
 

@@ -2,6 +2,7 @@
 /*
 !twlayout-plugin/
 !.gitignore
+!README.md
 
 # Dependency directories
 node_modules/

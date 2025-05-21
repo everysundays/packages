@@ -23,8 +23,8 @@ A powerful Tailwind CSS plugin that implements the Rack & Rail Grid System, prov
 
    ```json
    "scripts": {
-     "build": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css",
-     "watch": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css --watch"
+    "build": "tailwindcss -i ./twlayout-plugin/src/styles/main.css -o ./twlayout-plugin/dist/output.css",
+    "watch": "tailwindcss -i ./twlayout-plugin/src/styles/main.css -o ./twlayout-plugin/dist/output.css --watch",
    }
    ```
 

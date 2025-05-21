@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css",
     "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --watch",
-    "start": "npm run build:css && open workfiles/index.html",
+    "start": "npm run build && open workfiles/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

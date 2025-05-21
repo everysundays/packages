@@ -1,54 +1,41 @@
 # PSP Designer Tools
 
-This repository setup framework and tools for frontend designer.
+This repository contains a Tailwind CSS demo project with organized structure.
 
-## Repository Structure
+## Setup Instructions
 
-Each tool/plugin is developed independently in its own directory with a dedicated Git repository. This allows for individual versioning and development workflows.
+Follow these steps to set up the project:
 
-```
-psp-designertools/
-├── twlayout-plugin/       # Rack & Rail Grid System Tailwind Plugin
-├── workfiles/             # index.html for your jumpstart, and demo files
-└── [future projects...]   # More tools coming soon
-```
+1. Create a blank folder
+2. Open Terminal
+3. npm init -y
+4. npm install tailwindcss@4.1.5 @tailwindcss/cli autoprefixer postcss @types/node @types/tailwindcss --save-dev
+5. rm package.json
+   (Because we will use ones from git)
+6. git init
+7. git remote add origin https://github.com/everysundays/psp-designertools.git
+8. git pull origin main
+9. npm run start
 
-## Projects
+This will build the CSS using Tailwind and open the index.html file in your browser.
 
-### twlayout-plugin
+## Project Structure
 
-A Tailwind CSS plugin that implements the Rack & Rail Grid System. This plugin provides advanced layout capabilities beyond what's available in standard CSS grid systems.
+- `workfiles/` - Contains HTML files and styles <- Put your .html files here
+- `workfiles/styles/` - CSS source files <- Put your main.css here
+- `dist/` - Output directory for compiled CSS (created after first build)
+- `twlayout-plugin/` - Tailwind layout plugin
 
-## Installation
 
-1. Install the required dependencies:
- 
-   ```bash
-   npm init -y
-   npm install tailwindcss@4.1.5 @tailwindcss/cli autoprefixer postcss @types/node @types/tailwindcss --save-dev
-   ```
+## Available Scripts
 
-2. Add the following scripts to your `package.json` file:
+- `npm run build` - Build the CSS
+- `npm run watch` - Watch for changes and rebuild CSS
+- `npm run start` - Build CSS and open the demo page
 
-   ```json
-   "scripts": {
-    "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css",
-    "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --watch",
-    "start": "npm run build:css && open workfiles/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
-   }
-   ```
-   
-## Usage
 
-```html
-<div class="rack">
-  <div class="col-7 offset-5">
-    <!-- Content -->
-  </div>
-</div>
-```
+## Dependencies
 
-## License
-
-MIT
+- Tailwind CSS v4.1.5
+- PostCSS
+- Autoprefixer

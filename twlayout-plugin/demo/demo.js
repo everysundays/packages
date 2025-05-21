@@ -3,7 +3,7 @@
  * These scripts are specific to the demo page and not part of the core grid system
  */
 
-import { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from './grid-config.js';
+import { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from '../scripts/grid-config.js';
 
 // Toggle between rack and rail containers
 document.getElementById('rack-toggle').addEventListener('change', function() {

@@ -1,0 +1,24 @@
+{
+  "name": "tailwind-layout-demo",
+  "version": "1.0.0",
+  "main": "postcss.config.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css",
+    "watch:css": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --watch",
+    "start": "npm run build:css && open workfiles/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Tailwind CSS demo project with organized structure",
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.5"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.5"
+  }
+}

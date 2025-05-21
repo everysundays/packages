@@ -1,3 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-*: initial;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
+  --spacing: 0.25rem;
+}
+
+/* Add safelist for common utilities */
+@utility bg-blue-600 {
+  background-color: var(--color-blue-600);
+}
+
+@utility h-6 {
+  height: 1.5rem;
+}

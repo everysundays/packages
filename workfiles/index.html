@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind CSS with TwLayout Plugin Demo</title>
+    <link href="../dist/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="page-wrapper py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">TwLayout Plugin Demo</h1>
+        
+        <!-- Standard Tailwind Button -->
+        <div class="text-center mb-12">
+            <button class="blue-btn">
+                Tailwind Button
+            </button>
+        </div>
+        
+        <!-- Rack with col-2, col-8, col-2 layout -->
+        <div class="rack">
+            <div class="col-2 bg-blue-100 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 2</p>
+            </div>
+            <div class="col-8 bg-blue-200 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 8 - Main Content Area</p>
+            </div>
+            <div class="col-2 bg-blue-100 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 2</p>
+            </div>
+        </div>
+        
+        <!-- Another example with different columns -->
+        <h2 class="text-2xl font-bold text-center my-8">Different Column Layout</h2>
+        <div class="rack">
+            <div class="col-4 bg-green-100 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 4</p>
+            </div>
+            <div class="col-4 bg-green-200 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 4</p>
+            </div>
+            <div class="col-4 bg-green-100 p-4 flex items-center justify-center">
+                <p class="font-semibold">Column 4</p>
+            </div>
+        </div>
+        
+        <!-- Rail example (horizontal scrolling) -->
+        <h2 class="text-2xl font-bold text-center my-8">Rail Example (Scroll Horizontally)</h2>
+        <div class="rail">
+            <div class="col-4 bg-purple-100 p-4 flex items-center justify-center h-32">
+                <p class="font-semibold">Card 1</p>
+            </div>
+            <div class="col-4 bg-purple-200 p-4 flex items-center justify-center h-32">
+                <p class="font-semibold">Card 2</p>
+            </div>
+            <div class="col-4 bg-purple-100 p-4 flex items-center justify-center h-32">
+                <p class="font-semibold">Card 3</p>
+            </div>
+            <div class="col-4 bg-purple-200 p-4 flex items-center justify-center h-32">
+                <p class="font-semibold">Card 4</p>
+            </div>
+            <div class="col-4 bg-purple-100 p-4 flex items-center justify-center h-32">
+                <p class="font-semibold">Card 5</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

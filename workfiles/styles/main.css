@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Import twlayout plugin styles */
+@import "../../twlayout-plugin/styles/layout.css";
+
+.blue-btn {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+} 

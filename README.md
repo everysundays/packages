@@ -1,14 +1,6 @@
 # PSP Designer Tools
 
-This repository contains various design tools and plugins created for PSP.
-
-## Projects
-
-### twlayout-plugin
-
-A Tailwind CSS plugin that implements the Rack & Rail Grid System. This plugin provides advanced layout capabilities beyond what's available in standard CSS grid systems.
-
-- [View Documentation](./twlayout-plugin/README.md)
+This repository setup framework and tools for frontend designer.
 
 ## Repository Structure
 
@@ -21,10 +13,42 @@ psp-designertools/
 └── [future projects...]   # More tools coming soon
 ```
 
-## Getting Started
+## Projects
 
-To use any of the tools, navigate to their respective directories and follow the installation instructions in their README files.
+### twlayout-plugin
+
+A Tailwind CSS plugin that implements the Rack & Rail Grid System. This plugin provides advanced layout capabilities beyond what's available in standard CSS grid systems.
+
+## Installation
+
+1. Install the required dependencies:
+ 
+   ```bash
+   npm init -y
+   npm install tailwindcss@4.1.5 @tailwindcss/cli autoprefixer postcss @types/node @types/tailwindcss --save-dev
+   ```
+
+2. Add the following scripts to your `package.json` file:
+
+   ```json
+   "scripts": {
+    "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css",
+    "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --watch",
+    "start": "npm run build:css && open workfiles/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+   }
+   ```
+   
+## Usage
+
+```html
+<div class="rack">
+  <div class="col-7 offset-5">
+    <!-- Content -->
+  </div>
+</div>
+```
 
 ## License
 
-Each project has its own license. Please check the individual project directories for license information.
+MIT

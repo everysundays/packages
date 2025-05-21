@@ -17,6 +17,7 @@ Each tool/plugin is developed independently in its own directory with a dedicate
 ```
 psp-designertools/
 ├── twlayout-plugin/       # Rack & Rail Grid System Tailwind Plugin
+├── workfiles/             # index.html for your jumpstart, and demo files
 └── [future projects...]   # More tools coming soon
 ```
 

@@ -1,3 +1,8 @@
+# Ignore everything outside twlayout-plugin
+/*
+!twlayout-plugin/
+!.gitignore
+
 # Dependency directories
 node_modules/
 dist/

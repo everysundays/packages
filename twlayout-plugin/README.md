@@ -12,61 +12,34 @@ A powerful Tailwind CSS plugin that implements the Rack & Rail Grid System, prov
 
 ## Installation
 
-1. Install the plugin and its dependencies:
+1. Install the required dependencies:
+ 
    ```bash
-   npm install tailwindcss@4.1.5 @tailwindcss/cli postcss autoprefixer twlayout-plugin --save-dev
+   npm init -y
+   npm install tailwindcss@4.1.5 @tailwindcss/cli autoprefixer postcss @types/node @types/tailwindcss --save-dev
    ```
 
-2. Add the plugin to your `tailwind.config.ts`:
-   ```js
-   module.exports = {
-     // ...other config
-     plugins: [
-       require('twlayout-plugin'),
-       // ...other plugins
-     ],
+2. Add the following scripts to your `package.json` file:
+
+   ```json
+   "scripts": {
+     "build": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css",
+     "watch": "tailwindcss -i ./src/styles/main.css -o ./dist/output.css --watch"
    }
    ```
 
-3. Configure the plugin (optional):
-   ```js
-   module.exports = {
-     theme: {
-       // ...other theme settings
-       twlayout: {
-         // Custom configuration options here
-       }
-     },
-     plugins: [
-       require('twlayout-plugin'),
-     ],
-   }
-   ```
+3. Clone the twlayout-plugin repository using git
 
 ## Usage
 
 ```html
-<div class="rr-container">
-  <div class="rr-row">
-    <div class="rr-col-6 md:rr-col-4 lg:rr-col-3">
-      <!-- Content -->
-    </div>
-    <!-- More columns -->
+<div class="rack">
+  <div class="col-7 offset-5">
+    <!-- Content -->
   </div>
 </div>
 ```
 
-## Documentation
-
-For complete documentation and examples, visit:
-[Documentation Link]
-
-## Project Structure
-
-- `src/scripts/grid-config.js` - Grid system configuration
-- `src/scripts/twlayout-plugin.ts` - Plugin implementation
-- `src/styles/` - Optional CSS utility files
-
 ## License
 
-ISC 
+MIT

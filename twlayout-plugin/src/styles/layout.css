@@ -6,7 +6,7 @@
 /* Wireframe mode */
 [class^='col-'], [class*=' col-'] {
   border: 1px solid #000;
-  padding: .5rem 0;
+  padding: .8rem 0;
   font-family: sans-serif;
 } 
 

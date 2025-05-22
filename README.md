@@ -39,3 +39,25 @@ This will build the CSS using Tailwind and open the index.html file in your brow
 - Tailwind CSS v4.1.5
 - PostCSS
 - Autoprefixer
+
+## Universal Debug Mode
+
+The `twlayout-plugin/scripts/universal-debug.js` script provides a way to apply the plugin's debug mode styling (defined in `twlayout-plugin/styles/decoration.css`) to any HTML page, not just the main `demo.html`. This is useful for testing the grid layout on different HTML structures or standalone components.
+
+### How to Use
+
+1.  Include the script in your HTML file:
+    ```html
+    <script type="module" src="path/to/twlayout-plugin/scripts/universal-debug.js"></script>
+    ```
+    Ensure you replace `path/to/` with the correct relative path from your HTML file to the `twlayout-plugin` directory. For example, if your HTML file is in `workfiles/`, the path would be `../twlayout-plugin/scripts/universal-debug.js`.
+
+2.  The script will automatically:
+    *   Load the necessary `decoration.css` stylesheet into the page's `<head>`.
+    *   Inject a "Debug Mode" toggle switch (a checkbox and label) onto the page, typically at the bottom.
+
+3.  Use the toggle switch to turn debug mode on or off. The state is saved in `localStorage`, so your preference will be remembered across page loads.
+
+### Scope of Debug Styles
+
+The debug styles, as defined in `decoration.css`, primarily target elements with `.rack` and `.rail` classes and their direct children (columns). It will visually outline these grid components, show padding, gaps, and other layout-related visual cues. It may not provide detailed debug information for elements outside of this primary scope.

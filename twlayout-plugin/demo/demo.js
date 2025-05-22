@@ -3,7 +3,7 @@
  * These scripts are specific to the demo page and not part of the core grid system
  */
 
-import { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from '../scripts/grid-config.js';
+import { VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from '../scripts/grid-config.js';
 
 // Toggle between rack and rail containers
 document.getElementById('rack-toggle').addEventListener('change', function() {
@@ -21,24 +21,6 @@ document.getElementById('rail-toggle').addEventListener('change', function() {
     updateColumnInfo();
   }
 });
-
-// Debug mode toggle
-document.getElementById('debug-mode-toggle').addEventListener('click', function() {
-  this.checked = !this.checked;
-  document.body.classList.toggle('debug-mode');
-  
-  // Save debug mode state to localStorage
-  localStorage.setItem(SYSTEM.DEBUG_MODE_KEY, document.body.classList.contains('debug-mode') ? 'enabled' : 'disabled');
-});
-
-// Initialize debug mode from localStorage if available
-function initDebugMode() {
-  const debugModeState = localStorage.getItem(SYSTEM.DEBUG_MODE_KEY);
-  if (debugModeState === 'enabled') {
-    document.getElementById('debug-mode-toggle').checked = true;
-    document.body.classList.add('debug-mode');
-  }
-}
 
 // Function to get current breakpoint
 function getCurrentBreakpoint() {
@@ -160,7 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Call both update functions on load and resize
 window.addEventListener('load', function() {
-  initDebugMode(); // Initialize debug mode from localStorage
   updateColumnInfo();
   updateOffsetInfo();
 });

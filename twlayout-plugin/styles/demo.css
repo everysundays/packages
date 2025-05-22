@@ -1,0 +1,273 @@
+/* 
+ * Demo styles for the Rack & Rail Grid System Demo
+ * These styles are specific to the demo page and not part of the core grid system
+ */
+
+/* Base styles */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  margin: 0;
+  min-width: 320px; /* Ensure minimum width for small screens */
+  padding-top: 3rem; /* Add space for fixed top elements */
+}
+
+.page-wrapper {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1.25rem;
+  box-sizing: border-box;
+}
+
+h1, h2 {
+  margin-top: 0;
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+section {
+  margin-bottom: 2.5rem; /* 40px */
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 2.5rem; /* 40px */
+}
+
+/* Top nav elements (viewport info) */
+.viewport-info {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  right: 0.625rem; /* 10px */
+  background-color: #0ea5e9;
+  color: white;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  border-radius: 0.25rem; /* 4px */
+  font-size: 0.75rem;
+  z-index: 100;
+}
+
+/* Breakpoint reference styles */
+.breakpoint-reference {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.breakpoint {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem; /* Lozenge shape */
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.breakpoint:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.breakpoint.breakpoint-sm {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.breakpoint.breakpoint-md {
+  background-color: #93c5fd;
+  color: #1e40af;
+}
+
+.breakpoint.breakpoint-lg {
+  background-color: #a7f3d0;
+  color: #065f46;
+}
+
+.breakpoint.breakpoint-xl {
+  background-color: #fde68a;
+  color: #92400e;
+}
+
+/* Toggle styles */
+.toggle-container {
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.toggle-switch {
+  display: flex;
+  margin-bottom: 1.25rem; /* 20px */
+  max-width: 18.75rem; /* 300px */
+}
+
+.toggle-switch label {
+  flex: 1;
+  text-align: center;
+  padding: 0.625rem; /* 10px */
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-switch label:first-child {
+  border-radius: 0.25rem 0 0 0.25rem; /* 4px */
+}
+
+.toggle-switch label:last-child {
+  border-radius: 0 0.25rem 0.25rem 0; /* 4px */
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#rack-toggle:checked ~ .toggle-switch .rack-label {
+  background-color: #0ea5e9;
+  color: white;
+}
+
+#rail-toggle:checked ~ .toggle-switch .rail-label {
+  background-color: #8b5cf6;
+  color: white;
+}
+
+/* Column styles - moved from inner div to col- elements directly */
+.rack > [class*="col-"],
+.rail > [class*="col-"] {
+  padding: 0.625rem; /* 10px */
+  border-radius: 0.25rem; /* 4px */
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+  min-height: 5rem; /* Ensure minimum height for display */
+  word-break: break-word; /* Prevent overflow of long text */
+  overflow: hidden;
+}
+
+/* Common ::before styling for all column accent bars */
+.rack > [class*="col-"]::before,
+.rail > [class*="col-"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.25rem; /* 4px */
+}
+
+/* Simplified column colors - just two colors */
+.rack > [class*="col-"] {
+  background-color: #f3e8ff; /* Light purple */
+  border: 1px solid #d8b4fe; /* Purple border */
+}
+
+.rail > [class*="col-"] {
+  background-color: #ffedd5; /* Light orange */
+  border: 1px solid #fdba74; /* Orange border */
+  overflow: visible; /* Ensure content isn't cut off */
+  padding-top: 0.75rem; /* Slightly more top padding for content */
+}
+
+/* Column accent bars */
+.rail > [class*="col-"]::before {
+  background-color: #fb923c; /* Orange accent */
+}
+
+/* Inner content styling */
+.rack > [class*="col-"] > div,
+.rail > [class*="col-"] > div {
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.rack > [class*="col-"] > div {
+  color: #6b21a8;
+}
+
+.rail > [class*="col-"] > div {
+  color: #9a3412;
+}
+
+/* Breakpoint badge styles */
+.breakpoint-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.breakpoint-sm { background-color: #e5e7eb; color: #4b5563; }
+.breakpoint-md { background-color: #93c5fd; color: #1e40af; }
+.breakpoint-lg { background-color: #a7f3d0; color: #065f46; }
+.breakpoint-xl { background-color: #fde68a; color: #92400e; }
+
+/* Offset demo section */
+.offset-demo .rack {
+  margin-bottom: 0.625rem; /* 10px */
+}
+
+.offset-demo .rack > [class*="col-"] {
+  min-height: 3.125rem; /* 50px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offset-demo .rack > [class*="col-"]::before {
+  display: none; /* Hide accent bar in offset demo */
+}
+
+/* Formula section */
+.formulas {
+  background-color: #f9fafb;
+  padding: 1.25rem; /* 20px */
+  border-radius: 0.25rem; /* 4px */
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.formulas ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formulas li {
+  margin-bottom: 0.625rem; /* 10px */
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+/* Code block styling */
+.code-block {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-radius: 0.25rem; /* 4px */
+  padding: 1.25rem; /* 20px */
+  overflow-x: auto;
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Media queries for responsive behavior */
+@media (max-width: 30rem) { /* 480px */
+  .toggle-switch {
+    flex-direction: column;
+  }
+  
+  .toggle-switch label {
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+  }
+} 

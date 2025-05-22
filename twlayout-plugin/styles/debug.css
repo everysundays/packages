@@ -1,0 +1,113 @@
+/* 
+ * Debug styles for the Rack & Rail Grid System
+ * These styles are meant to be used with debug-mode.js for visualization of grid layouts
+ */
+
+/* Debug Toggle styles */
+.debug-toggle-container {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  left: 0.625rem; /* 10px */
+  z-index: 100;
+  margin: 0;
+}
+
+.debug-toggle-label {
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  background-color: #e2e8f0;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+body.debug-mode .debug-toggle-label {
+  background-color: #f97316;
+  color: white;
+}
+
+.debug-toggle-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Debug mode rack and rail outlines */
+.debug-mode .rack,
+.debug-mode .rail {
+  outline: 2px dashed #0ea5e9; /* Blue dashed outline */
+  outline-offset: -2px;
+  position: relative;
+}
+
+/* Show content-box names */
+.debug-mode .rack::after {
+  content: "rack";
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #0ea5e9;
+}
+
+.debug-mode .rail::after {
+  content: "rail";
+  position: absolute;
+  top: -1.25rem;
+  left: 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #8b5cf6;
+}
+
+/* Debug mode column styling - only dashed borders */
+.debug-mode .rack > [class*="col-"],
+.debug-mode .rail > [class*="col-"] {
+  position: relative;
+  outline: 2px dashed #d946ef; /* Purple dashed outline */
+  outline-offset: -2px;
+}
+
+/* Show column numbers */
+.debug-mode .rack > [class*="col-"]::after,
+.debug-mode .rail > [class*="col-"]::after {
+  content: attr(class);
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Container debug mode (non-demo pages) - removes any background colors or styling */
+.debug-mode-containers-only .rack > [class*="col-"]::after,
+.debug-mode-containers-only .rail > [class*="col-"]::after {
+  content: attr(class);
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  pointer-events: none;
+}
+
+/* Override any background colors in container-only mode */
+.debug-mode-containers-only .rack > [class*="col-"],
+.debug-mode-containers-only .rail > [class*="col-"] {
+  background-color: transparent !important;
+  border: none !important;
+  outline: 1px dashed #d1d5db !important; /* Light gray dashed outline */
+} 

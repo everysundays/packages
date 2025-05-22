@@ -1,9 +1,5 @@
 import { SYSTEM } from './grid-config.js';
 
-// This is a compatibility file that redirects to debug-mode.js
-// It's kept for backward compatibility with existing code
-console.warn('universal-debug.js is deprecated. Please use debug-mode.js instead.');
-
 (function() {
   try {
     // Create a new <link> element
@@ -117,4 +113,4 @@ console.warn('universal-debug.js is deprecated. Please use debug-mode.js instead
   } catch (error) {
     console.error('Error in debug mode logic: ', error);
   }
-})();
+})(); 

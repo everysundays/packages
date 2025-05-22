@@ -139,16 +139,6 @@ input[type="radio"] {
   padding-top: 0.75rem; /* Slightly more top padding for content */
 }
 
-/* Common ::before styling for all column accent bars */
-.rack > [class*="col-"]::before,
-.rail > [class*="col-"]::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0.25rem; /* 4px */
-}
 
 /* Column accent bars */
 .rail > [class*="col-"]::before {
@@ -250,7 +240,7 @@ input[type="radio"] {
   .toggle-switch {
     flex-direction: column;
   }
-  
+
   .toggle-switch label {
     margin-bottom: 0.5rem;
     border-radius: 0.25rem;

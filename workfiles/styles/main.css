@@ -3,6 +3,63 @@
 /* Import twlayout plugin styles */
 @import "../../twlayout-plugin/styles/layout.css";
 
-.blue-btn {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
-} 
+.h1 {
+    @apply text-[44px] leading-[48px];
+}
+
+.h2 {
+    @apply text-[44px] leading-[48px];
+}
+
+.h3 {
+    @apply text-[28px] leading-[36px];
+}
+
+.h4 {
+    @apply text-[20px] leading-[24px];
+}
+
+.s1 {
+    @apply text-[20px] leading-[28px];
+}
+
+.b1 {
+    @apply text-[20px] leading-[24px];
+}
+
+.b2 {
+    @apply text-[16px] leading-[24px];
+}
+
+.b3 {
+    @apply text-[14px] leading-[24px];
+}
+
+/* Force inclusion of color classes */
+.text-blue-600-helper {
+    @apply text-blue-600;
+}
+
+.hover\:text-blue-600-helper:hover {
+    @apply hover:text-blue-600;
+}
+
+.bg-blue-600-helper {
+    @apply bg-blue-600;
+}
+
+.hover\:bg-blue-700-helper:hover {
+    @apply hover:bg-blue-700;
+}
+
+.bg-blue-700-helper {
+    @apply bg-blue-700;
+}
+
+.text-pink-600-helper {
+    @apply text-pink-600;
+}
+
+.text-white-helper {
+    @apply text-white;
+}

@@ -5,7 +5,8 @@ module.exports = plugin(function({ addComponents, theme }) {
   // Base container styles
   const baseComponents = {
     '.rack, .rail': {
-      padding: SYSTEM.CONTAINER_PADDING,
+      paddingLeft: SYSTEM.CONTAINER_PADDING,
+      paddingRight: SYSTEM.CONTAINER_PADDING,
       display: 'flex',
       gap: SYSTEM.GAP,
     },
@@ -32,7 +33,7 @@ module.exports = plugin(function({ addComponents, theme }) {
   const responsiveComponents = Object.entries(VIEWPORTS).reduce((acc, [breakpoint, config]) => {
     // Create media query
     const mediaQuery = `@media (min-width: ${config.minWidth})`;
-    
+
     // Create column selectors for this breakpoint
     const columns = Object.entries(RACK_COLUMNS[breakpoint]).reduce((colAcc, [col, width]) => {
       return {
@@ -46,7 +47,7 @@ module.exports = plugin(function({ addComponents, theme }) {
         },
       };
     }, {});
-    
+
     // Create offset selectors for this breakpoint
     const offsets = Object.entries(OFFSETS[breakpoint]).reduce((offsetAcc, [offset, marginLeft]) => {
       return {
@@ -56,14 +57,14 @@ module.exports = plugin(function({ addComponents, theme }) {
         },
       };
     }, {});
-    
+
     // Add page-wrapper styles for this breakpoint
     const pageWrapper = {
       '.page-wrapper': {
         maxWidth: `${config.availableSpace}px`,
       },
     };
-    
+
     // Combine all styles for this breakpoint
     return {
       ...acc,

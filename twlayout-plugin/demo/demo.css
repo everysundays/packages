@@ -31,51 +31,6 @@ section {
   padding-bottom: 2.5rem; /* 40px */
 }
 
-/* Top nav elements (viewport info and debug toggle) */
-.viewport-info {
-  position: fixed;
-  top: 0.625rem; /* 10px */
-  right: 0.625rem; /* 10px */
-  background-color: #0ea5e9;
-  color: white;
-  padding: 0.313rem 0.625rem; /* 5px 10px */
-  border-radius: 0.25rem; /* 4px */
-  font-size: 0.75rem;
-  z-index: 100;
-}
-
-.debug-toggle-container {
-  position: fixed;
-  top: 0.625rem; /* 10px */
-  left: 0.625rem; /* 10px */
-  z-index: 100;
-  margin: 0;
-}
-
-.debug-toggle-label {
-  font-size: 0.75rem;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  padding: 0.313rem 0.625rem; /* 5px 10px */
-  background-color: #e2e8f0;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s;
-}
-
-body.debug-mode .debug-toggle-label {
-  background-color: #f97316;
-  color: white;
-}
-
-.debug-toggle-container input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
 /* Breakpoint reference styles */
 .breakpoint-reference {
   display: flex;
@@ -160,7 +115,7 @@ input[type="radio"] {
   color: white;
 }
 
-/* Column styles - moved from inner div to col- elements directly */
+/* Column styles for demo page only */
 .rack > [class*="col-"],
 .rail > [class*="col-"] {
   padding: 0.625rem; /* 10px */
@@ -170,7 +125,18 @@ input[type="radio"] {
   height: 100%;
   min-height: 5rem; /* Ensure minimum height for display */
   word-break: break-word; /* Prevent overflow of long text */
-  overflow: hidden;
+}
+
+/* Demo-specific column styling */
+.rack > [class*="col-"] {
+  background-color: #f3e8ff; /* Light purple */
+  border: 1px solid #d8b4fe; /* Purple border */
+}
+
+.rail > [class*="col-"] {
+  background-color: #ffedd5; /* Light orange */
+  border: 1px solid #fdba74; /* Orange border */
+  padding-top: 0.75rem; /* Slightly more top padding for content */
 }
 
 /* Common ::before styling for all column accent bars */
@@ -182,19 +148,6 @@ input[type="radio"] {
   left: 0;
   right: 0;
   height: 0.25rem; /* 4px */
-}
-
-/* Simplified column colors - just two colors */
-.rack > [class*="col-"] {
-  background-color: #f3e8ff; /* Light purple */
-  border: 1px solid #d8b4fe; /* Purple border */
-}
-
-.rail > [class*="col-"] {
-  background-color: #ffedd5; /* Light orange */
-  border: 1px solid #fdba74; /* Orange border */
-  overflow: visible; /* Ensure content isn't cut off */
-  padding-top: 0.75rem; /* Slightly more top padding for content */
 }
 
 /* Column accent bars */
@@ -290,208 +243,6 @@ input[type="radio"] {
   font-family: monospace;
   font-size: 0.875rem;
   line-height: 1.5;
-}
-
-/* Debug mode rack and rail outlines */
-.debug-mode .rack,
-.debug-mode .rail {
-  outline: 2px dashed #0ea5e9; /* Blue dashed outline */
-  outline-offset: -2px;
-  position: relative;
-}
-
-/* Show content-box names - different sizes based on viewport */
-.debug-mode .rack::after {
-  content: "rack (320px)";
-  position: absolute;
-  top: -1.25rem;
-  left: 0;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #0ea5e9;
-}
-
-.debug-mode .rail::after {
-  content: "rail (320px)";
-  position: absolute;
-  top: -1.25rem;
-  left: 0;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #8b5cf6;
-}
-
-/* Responsive viewport width for rack names */
-@media (min-width: 20rem) { /* 320px */
-  .debug-mode .rack::after {
-    content: "rack (320px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (320px)";
-  }
-}
-
-@media (min-width: 23.4375rem) { /* 375px */
-  .debug-mode .rack::after {
-    content: "rack (375px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (375px)";
-  }
-}
-
-@media (min-width: 30rem) { /* 480px */
-  .debug-mode .rack::after {
-    content: "rack (480px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (480px)";
-  }
-}
-
-@media (min-width: 43.125rem) { /* 690px */
-  .debug-mode .rack::after {
-    content: "rack (690px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (690px)";
-  }
-}
-
-@media (min-width: 48rem) { /* 768px */
-  .debug-mode .rack::after {
-    content: "rack (768px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (768px)";
-  }
-}
-
-@media (min-width: 64rem) { /* 1024px */
-  .debug-mode .rack::after {
-    content: "rack (1024px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (1024px)";
-  }
-}
-
-@media (min-width: 86rem) { /* 1376px */
-  .debug-mode .rack::after {
-    content: "rack (1376px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (1376px)";
-  }
-}
-
-@media (min-width: 90rem) { /* 1440px */
-  .debug-mode .rack::after {
-    content: "rack (1440px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (1440px)";
-  }
-}
-
-@media (min-width: 108.5rem) { /* 1736px */
-  .debug-mode .rack::after {
-    content: "rack (1736px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (1736px)";
-  }
-}
-
-@media (min-width: 120rem) { /* 1920px */
-  .debug-mode .rack::after {
-    content: "rack (1920px)";
-  }
-  
-  .debug-mode .rail::after {
-    content: "rail (1920px)";
-  }
-}
-
-/* Enhanced debug for rail scrollable containers to make it clearer it can scroll */
-.debug-mode .rail::after {
-  content: "rail (scrollable ⟷)";
-  color: #8b5cf6;
-}
-
-/* Debug border for column container */
-.debug-mode .rack::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  outline: 2px dashed #0ea5e9;
-  outline-offset: -4px;
-  pointer-events: none;
-}
-
-.debug-mode .rail::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  outline: 2px dashed #8b5cf6;
-  outline-offset: -4px;
-  pointer-events: none;
-}
-
-/* Debug borders for columns */
-.debug-mode .rack > [class*="col-"] {
-  position: relative;
-  outline: 2px dashed #d946ef; /* Purple dashed outline */
-  outline-offset: -2px;
-}
-
-.debug-mode .rack > [class*="col-"]::after {
-  content: attr(class);
-  position: absolute;
-  top: 0.25rem;
-  left: 0.25rem;
-  font-size: 0.75rem;
-  color: #6b7280;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.debug-mode .rail > [class*="col-"] {
-  position: relative;
-  outline: 2px dashed #d946ef; /* Purple dashed outline */
-  outline-offset: -2px;
-}
-
-.debug-mode .rail > [class*="col-"]::after {
-  content: attr(class);
-  position: absolute;
-  top: 0.25rem;
-  left: 0.25rem;
-  font-size: 0.75rem;
-  color: #6b7280;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Media queries for responsive behavior */

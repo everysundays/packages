@@ -2,8 +2,14 @@
   "name": "twlayout-plugin",
   "version": "1.0.0",
   "description": "Tailwind CSS Plugin for Rack & Rail Grid System",
-  "main": "scripts/twlayout-plugin.ts",
+  "main": "scripts/twlayout-plugin.js",
+  "files": [
+    "scripts/*.js",
+    "styles/*.css",
+    "README.md"
+  ],
   "scripts": {
+    "test": "echo \"No tests specified\""
   },
   "keywords": [
     "tailwindcss",

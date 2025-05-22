@@ -2,11 +2,33 @@ import { SYSTEM } from './grid-config.js';
 
 (function() {
   try {
+    // Function to find the correct path to debug.css
+    function findDebugCssPath() {
+      // Try to get the script path
+      const scripts = document.getElementsByTagName('script');
+      for (let i = 0; i < scripts.length; i++) {
+        const src = scripts[i].src;
+        if (src.includes('/debug-mode.js') || src.includes('/twlayout-plugin/scripts/debug-mode.js')) {
+          // Replace the script path with the CSS path
+          return src.replace('/scripts/debug-mode.js', '/styles/debug.css');
+        }
+      }
+      
+      // Fallback paths
+      const possiblePaths = [
+        '../twlayout-plugin/styles/debug.css',
+        './twlayout-plugin/styles/debug.css',
+        '/twlayout-plugin/styles/debug.css'
+      ];
+      
+      return possiblePaths[0]; // Default to the first fallback
+    }
+    
     // Create a new <link> element
     var linkElement = document.createElement('link');
 
     // Set the href attribute with correct path
-    linkElement.href = '../twlayout-plugin/styles/debug.css';
+    linkElement.href = findDebugCssPath();
 
     // Set the rel attribute
     linkElement.rel = 'stylesheet';

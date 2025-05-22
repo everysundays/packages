@@ -221,24 +221,6 @@ body.debug-mode .debug-toggle-label {
   max-width: none;
 }
 
-/* Container debug mode (non-demo pages) - removes any background colors or styling */
-.debug-mode-containers-only .rack > [class*="col-"]::after,
-.debug-mode-containers-only .rail > [class*="col-"]::after {
-  content: attr(class);
-  position: absolute;
-  top: -1.75rem;
-  left: 0;
-  font-size: 0.75rem;
-  color: #6b7280;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  pointer-events: none;
-  z-index: 2;
-  white-space: nowrap;
-  max-width: none;
-}
-
 /* Override any background colors in container-only mode */
 .debug-mode-containers-only .rack > [class*="col-"],
 .debug-mode-containers-only .rail > [class*="col-"] {

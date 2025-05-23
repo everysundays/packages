@@ -89,25 +89,13 @@ import { SYSTEM } from './grid-config.js';
       return;
     }
 
-    // More precise check for demo page - check for specific demo page elements
-    const isDemoPage = window.location.pathname.includes('demo.html') || 
-                      document.querySelector('.offset-demo') !== null || 
-                      document.querySelector('#rack-toggle') !== null;
-    
     // Event Listener for checkbox change
     debugToggleCheckbox.addEventListener('change', function() {
       if (this.checked) {
-        // Apply the appropriate debug class based on the page
-        if (isDemoPage) {
-          body.classList.add('debug-mode');
-        } else {
-          body.classList.add('debug-mode');
-          body.classList.add('debug-mode-containers-only');
-        }
+        body.classList.add('debug-mode');
         localStorage.setItem(SYSTEM.DEBUG_MODE_KEY, 'enabled');
       } else {
         body.classList.remove('debug-mode');
-        body.classList.remove('debug-mode-containers-only');
         localStorage.setItem(SYSTEM.DEBUG_MODE_KEY, 'disabled');
       }
     });
@@ -118,14 +106,9 @@ import { SYSTEM } from './grid-config.js';
       if (savedState === 'enabled') {
         debugToggleCheckbox.checked = true;
         body.classList.add('debug-mode');
-        // Add the containers-only class for non-demo pages
-        if (!isDemoPage) {
-          body.classList.add('debug-mode-containers-only');
-        }
       } else {
         debugToggleCheckbox.checked = false;
         body.classList.remove('debug-mode');
-        body.classList.remove('debug-mode-containers-only');
       }
     }
 

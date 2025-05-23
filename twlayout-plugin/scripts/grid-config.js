@@ -5,14 +5,14 @@
  */
 
 // System-wide constants
-const SYSTEM = {
+export const SYSTEM = {
   CONTAINER_PADDING: '1.5rem',  // 24px - Standard padding for all containers
   GAP: '1rem',                  // 16px - Standard gap between columns
   DEBUG_MODE_KEY: 'rack-rail-debug-mode'  // localStorage key for debug mode
 };
 
 // Viewport breakpoints configuration
-const VIEWPORTS = {
+export const VIEWPORTS = {
   sm: {
     viewportWidth: 375,
     minWidth: '20rem',       // 375px in rem
@@ -40,7 +40,7 @@ const VIEWPORTS = {
 };
 
 // Rack column width percentages based on available space
-const RACK_COLUMNS = {
+export const RACK_COLUMNS = {
   sm: {
     1: '48.06%',   // 161px / 335px
     2: '100%',     // 335px / 335px
@@ -100,7 +100,7 @@ const RACK_COLUMNS = {
 };
 
 // Rail column widths (fixed widths that don't stretch)
-const RAIL_COLUMNS = {
+export const RAIL_COLUMNS = {
   sm: {
     1: '16.25rem',   // 260px
     2: '20rem',      // 320px
@@ -160,7 +160,7 @@ const RAIL_COLUMNS = {
 };
 
 // Column offsets (percentage-based)
-const OFFSETS = {
+export const OFFSETS = {
   sm: {
     0: '0%',         // 0px additional offset (container already has padding)
     1: '0%',         // 0px additional offset (20px already in container)
@@ -220,7 +220,7 @@ const OFFSETS = {
 };
 
 // Appearance/Debug styling options
-const GRID_COLORS = {
+export const GRID_COLORS = {
   rack: {
     background: '#f3f4f6',
     border: '#e5e7eb',
@@ -239,14 +239,4 @@ const GRID_COLORS = {
     railColumnBg: 'rgba(139, 92, 246, 0.1)',
     offsetHighlight: '#ec4899'
   }
-};
-
-// Export using CommonJS to match the require() in twlayout-plugin.js
-module.exports = {
-  SYSTEM,
-  VIEWPORTS,
-  RACK_COLUMNS,
-  RAIL_COLUMNS,
-  OFFSETS,
-  GRID_COLORS
 }; 

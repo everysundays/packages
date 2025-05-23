@@ -245,4 +245,33 @@ input[type="radio"] {
     margin-bottom: 0.5rem;
     border-radius: 0.25rem;
   }
+}
+
+/* Demo-specific debug mode styling (enhanced visual debug) */
+.debug-mode .rack > [class*="col-"],
+.debug-mode .rail > [class*="col-"] {
+  outline: 2px dashed #d946ef !important; /* Purple dashed outline */
+  outline-offset: -2px !important;
+  background-color: transparent !important;
+  border: 1px solid rgba(217, 70, 239, 0.3) !important; /* Semi-transparent purple border */
+}
+
+/* Enhanced debug mode column class labels for demo */
+.debug-mode .rack > [class*="col-"]::after,
+.debug-mode .rail > [class*="col-"]::after {
+  content: attr(class) !important;
+  position: absolute !important;
+  top: 0.25rem !important;
+  right: 0.25rem !important;
+  font-size: 0.75rem !important;
+  color: #d946ef !important; /* Purple color */
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  pointer-events: none !important;
+  z-index: 3 !important; /* Higher z-index for demo */
+  white-space: nowrap !important;
+  max-width: none !important;
+  border: 1px solid #d946ef !important;
+  font-weight: bold !important;
 } 

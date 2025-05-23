@@ -8,8 +8,8 @@
   position: fixed;
   top: 0.625rem; /* 10px */
   right: 0.625rem; /* 10px */
-  background-color: #0ea5e9;
-  color: white;
+  font-weight: bold;
+  color: #0ea5e9;
   padding: 0.313rem 0.625rem; /* 5px 10px */
   border-radius: 0.25rem; /* 4px */
   font-size: 0.75rem;
@@ -189,21 +189,22 @@ body.debug-mode .debug-toggle-label {
 
 /* Enhanced debug for rail scrollable containers */
 .debug-mode .rail::after {
-  content: "rail (scrollable ⟷)";
+  content: "rail (scrollable →)";
   color: #8b5cf6;
 }
 
-
-/* Debug mode column styling - dashed borders */
+/* Debug mode column styling - light gray outlines (default containers-only mode) */
 .debug-mode .rack > [class*="col-"],
 .debug-mode .rail > [class*="col-"] {
   position: relative;
-  outline: 2px dashed #d946ef; /* Purple dashed outline */
-  outline-offset: -2px;
+  background-color: transparent;
+  border: none;
+  outline: 1px dashed #d1d5db; /* Light gray dashed outline */
+  outline-offset: -1px;
   overflow: visible; /* Ensure labels are not cut off */
 }
 
-/* Show column numbers */
+/* Show column class names */
 .debug-mode .rack > [class*="col-"]::after,
 .debug-mode .rail > [class*="col-"]::after {
   content: attr(class);
@@ -220,12 +221,3 @@ body.debug-mode .debug-toggle-label {
   white-space: nowrap;
   max-width: none;
 }
-
-/* Override any background colors in container-only mode */
-.debug-mode-containers-only .rack > [class*="col-"],
-.debug-mode-containers-only .rail > [class*="col-"] {
-  background-color: transparent !important;
-  border: none !important;
-  outline: 1px dashed #d1d5db !important; /* Light gray dashed outline */
-  overflow: visible !important; /* Ensure labels are not cut off */
-} 

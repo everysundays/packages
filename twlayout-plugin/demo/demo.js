@@ -82,7 +82,7 @@ function updateColumnInfo() {
       
       // Update info display with all sizing values
       infoElement.innerHTML = `
-        <span class="breakpoint-${breakpoint}">${breakpoint}</span> ${percentageValue} (${formatPx(widthInPx)} / ${remValue})
+        <span class="breakpoint breakpoint-${breakpoint}">${breakpoint}</span> (${percentageValue} / ${formatPx(widthInPx)} / ${remValue})
       `;
     } else {
       // For rail columns, show fixed width
@@ -91,7 +91,7 @@ function updateColumnInfo() {
       
       // Update info display with simplified format
       infoElement.innerHTML = `
-        <span class="breakpoint-${breakpoint}">${breakpoint}</span> ${fixedWidth} (${formatPx(fixedPxWidth)})<br>
+        <span class="breakpoint breakpoint-${breakpoint}">${breakpoint}> (${fixedWidth}</span> (${formatPx(fixedPxWidth)})
       `;
     }
   });

@@ -16,9 +16,9 @@
 <div class="page-wrapper">
   <h1 class="h1">Rack & Rail Grid System</h1>
 
-  <p>A responsive grid system with two container types: <strong>Rack</strong> (end-to-end columns that wrap) and <strong>Rail</strong> (horizontally scrollable rows).</p>
+  <p>A responsive grid system with two container types: <strong>Rack</strong> (end-to-end col- that wrap) and <strong>Rail</strong> (horizontally scrollable rows).</p>
 
-  <h2>Breakpoint Reference</h2>
+  <h2 class="h2">Breakpoint Reference</h2>
   <div class="breakpoint-reference">
     <span class="breakpoint breakpoint-sm"><strong>sm:</strong> 375px viewport (335px available)</span>
     <span class="breakpoint breakpoint-md"><strong>md:</strong> 770px viewport (690px available)</span>
@@ -30,7 +30,7 @@
 <section>
 
   <div class="page-wrapper">
-    <h2>Column Width Demo</h2>
+    <h2 class="h2">Column Width Demo</h2>
     <div class="toggle-container">
       <input type="radio" name="container-type" id="rack-toggle" checked>
       <input type="radio" name="container-type" id="rail-toggle">
@@ -64,73 +64,73 @@
 
   <div class="rack">
     <div class="col-1">
-      <strong>Column 1</strong>
+      <strong>col-1</strong>
       <div id="col-1-info">
         Loading...
       </div>
     </div>
     <div class="col-2">
-      <strong>Column 2</strong>
+      <strong>col-2</strong>
       <div id="col-2-info">
         Loading...
       </div>
     </div>
     <div class="col-3">
-      <strong>Column 3</strong>
+      <strong>col-3</strong>
       <div id="col-3-info">
         Loading...
       </div>
     </div>
     <div class="col-4">
-      <strong>Column 4</strong>
+      <strong>col-4</strong>
       <div id="col-4-info">
         Loading...
       </div>
     </div>
     <div class="col-5">
-      <strong>Column 5</strong>
+      <strong>col-5</strong>
       <div id="col-5-info">
         Loading...
       </div>
     </div>
     <div class="col-6">
-      <strong>Column 6</strong>
+      <strong>col-6</strong>
       <div id="col-6-info">
         Loading...
       </div>
     </div>
     <div class="col-7">
-      <strong>Column 7</strong>
+      <strong>col-7</strong>
       <div id="col-7-info">
         Loading...
       </div>
     </div>
     <div class="col-8">
-      <strong>Column 8</strong>
+      <strong>col-8</strong>
       <div id="col-8-info">
         Loading...
       </div>
     </div>
     <div class="col-9">
-      <strong>Column 9</strong>
+      <strong>col-9</strong>
       <div id="col-9-info">
         Loading...
       </div>
     </div>
     <div class="col-10">
-      <strong>Column 10</strong>
+      <strong>col-10</strong>
       <div id="col-10-info">
         Loading...
       </div>
     </div>
     <div class="col-11">
-      <strong>Column 11</strong>
+      <strong>col-11</strong>
       <div id="col-11-info">
         Loading...
       </div>
     </div>
     <div class="col-12">
-      <strong>Column 12</strong>
+      <strong>col-12</strong>
       <div id="col-12-info">
         Loading...
       </div>
@@ -142,12 +142,12 @@
 <section>
 
   <div class="page-wrapper">
-    <h2 id="responsive-columns">Responsive Columns Example (Rack Container Only)</h2>
-    <p>These columns automatically adjust their width according to the breakpoint without needing explicit classes for each viewport. Note how shorter columns can inline with longer ones depending on the viewport size.</p>
+    <h2 class="h2" id="responsive-col-">Responsive col- Example (Rack Container Only)</h2>
+    <p>These col- automatically adjust their width according to the breakpoint without needing explicit classes for each viewport. Note how shorter col- can inline with longer ones depending on the viewport size.</p>
   </div>
 
   <div class="rack">
-    <div class="col-2 h-16">
+    <div class="col-2">
       <strong>col-2</strong>
       <div id="responsive-col-2-info">
         Loading...
@@ -158,6 +158,13 @@
       <div id="responsive-col-8-info">
         Loading...
       </div>
+      <ul id="link-listing" class="flex flex-row">
+        <li>link 1</li>
+        <li>link 2</li>
+        <li>link 3</li>
+        <li>link 4</li>
+        <li>link 5</li>
+      </ul> 
     </div>
     <div class="col-2">
       <strong>col-2</strong>
@@ -376,9 +383,9 @@
 <section>
 
   <div class="page-wrapper">
-    <h2>Complementary Offset Examples</h2>
-    <p>Demonstration of how offsets interact with complementary column sizes (offset + column = 12)</p>
-    <p>Each example shows how different offset values create space before the column, showing full-width utilization. Notice how the offset percentages and column percentages add up to 100% of the available space at each breakpoint.</p>
+    <h2 class="h2">Complementary Offset Examples</h2>
+    <p>Demonstration of how offsets interact with complementary col-sizes (offset + col-= 12)</p>
+    <p>Each example shows how different offset values create space before the col- showing full-width utilization. Notice how the offset percentages and col-percentages add up to 100% of the available space at each breakpoint.</p>
     <div class="formulas">
       <strong>Formula:</strong>
       <ul>
@@ -394,7 +401,7 @@
       <div class="col-12">
         <strong>offset-0 + col-12</strong>
         <div>
-          <span>No offset (0%) + Full width column (100%)</span>
+          <span>No offset (0%) + Full width col-(100%)</span>
         </div>
       </div>
 
@@ -483,17 +490,17 @@
 <section>
 
   <div class="page-wrapper">
-    <h2>Customization Guide</h2>
-    <p>The grid system constants can be easily modified to adjust column ratios and other properties.</p>
+    <h2 class="h2">Customization Guide</h2>
+    <p>The grid system constants can be easily modified to adjust col-ratios and other properties.</p>
 
     <div class="formulas">
       <strong>How to Customize:</strong>
       <ul>
-        <li>Edit the <code>src/scripts/grid-config.js</code> file to adjust column percentages, widths, and spacing</li>
-        <li>Modify <code>RACK_COLUMNS</code> to change the percentage-based column widths</li>
-        <li>Modify <code>RAIL_COLUMNS</code> to change the fixed-width columns in the rail container</li>
+        <li>Edit the <code>src/scripts/grid-config.js</code> file to adjust col-percentages, widths, and spacing</li>
+        <li>Modify <code>RACK_col-</code> to change the percentage-based col-widths</li>
+        <li>Modify <code>RAIL_col-</code> to change the fixed-width col- in the rail container</li>
         <li>Adjust <code>SYSTEM.CONTAINER_PADDING</code> to change the standard padding (currently 1.5rem)</li>
-        <li>Adjust <code>SYSTEM.GAP</code> to change the standard gap between columns (currently 1rem)</li>
+        <li>Adjust <code>SYSTEM.GAP</code> to change the standard gap between col- (currently 1rem)</li>
         <li>The <code>GRID_COLORS</code> object allows customization of the visual appearance</li>
       </ul>
     </div>

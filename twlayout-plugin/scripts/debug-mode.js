@@ -101,10 +101,10 @@ import { SYSTEM, VIEWPORTS } from './grid-config.js';
   try {
     // Constants for viewport management
     const DEFAULT_VIEWPORTS = [
-      { value: 375, label: 'sm: 375px', breakpoint: 'sm', description: '375px viewport (335px available)' },
-      { value: 770, label: 'md: 770px', breakpoint: 'md', description: '770px viewport (690px available)' },
-      { value: 1450, label: 'lg: 1450px', breakpoint: 'lg', description: '1450px viewport (1386px available)' },
-      { value: 1800, label: 'xl: 1800px', breakpoint: 'xl', description: '1800px viewport (1736px available)' }
+      { value: 375, label: 'sm: 375px', breakpoint: 'sm', description: '375px (335px available)' },
+      { value: 770, label: 'md: 770px', breakpoint: 'md', description: '770px (690px available)' },
+      { value: 1450, label: 'lg: 1450px', breakpoint: 'lg', description: '1450px (1386px available)' },
+      { value: 1800, label: 'xl: 1800px', breakpoint: 'xl', description: '1800px (1736px available)' }
     ];
 
     // State management

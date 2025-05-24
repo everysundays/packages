@@ -1,28 +1,22 @@
 /**
- * Rack & Rail Grid System Demo Script. Handles the interactive elements of the demo page
- * These scripts are specific to the demo page and not part of the core grid system
+ * Rack & Rail Grid System Demo Script
+ * Handles interactive elements for the demo page (column info updates and container toggles)
+ * Viewport controls are now handled by debug-mode.js
  */
 
 import { VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from '../scripts/grid-config.js';
 
-// Toggle between rack and rail containers
-document.getElementById('rack-toggle').addEventListener('change', function() {
-  const container = document.querySelector('.rack, .rail');
-  if (container) {
-    container.className = 'rack';
-    updateColumnInfo();
-  }
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', function() {
+  setupContainerToggle();
+  updateAllInfo();
 });
 
-document.getElementById('rail-toggle').addEventListener('change', function() {
-  const container = document.querySelector('.rack, .rail');
-  if (container) {
-    container.className = 'rail';
-    updateColumnInfo();
-  }
-});
+// Update when window resizes
+window.addEventListener('resize', updateAllInfo);
+window.addEventListener('load', updateAllInfo);
 
-// Function to get current breakpoint
+// Get current breakpoint based on window width
 function getCurrentBreakpoint() {
   const width = window.innerWidth;
   if (width >= VIEWPORTS.xl.viewportWidth) return 'xl';
@@ -31,122 +25,137 @@ function getCurrentBreakpoint() {
   return 'sm';
 }
 
-// Function to convert rem to pixels
-function remToPx(rem) {
-  return parseFloat(rem) * 16;
-}
-
-// Function to format pixel values 
+// Format pixel values
 function formatPx(px) {
   return Math.round(px) + 'px';
 }
 
-// Function to update column information
+// Convert rem to pixels
+function remToPx(rem) {
+  return parseFloat(rem) * 16;
+}
+
+// Update all information displays
+function updateAllInfo() {
+  updateColumnInfo();
+  updateOffsetInfo();
+}
+
+// Enhanced column information update
 function updateColumnInfo() {
   const breakpoint = getCurrentBreakpoint();
   const firstContainer = document.querySelector('.rack, .rail');
   if (!firstContainer) return;
   
   const containerType = firstContainer.classList.contains('rack') ? 'rack' : 'rail';
-  const viewportWidth = window.innerWidth;
   
-  // Update viewport display
-  document.getElementById('viewport-size').textContent = `${viewportWidth}px (${breakpoint})`;
-
-  // Update all col-* elements with info containers
+  // Update all column elements
   const allColumns = document.querySelectorAll('[class*="col-"]');
   
   allColumns.forEach(column => {
-    // Get the column size from class (e.g., col-4 -> 4)
+    // Get column size from class
     const columnClass = Array.from(column.classList).find(c => c.startsWith('col-'));
     if (!columnClass) return;
     
     const columnSize = columnClass.split('-')[1];
-    if (!columnSize) return;
+    if (!columnSize || !columnSize.match(/^\d+$/)) return;
     
-    // Find info element - simplified to just look for the standardized ID format
-    const infoElement = column.querySelector(`[id$="col-${columnSize}-info"]`) || 
-                         column.querySelector(`.column-info`);
-                         
+    // Find info element within this column
+    const infoElement = column.querySelector('[id*="col-"][id*="info"]');
     if (!infoElement) return;
     
+    // Calculate actual width
     const computedWidth = window.getComputedStyle(column).width;
     const widthInPx = parseInt(computedWidth);
     
     if (containerType === 'rack') {
-      // For rack columns, show percentage
-      const percentageValue = RACK_COLUMNS[breakpoint][columnSize];
+      // For rack columns, show percentage and actual measurements
+      const percentageValue = RACK_COLUMNS[breakpoint] && RACK_COLUMNS[breakpoint][columnSize] 
+        ? RACK_COLUMNS[breakpoint][columnSize] 
+        : 'auto';
       
-      // Calculate rem value from pixels
       const remValue = (widthInPx / 16).toFixed(2) + 'rem';
       
-      // Update info display with all sizing values
       infoElement.innerHTML = `
-        <span class="breakpoint breakpoint-${breakpoint}">${breakpoint}</span> (${percentageValue} / ${formatPx(widthInPx)} / ${remValue})
+        ${percentageValue} / ${formatPx(widthInPx)} / ${remValue}
       `;
     } else {
       // For rail columns, show fixed width
-      const fixedWidth = RAIL_COLUMNS[breakpoint][columnSize];
-      const fixedPxWidth = remToPx(fixedWidth);
+      const fixedWidth = RAIL_COLUMNS[breakpoint] && RAIL_COLUMNS[breakpoint][columnSize]
+        ? RAIL_COLUMNS[breakpoint][columnSize]
+        : 'auto';
       
-      // Update info display with simplified format
+      const fixedPxWidth = fixedWidth !== 'auto' ? remToPx(fixedWidth) : widthInPx;
+      
       infoElement.innerHTML = `
-        <span class="breakpoint breakpoint-${breakpoint}">${breakpoint}> (${fixedWidth}</span> (${formatPx(fixedPxWidth)})
+        ${fixedWidth} / ${formatPx(fixedPxWidth)}
       `;
     }
   });
 }
 
-// Function to get available space for a breakpoint
-function getAvailableSpace(breakpoint) {
-  return VIEWPORTS[breakpoint].availableSpace + 'px';
-}
-
-// Function to update offset information
+// Update offset information
 function updateOffsetInfo() {
   const breakpoint = getCurrentBreakpoint();
   
-  // Update all offset info elements using the simplified structure
   for (let offsetNum = 1; offsetNum <= 11; offsetNum++) {
     const infoElement = document.getElementById(`offset-${offsetNum}-info`);
     if (!infoElement) continue;
     
-    // Get offset and complementary column percentage from our constants
-    const offsetValue = getComputedStyle(document.documentElement)
-      .getPropertyValue('--offset-' + offsetNum + '-percent').trim();
+    // Get offset value from computed styles
+    const offsetElement = infoElement.closest('[class*="offset-"]');
+    if (!offsetElement) continue;
+    
+    const computedMargin = window.getComputedStyle(offsetElement).marginLeft;
+    const marginInPx = parseInt(computedMargin);
     
     // Get complementary column percentage
     const colNumber = 12 - parseInt(offsetNum);
-    const colValue = RACK_COLUMNS[breakpoint][colNumber];
+    const colValue = RACK_COLUMNS[breakpoint] && RACK_COLUMNS[breakpoint][colNumber]
+      ? RACK_COLUMNS[breakpoint][colNumber]
+      : 'auto';
     
-    // Update the element with formatted info using the same style as column info
     infoElement.innerHTML = `
-      <span class="breakpoint-${breakpoint}">${breakpoint}</span> 
-      Offset: ${offsetValue}, Column: ${colValue}
+      Offset: ${formatPx(marginInPx)}, Column: ${colValue}
     `;
   }
 }
 
-// Toggle between rack and rail code blocks
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('rack-toggle').addEventListener('change', function() {
-    document.getElementById('rack-code-block').style.display = 'block';
-    document.getElementById('rail-code-block').style.display = 'none';
-  });
+// Setup container toggle functionality
+function setupContainerToggle() {
+  const rackToggle = document.getElementById('rack-toggle');
+  const railToggle = document.getElementById('rail-toggle');
+  const rackCodeBlock = document.getElementById('rack-code-block');
+  const railCodeBlock = document.getElementById('rail-code-block');
   
-  document.getElementById('rail-toggle').addEventListener('change', function() {
-    document.getElementById('rack-code-block').style.display = 'none';
-    document.getElementById('rail-code-block').style.display = 'block';
-  });
-});
-
-// Call both update functions on load and resize
-window.addEventListener('load', function() {
-  updateColumnInfo();
-  updateOffsetInfo();
-});
-
-window.addEventListener('resize', function() {
-  updateColumnInfo();
-  updateOffsetInfo();
-}); 
+  // Container switching
+  if (rackToggle) {
+    rackToggle.addEventListener('change', function() {
+      if (this.checked) {
+        const container = document.querySelector('.rack, .rail');
+        if (container) {
+          container.className = 'rack';
+          updateColumnInfo();
+        }
+        
+        if (rackCodeBlock) rackCodeBlock.style.display = 'block';
+        if (railCodeBlock) railCodeBlock.style.display = 'none';
+      }
+    });
+  }
+  
+  if (railToggle) {
+    railToggle.addEventListener('change', function() {
+      if (this.checked) {
+        const container = document.querySelector('.rack, .rail');
+        if (container) {
+          container.className = 'rail';
+          updateColumnInfo();
+        }
+        
+        if (rackCodeBlock) rackCodeBlock.style.display = 'none';
+        if (railCodeBlock) railCodeBlock.style.display = 'block';
+      }
+    });
+  }
+} 

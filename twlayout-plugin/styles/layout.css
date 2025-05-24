@@ -97,6 +97,19 @@ body {
     --offset-9-percent: 0%;
     --offset-10-percent: 0%;
     --offset-11-percent: 25.97%;
+    /* Rail offset variables for centering rail columns */
+    --rail-offset-0: 0rem;
+    --rail-offset-1: 1.354rem;
+    --rail-offset-2: 2.708rem;
+    --rail-offset-3: 4.063rem;
+    --rail-offset-4: 5.417rem;
+    --rail-offset-5: 6.771rem;
+    --rail-offset-6: 8.125rem;
+    --rail-offset-7: 9.479rem;
+    --rail-offset-8: 10.833rem;
+    --rail-offset-9: 12.188rem;
+    --rail-offset-10: 13.542rem;
+    --rail-offset-11: 14.896rem;
   }
   .rack .col-1 { width: var(--rack-col-1-percent); }
   .rack .col-2 { width: var(--rack-col-2-percent); }
@@ -122,18 +135,30 @@ body {
   .rail .col-10 { width: var(--rail-col-10-width); min-width: var(--rail-col-10-width); }
   .rail .col-11 { width: var(--rail-col-11-width); min-width: var(--rail-col-11-width); }
   .rail .col-12 { width: var(--rail-col-12-width); min-width: var(--rail-col-12-width); }
-  .offset-0 { margin-left: var(--offset-0-percent); }
-  .offset-1 { margin-left: var(--offset-1-percent); }
-  .offset-2 { margin-left: var(--offset-2-percent); }
-  .offset-3 { margin-left: var(--offset-3-percent); }
-  .offset-4 { margin-left: var(--offset-4-percent); }
-  .offset-5 { margin-left: var(--offset-5-percent); }
-  .offset-6 { margin-left: var(--offset-6-percent); }
-  .offset-7 { margin-left: var(--offset-7-percent); }
-  .offset-8 { margin-left: var(--offset-8-percent); }
-  .offset-9 { margin-left: var(--offset-9-percent); }
-  .offset-10 { margin-left: var(--offset-10-percent); }
-  .offset-11 { margin-left: var(--offset-11-percent); }
+  .rack .offset-0 { margin-left: var(--offset-0-percent); }
+  .rack .offset-1 { margin-left: var(--offset-1-percent); }
+  .rack .offset-2 { margin-left: var(--offset-2-percent); }
+  .rack .offset-3 { margin-left: var(--offset-3-percent); }
+  .rack .offset-4 { margin-left: var(--offset-4-percent); }
+  .rack .offset-5 { margin-left: var(--offset-5-percent); }
+  .rack .offset-6 { margin-left: var(--offset-6-percent); }
+  .rack .offset-7 { margin-left: var(--offset-7-percent); }
+  .rack .offset-8 { margin-left: var(--offset-8-percent); }
+  .rack .offset-9 { margin-left: var(--offset-9-percent); }
+  .rack .offset-10 { margin-left: var(--offset-10-percent); }
+  .rack .offset-11 { margin-left: var(--offset-11-percent); }
+  .rail .offset-0 { margin-left: var(--rail-offset-0); }
+  .rail .offset-1 { margin-left: var(--rail-offset-1); }
+  .rail .offset-2 { margin-left: var(--rail-offset-2); }
+  .rail .offset-3 { margin-left: var(--rail-offset-3); }
+  .rail .offset-4 { margin-left: var(--rail-offset-4); }
+  .rail .offset-5 { margin-left: var(--rail-offset-5); }
+  .rail .offset-6 { margin-left: var(--rail-offset-6); }
+  .rail .offset-7 { margin-left: var(--rail-offset-7); }
+  .rail .offset-8 { margin-left: var(--rail-offset-8); }
+  .rail .offset-9 { margin-left: var(--rail-offset-9); }
+  .rail .offset-10 { margin-left: var(--rail-offset-10); }
+  .rail .offset-11 { margin-left: var(--rail-offset-11); }
 }
 
 /* Medium screens (770px viewport) */
@@ -202,6 +227,19 @@ body {
     --offset-9-percent: 23.70%;
     --offset-10-percent: 28.19%;
     --offset-11-percent: 32.75%;
+    /* Rail offset variables for md breakpoint */
+    --rail-offset-0: 0rem;
+    --rail-offset-1: 1.354rem;
+    --rail-offset-2: 2.708rem;
+    --rail-offset-3: 4.063rem;
+    --rail-offset-4: 5.417rem;
+    --rail-offset-5: 6.771rem;
+    --rail-offset-6: 8.125rem;
+    --rail-offset-7: 9.479rem;
+    --rail-offset-8: 10.833rem;
+    --rail-offset-9: 12.188rem;
+    --rail-offset-10: 13.542rem;
+    --rail-offset-11: 14.896rem;
   }
   /* Offset classes will use the base classes defined in the sm breakpoint */
 }
@@ -259,7 +297,7 @@ body {
     --offset-8: 31rem;
     --offset-9: 34.625rem;
     --offset-10: 38.25rem;
-    --offset-11: 41.875rem;
+    --offset-11: 38.25rem;
     --offset-0-percent: 0%;
     --offset-1-percent: 4.18%;
     --offset-2-percent: 8.37%;
@@ -271,7 +309,20 @@ body {
     --offset-8-percent: 33.48%;
     --offset-9-percent: 37.66%;
     --offset-10-percent: 41.85%;
-    --offset-11-percent: 46.03%;
+    --offset-11-percent: 41.85%;
+    /* Rail offset variables for lg breakpoint */
+    --rail-offset-0: 0rem;
+    --rail-offset-1: 1.354rem;
+    --rail-offset-2: 2.708rem;
+    --rail-offset-3: 3.896rem;
+    --rail-offset-4: 5.208rem;
+    --rail-offset-5: 6.510rem;
+    --rail-offset-6: 7.671rem;
+    --rail-offset-7: 8.854rem;
+    --rail-offset-8: 14.583rem;
+    --rail-offset-9: 16.854rem;
+    --rail-offset-10: 19.125rem;
+    --rail-offset-11: 21.396rem;
   }
   /* Offset classes will use the base classes defined in the sm breakpoint */
 }
@@ -342,6 +393,19 @@ body {
     --offset-9-percent: 37.85%;
     --offset-10-percent: 42.05%;
     --offset-11-percent: 46.26%;
+    /* Rail offset variables for xl breakpoint */
+    --rail-offset-0: 0rem;
+    --rail-offset-1: 1.354rem;
+    --rail-offset-2: 2.708rem;
+    --rail-offset-3: 3.896rem;
+    --rail-offset-4: 5.208rem;
+    --rail-offset-5: 6.510rem;
+    --rail-offset-6: 7.671rem;
+    --rail-offset-7: 8.854rem;
+    --rail-offset-8: 18.542rem;
+    --rail-offset-9: 21.229rem;
+    --rail-offset-10: 23.917rem;
+    --rail-offset-11: 26.604rem;
   }
   /* Offset classes will use the base classes defined in the sm breakpoint */
 }

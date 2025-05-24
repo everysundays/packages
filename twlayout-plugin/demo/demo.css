@@ -9,7 +9,7 @@ body {
   color: #333;
   margin: 0;
   min-width: 320px; /* Ensure minimum width for small screens */
-  padding-top: 3rem; /* Add space for fixed top elements */
+  padding-top: 1rem; /* Reduced padding since viewport controls moved to debug mode */
 }
 
 .page-wrapper {
@@ -248,3 +248,5 @@ input[type="radio"] {
 }
 
 /* Remove all debug styling from demo.css - let debug-mode.css handle everything */
+
+/* Viewport controls moved to debug-mode.css */

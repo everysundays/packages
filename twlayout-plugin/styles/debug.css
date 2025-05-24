@@ -52,7 +52,7 @@ body.debug-mode .debug-toggle-label {
 /* Debug mode rack and rail outlines */
 .debug-mode .rack,
 .debug-mode .rail {
-  outline: 2px dashed #0ea5e9; /* Blue dashed outline */
+  outline: 3px dashed #0ea5e9; /* Blue dashed outline */
   outline-offset: -2px;
   position: relative;
 }
@@ -193,13 +193,12 @@ body.debug-mode .debug-toggle-label {
   color: #8b5cf6;
 }
 
-/* Debug mode column styling - light gray outlines (default containers-only mode) */
+/* Debug mode column styling - enhanced purple outlines (matching demo) */
 .debug-mode .rack > [class*="col-"],
 .debug-mode .rail > [class*="col-"] {
   position: relative;
   background-color: transparent;
-  border: none;
-  outline: 1px dashed #d1d5db; /* Light gray dashed outline */
+  outline: 2px dashed #d946ef; /* Purple dashed outline - no layout shift */
   outline-offset: -1px;
   overflow: visible; /* Ensure labels are not cut off */
 }
@@ -212,12 +211,13 @@ body.debug-mode .debug-toggle-label {
   top: 0.25rem;
   right: 0.25rem;
   font-size: 0.75rem;
-  color: #6b7280;
-  background-color: rgba(255, 255, 255, 0.8);
+  color: #d946ef; /* Purple color */
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 0.125rem 0.25rem;
   border-radius: 0.25rem;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
   white-space: nowrap;
   max-width: none;
+  font-weight: bold;
 }

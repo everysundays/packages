@@ -33,6 +33,11 @@
   transition: background-color 0.2s;
   height: 32px;
   box-sizing: border-box;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body.debug-mode .debug-toggle-label {
@@ -74,6 +79,11 @@ body.debug-mode .viewport-container.debug-only {
   cursor: pointer;
   transition: all 0.2s;
   box-sizing: border-box;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .viewport-input:hover {
@@ -104,6 +114,11 @@ body.debug-mode .viewport-container.debug-only {
   z-index: 1000;
   max-height: 300px;
   overflow-y: auto;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .viewport-dropdown-menu.open {
@@ -132,6 +147,11 @@ body.debug-mode .viewport-container.debug-only {
   color: #6b7280;
   background-color: #f9fafb;
   border-bottom: 1px solid #e5e7eb;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .viewport-breakpoint-item {
@@ -141,6 +161,11 @@ body.debug-mode .viewport-container.debug-only {
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid #f3f4f6;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .viewport-breakpoint-item:last-child {
@@ -156,6 +181,11 @@ body.debug-mode .viewport-container.debug-only {
   font-size: 0.75rem;
   font-weight: bold;
   min-width: 24px;
+  /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .breakpoint-badge.sm {

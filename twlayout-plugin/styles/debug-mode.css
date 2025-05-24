@@ -1,0 +1,224 @@
+/* 
+ * Debug styles for the Rack & Rail Grid System
+ * These styles are meant to be used with debug-mode.js for visualization of grid layouts
+ */
+
+/* Viewport information display */
+.viewport-info {
+  position: fixed;
+  top: 0.625rem; /* 10px */
+  right: 0.625rem; /* 10px */
+  font-weight: bold;
+  color: #0ea5e9;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  border-radius: 0.25rem; /* 4px */
+  font-size: 0.75rem;
+  z-index: 100;
+}
+
+/* Debug Toggle styles */
+.debug-toggle-container {
+  position: fixed;
+  bottom: 1rem; /* 16px */
+  left: 1rem; /* 16px */
+  z-index: 100;
+  margin: 0;
+}
+
+.debug-toggle-label {
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.313rem 0.625rem; /* 5px 10px */
+  background-color: #e2e8f0;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+body.debug-mode .debug-toggle-label {
+  background-color: #f97316;
+  color: white;
+}
+
+.debug-toggle-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Debug mode rack and rail outlines - positioned inside to avoid overlap between adjacent containers */
+.debug-mode .rack {
+  outline: 2px dashed #0ea5e9; /* Blue dashed outline for rack */
+  outline-offset: -2px; /* Inside the container to prevent overlap when containers are adjacent */
+  position: relative;
+}
+
+.debug-mode .rail {
+  outline: 2px dashed #8b5cf6; /* Purple dashed outline for rail */
+  outline-offset: -2px; /* Inside the container to prevent overlap when containers are adjacent */
+  position: relative;
+}
+
+/* Show content-box names with responsive width indicators */
+.debug-mode .rack::after {
+  content: "rack";
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #0ea5e9;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  z-index: 1;
+}
+
+.debug-mode .rail::after {
+  content: "rail";
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #8b5cf6;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  z-index: 1;
+}
+
+/* Responsive viewport width indicators */
+@media (min-width: 20rem) { /* 320px */
+  .debug-mode .rack::after {
+    content: "rack (320px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (320px)";
+  }
+}
+
+@media (min-width: 23.4375rem) { /* 375px */
+  .debug-mode .rack::after {
+    content: "rack (375px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (375px)";
+  }
+}
+
+@media (min-width: 30rem) { /* 480px */
+  .debug-mode .rack::after {
+    content: "rack (480px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (480px)";
+  }
+}
+
+@media (min-width: 43.125rem) { /* 690px */
+  .debug-mode .rack::after {
+    content: "rack (690px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (690px)";
+  }
+}
+
+@media (min-width: 48rem) { /* 768px */
+  .debug-mode .rack::after {
+    content: "rack (768px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (768px)";
+  }
+}
+
+@media (min-width: 64rem) { /* 1024px */
+  .debug-mode .rack::after {
+    content: "rack (1024px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (1024px)";
+  }
+}
+
+@media (min-width: 86rem) { /* 1376px */
+  .debug-mode .rack::after {
+    content: "rack (1376px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (1376px)";
+  }
+}
+
+@media (min-width: 90rem) { /* 1440px */
+  .debug-mode .rack::after {
+    content: "rack (1440px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (1440px)";
+  }
+}
+
+@media (min-width: 108.5rem) { /* 1736px */
+  .debug-mode .rack::after {
+    content: "rack (1736px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (1736px)";
+  }
+}
+
+@media (min-width: 120rem) { /* 1920px */
+  .debug-mode .rack::after {
+    content: "rack (1920px)";
+  }
+  
+  .debug-mode .rail::after {
+    content: "rail (1920px)";
+  }
+}
+
+/* Enhanced debug for rail scrollable containers */
+.debug-mode .rail::after {
+  content: "rail (scrollable →)";
+  color: #8b5cf6;
+}
+
+/* Debug mode column styling - positioned inside to avoid overlap with container territory lines */
+.debug-mode .rack > [class*="col-"],
+.debug-mode .rail > [class*="col-"] {
+  outline: 2px dashed #b8bcc3; /* 2px for better visibility, 10% darker than #d1d5db */
+  outline-offset: -2px; /* Inside the column to avoid overlapping with container territory lines */
+}
+
+/* Show column class names */
+.debug-mode .rack > [class*="col-"]::after,
+.debug-mode .rail > [class*="col-"]::after {
+  content: attr(class);
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  pointer-events: none;
+  z-index: 2;
+  white-space: nowrap;
+  max-width: none;
+}

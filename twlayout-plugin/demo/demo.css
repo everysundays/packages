@@ -106,12 +106,12 @@ input[type="radio"] {
 }
 
 #rack-toggle:checked ~ .toggle-switch .rack-label {
-  background-color: #0ea5e9;
+  background-color: #8b5cf6;
   color: white;
 }
 
 #rail-toggle:checked ~ .toggle-switch .rail-label {
-  background-color: #8b5cf6;
+  background-color: #2d6edf;
   color: white;
 }
 
@@ -123,8 +123,12 @@ input[type="radio"] {
   box-sizing: border-box;
   position: relative;
   height: 100%;
-  min-height: 5rem; /* Ensure minimum height for display */
+  min-height: 2.5rem; /* Reduced height for single line display */
   word-break: break-word; /* Prevent overflow of long text */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 
 /* Demo-specific column styling */
@@ -134,35 +138,29 @@ input[type="radio"] {
 }
 
 .rail > [class*="col-"] {
-  background-color: #ffedd5; /* Light orange */
-  border: 1px solid #fdba74; /* Orange border */
+  background-color: #dbeafe; /* Light blue */
+  border: 1px solid #60a5fa; /* Blue border */
   padding-top: 0.75rem; /* Slightly more top padding for content */
 }
 
 
 /* Column accent bars */
 .rail > [class*="col-"]::before {
-  background-color: #fb923c; /* Orange accent */
+  background-color: #3b82f6; /* Blue accent */
 }
 
 /* Inner content styling */
-.rack > [class*="col-"] > div,
-.rail > [class*="col-"] > div {
+.rack > [class*="col-"] > span,
+.rail > [class*="col-"] > span {
   font-size: 0.875rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  height: 100%;
 }
 
-.rack > [class*="col-"] > div {
+.rack > [class*="col-"] > span {
   color: #6b21a8;
 }
 
-.rail > [class*="col-"] > div {
-  color: #9a3412;
+.rail > [class*="col-"] > span {
+  color: #1e40af;
 }
 
 /* Breakpoint badge styles */
@@ -188,10 +186,11 @@ input[type="radio"] {
 }
 
 .offset-demo .rack > [class*="col-"] {
-  min-height: 3.125rem; /* 50px */
+  min-height: 2.5rem; /* Reduced height for consistency */
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 0.5rem; /* Add spacing between column type and specs */
 }
 
 .offset-demo .rack > [class*="col-"]::before {
@@ -245,6 +244,12 @@ input[type="radio"] {
     margin-bottom: 0.5rem;
     border-radius: 0.25rem;
   }
+}
+
+/* Rail col-12 width fix to match 100% like rack */
+.rail .col-12 {
+  width: 100% !important;
+  min-width: 100% !important;
 }
 
 /* Remove all debug styling from demo.css - let debug-mode.css handle everything */

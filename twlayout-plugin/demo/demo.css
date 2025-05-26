@@ -1,15 +1,18 @@
 /* 
- * Demo styles for the Rack & Rail Grid System Demo
- * These styles are specific to the demo page and not part of the core grid system
+ * Demo Styles for Rack & Rail Grid System
+ * Contains ONLY visual styling for demo page - no grid system logic
+ * Grid system classes (.rack, .rail, .col-, .offset) handle width/layout only
  */
 
-/* Base styles */
+/* ================================
+   BASE STYLES
+   ================================ */
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: #333;
   margin: 0;
-  min-width: 320px; /* Ensure minimum width for small screens */
-  padding-top: 1rem; /* Reduced padding since viewport controls moved to debug mode */
+  min-width: 320px;
+  padding-top: 1rem;
 }
 
 .page-wrapper {
@@ -22,83 +25,43 @@ body {
 
 h1, h2 {
   margin-top: 0;
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1.25rem;
 }
 
 section {
-  margin-bottom: 2.5rem; /* 40px */
+  margin-bottom: 2.5rem;
   border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 2.5rem; /* 40px */
+  padding-bottom: 2.5rem;
 }
 
-/* Breakpoint reference styles */
-.breakpoint-reference {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-  gap: 0.5rem;
-}
-
-.breakpoint {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem; /* Lozenge shape */
-  font-size: 0.75rem;
-  transition: transform 0.2s;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.breakpoint:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.breakpoint.breakpoint-sm {
-  background-color: #e5e7eb;
-  color: #4b5563;
-}
-
-.breakpoint.breakpoint-md {
-  background-color: #93c5fd;
-  color: #1e40af;
-}
-
-.breakpoint.breakpoint-lg {
-  background-color: #a7f3d0;
-  color: #065f46;
-}
-
-.breakpoint.breakpoint-xl {
-  background-color: #fde68a;
-  color: #92400e;
-}
-
-/* Toggle styles */
+/* ================================
+   DEMO UI CONTROLS
+   ================================ */
 .toggle-container {
-  margin-bottom: 1.25rem; /* 20px */
+  margin-bottom: 1.25rem;
 }
 
 .toggle-switch {
   display: flex;
-  margin-bottom: 1.25rem; /* 20px */
-  max-width: 18.75rem; /* 300px */
+  margin-bottom: 1.25rem;
+  max-width: 18.75rem;
 }
 
 .toggle-switch label {
   flex: 1;
   text-align: center;
-  padding: 0.625rem; /* 10px */
+  padding: 0.625rem;
   background-color: #e2e8f0;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .toggle-switch label:first-child {
-  border-radius: 0.25rem 0 0 0.25rem; /* 4px */
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 
 .toggle-switch label:last-child {
-  border-radius: 0 0.25rem 0.25rem 0; /* 4px */
+  border-radius: 0 0.25rem 0.25rem 0;
 }
 
 input[type="radio"] {
@@ -115,55 +78,153 @@ input[type="radio"] {
   color: white;
 }
 
-/* Column styles for demo page only */
+/* ================================
+   COLUMN DEMO STYLING
+   ================================ */
+
+/* Base visual styling for all demo columns */
 .rack > [class*="col-"],
 .rail > [class*="col-"] {
-  padding: 0.625rem; /* 10px */
-  border-radius: 0.25rem; /* 4px */
+  border-radius: 0.25rem;
   box-sizing: border-box;
   position: relative;
-  height: 100%;
-  min-height: 2.5rem; /* Reduced height for single line display */
-  word-break: break-word; /* Prevent overflow of long text */
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Default padding when no Tailwind utilities present */
+.rack > [class*="col-"]:not([class*="p-"]):not([class*="py-"]):not([class*="px-"]):not([class*="pt-"]):not([class*="pb-"]):not([class*="pl-"]):not([class*="pr-"]),
+.rail > [class*="col-"]:not([class*="p-"]):not([class*="py-"]):not([class*="px-"]):not([class*="pt-"]):not([class*="pb-"]):not([class*="pl-"]):not([class*="pr-"]) {
+  padding: 0.625rem;
+}
+
+/* Color schemes */
+.rack > [class*="col-"] {
+  background-color: #f3e8ff;
+  border: 1px solid #d8b4fe;
+}
+
+.rail > [class*="col-"] {
+  background-color: #dbeafe;
+  border: 1px solid #60a5fa;
+}
+
+/* Content styling */
+.rack > [class*="col-"] > span {
+  font-size: 0.875rem;
+  color: #6b21a8;
+}
+
+.rail > [class*="col-"] > span {
+  font-size: 0.875rem;
+  color: #1e40af;
+}
+
+/* Demo padding utility overrides */
+.rack > .p-20,
+.rail > .p-20 {
+  padding: 5rem !important;
+}
+
+.rack > .py-96,
+.rail > .py-96 {
+  padding-top: 24rem !important;
+  padding-bottom: 24rem !important;
+}
+
+.rack > .py-10,
+.rail > .py-10 {
+  padding-top: 2.5rem !important;
+  padding-bottom: 2.5rem !important;
+}
+
+/* ================================
+   OFFSET DEMO SECTION
+   ================================ */
+.offset-demo .rack {
+  margin-bottom: 0.625rem;
+}
+
+.offset-demo .rack > [class*="col-"] {
+  min-height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 0.5rem;
 }
 
-/* Demo-specific column styling */
-.rack > [class*="col-"] {
-  background-color: #f3e8ff; /* Light purple */
-  border: 1px solid #d8b4fe; /* Purple border */
+.offset-demo .rack > [class*="col-"]::before {
+  display: none; /* Hide accent bars in offset demo */
 }
 
-.rail > [class*="col-"] {
-  background-color: #dbeafe; /* Light blue */
-  border: 1px solid #60a5fa; /* Blue border */
-  padding-top: 0.75rem; /* Slightly more top padding for content */
+/* ================================
+   INFORMATIONAL SECTIONS
+   ================================ */
+.formulas {
+  background-color: #f9fafb;
+  padding: 1.25rem;
+  border-radius: 0.25rem;
+  margin-bottom: 1.25rem;
 }
 
-
-/* Column accent bars */
-.rail > [class*="col-"]::before {
-  background-color: #3b82f6; /* Blue accent */
+.formulas ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
-/* Inner content styling */
-.rack > [class*="col-"] > span,
-.rail > [class*="col-"] > span {
+.formulas li {
+  margin-bottom: 0.625rem;
+  font-family: monospace;
   font-size: 0.875rem;
 }
 
-.rack > [class*="col-"] > span {
-  color: #6b21a8;
+.code-block {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
 }
 
-.rail > [class*="col-"] > span {
-  color: #1e40af;
+.code-block pre {
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-/* Breakpoint badge styles */
+/* ================================
+   BREAKPOINT BADGES
+   ================================ */
+.breakpoint-reference {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.breakpoint {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  transition: transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.breakpoint:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
 .breakpoint-badge {
   display: inline-flex;
   align-items: center;
@@ -175,67 +236,48 @@ input[type="radio"] {
   margin-top: 0.25rem;
 }
 
+/* Breakpoint color themes */
 .breakpoint-sm { background-color: #e5e7eb; color: #4b5563; }
 .breakpoint-md { background-color: #93c5fd; color: #1e40af; }
 .breakpoint-lg { background-color: #a7f3d0; color: #065f46; }
 .breakpoint-xl { background-color: #fde68a; color: #92400e; }
 
-/* Offset demo section */
-.offset-demo .rack {
-  margin-bottom: 0.625rem; /* 10px */
+/* ================================
+   LEGACY COLUMN INFO (UNUSED)
+   ================================ */
+.column-info-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
 }
 
-.offset-demo .rack > [class*="col-"] {
-  min-height: 2.5rem; /* Reduced height for consistency */
+.column-info-item {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem; /* Add spacing between column type and specs */
-}
-
-.offset-demo .rack > [class*="col-"]::before {
-  display: none; /* Hide accent bar in offset demo */
-}
-
-/* Formula section */
-.formulas {
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
   background-color: #f9fafb;
-  padding: 1.25rem; /* 20px */
-  border-radius: 0.25rem; /* 4px */
-  margin-bottom: 1.25rem; /* 20px */
+  border-radius: 0.25rem;
+  border: 1px solid #e5e7eb;
 }
 
-.formulas ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.formulas li {
-  margin-bottom: 0.625rem; /* 10px */
-  font-family: monospace;
+.column-info-item strong {
+  font-weight: 600;
+  color: #374151;
   font-size: 0.875rem;
 }
 
-/* Code block styling */
-.code-block {
-  background-color: #1e293b;
-  color: #e2e8f0;
-  border-radius: 0.25rem; /* 4px */
-  padding: 1.25rem; /* 20px */
-  overflow-x: auto;
-  margin-bottom: 1.25rem; /* 20px */
-}
-
-.code-block pre {
-  margin: 0;
+.column-info-item span {
   font-family: monospace;
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 0.75rem;
+  color: #6b7280;
 }
 
-/* Media queries for responsive behavior */
-@media (max-width: 30rem) { /* 480px */
+/* ================================
+   RESPONSIVE BEHAVIOR
+   ================================ */
+@media (max-width: 30rem) {
   .toggle-switch {
     flex-direction: column;
   }
@@ -245,13 +287,3 @@ input[type="radio"] {
     border-radius: 0.25rem;
   }
 }
-
-/* Rail col-12 width fix to match 100% like rack */
-.rail .col-12 {
-  width: 100% !important;
-  min-width: 100% !important;
-}
-
-/* Remove all debug styling from demo.css - let debug-mode.css handle everything */
-
-/* Viewport controls moved to debug-mode.css */

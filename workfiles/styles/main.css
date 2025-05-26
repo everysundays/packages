@@ -63,3 +63,25 @@
 .text-white-helper {
     @apply text-white;
 }
+
+/* Force inclusion of padding utilities used in product pages */
+.px-10 {
+    padding-inline: calc(var(--spacing) * 10);
+}
+
+.p-20 {
+    padding: calc(var(--spacing) * 20);
+}
+
+.py-24 {
+    padding-block: calc(var(--spacing) * 24);
+}
+
+.py-13 {
+    padding-block: calc(var(--spacing) * 13);
+}
+
+/* Override Tailwind's conflicting grid utilities */
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    grid-column: unset !important;
+}

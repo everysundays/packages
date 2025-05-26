@@ -52,7 +52,7 @@ module.exports = plugin(function({ addComponents, theme }) {
     const offsets = Object.entries(OFFSETS[breakpoint]).reduce((offsetAcc, [offset, marginLeft]) => {
       return {
         ...offsetAcc,
-        [`.offset-${offset}`]: {
+        [`.rack .offset-${offset}`]: {
           marginLeft: marginLeft,
         },
       };

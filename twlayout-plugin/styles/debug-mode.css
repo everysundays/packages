@@ -101,7 +101,7 @@ body.debug-mode .viewport-container.debug-only {
   position: absolute;
   bottom: 100%;
   left: 0;
-  min-width: 280px;
+  min-width: 210px;
   margin-bottom: 4px;
   background: white;
   border: 1px solid #d1d5db;

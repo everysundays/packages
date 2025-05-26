@@ -49,23 +49,29 @@ function updateColumnInfo() {
   
   const containerType = firstContainer.classList.contains('rack') ? 'rack' : 'rail';
   
-  // Update all column elements
-  const allColumns = document.querySelectorAll('[class*="col-"]');
+  // Update all info elements in the column-info-section
+  const allInfoElements = document.querySelectorAll('[id*="col-"][id*="info"]');
   
-  allColumns.forEach(column => {
-    // Get column size from class
-    const columnClass = Array.from(column.classList).find(c => c.startsWith('col-'));
-    if (!columnClass) return;
+  allInfoElements.forEach(infoElement => {
+    // Extract column size from the ID
+    const idParts = infoElement.id.split('-');
+    let columnSize;
     
-    const columnSize = columnClass.split('-')[1];
+    // Handle both formats: "col-X-info" and "responsive-col-X-info-Y"
+    if (infoElement.id.startsWith('responsive-col-')) {
+      columnSize = idParts[2]; // responsive-col-X-info-Y
+    } else {
+      columnSize = idParts[1]; // col-X-info
+    }
+    
     if (!columnSize || !columnSize.match(/^\d+$/)) return;
     
-    // Find info element within this column
-    const infoElement = column.querySelector('[id*="col-"][id*="info"]');
-    if (!infoElement) return;
+    // Find the corresponding column element in the container
+    const columnElement = firstContainer.querySelector(`.col-${columnSize}`);
+    if (!columnElement) return;
     
     // Calculate actual width
-    const computedWidth = window.getComputedStyle(column).width;
+    const computedWidth = window.getComputedStyle(columnElement).width;
     const widthInPx = parseInt(computedWidth);
     
     if (containerType === 'rack') {
@@ -76,9 +82,7 @@ function updateColumnInfo() {
       
       const remValue = (widthInPx / 16).toFixed(2) + 'rem';
       
-      infoElement.innerHTML = `
-        ${percentageValue} / ${formatPx(widthInPx)} / ${remValue}
-      `;
+      infoElement.innerHTML = `${percentageValue} / ${formatPx(widthInPx)} / ${remValue}`;
     } else {
       // For rail columns, show fixed width
       const fixedWidth = RAIL_COLUMNS[breakpoint] && RAIL_COLUMNS[breakpoint][columnSize]
@@ -87,9 +91,7 @@ function updateColumnInfo() {
       
       const fixedPxWidth = fixedWidth !== 'auto' ? remToPx(fixedWidth) : widthInPx;
       
-      infoElement.innerHTML = `
-        ${fixedWidth} / ${formatPx(fixedPxWidth)}
-      `;
+      infoElement.innerHTML = `${fixedWidth} / ${formatPx(fixedPxWidth)}`;
     }
   });
 }

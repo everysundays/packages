@@ -57,8 +57,6 @@ function generateBaseComponents() {
     // Base container styles
     '.rack, .rail': {
       display: 'flex',
-      paddingLeft: 'var(--tw-layout-padding)',
-      paddingRight: 'var(--tw-layout-padding)',
       width: '100%',
       boxSizing: 'border-box',
     },
@@ -183,6 +181,14 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
     // Add base components
     const baseComponents = generateBaseComponents();
     addComponents(baseComponents);
+    
+    // Add base padding styles (lower specificity, can be overridden by utilities)
+    addBase({
+      '.rack, .rail': {
+        paddingLeft: 'var(--tw-layout-padding)',
+        paddingRight: 'var(--tw-layout-padding)',
+      },
+    });
     
     // Generate responsive styles for each breakpoint
     Object.entries(VIEWPORTS).forEach(([breakpoint, config]) => {

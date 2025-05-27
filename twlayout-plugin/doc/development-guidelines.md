@@ -38,13 +38,10 @@ project-root/
 @import "tailwindcss";
 @config "../../tailwind.config.js";
 
-/* 2. TWLayout plugin styles */
-@import "../../twlayout-plugin/styles/layout.css";
+/* 2. Typography presets (optional) */
+/* Typography classes h1-b3 are defined in main.css */
 
-/* 3. Typography system */
-@import "../../twlayout-plugin/styles/typography.css";
-
-/* 4. Project-specific styles */
+/* 3. Project-specific styles */
 /* Your custom CSS here */
 ```
 
@@ -281,19 +278,32 @@ project-root/
 #### Heading Usage
 ```html
 <!-- Use semantic hierarchy -->
-<h1 class="h1">Page Title (48px desktop, 30px mobile)</h1>
-<h2 class="h2">Section Title (36px desktop, 24px mobile)</h2>
-<h3 class="h3">Subsection (30px desktop, 20px mobile)</h3>
-<h4 class="h4">Small Heading (24px desktop, 18px mobile)</h4>
+<h1 class="h1">Page Title (responsive: text-4xl → text-6xl)</h1>
+<h2 class="h2">Section Title (responsive: text-3xl → text-5xl)</h2>
+<h3 class="h3">Subsection (responsive: text-2xl → text-4xl)</h3>
+<h4 class="h4">Small Heading (responsive: text-xl → text-3xl)</h4>
 ```
 
 #### Body Text Usage
 ```html
 <!-- Different body text sizes -->
-<p class="s1">Subtitle text (20px desktop, 18px mobile)</p>
-<p class="b1">Primary body text (18px desktop, 16px mobile)</p>
-<p class="b2">Secondary body text (16px desktop, 14px mobile)</p>
-<p class="b3">Caption text (14px desktop, 12px mobile)</p>
+<p class="s1">Subtitle text (responsive: text-lg → text-2xl)</p>
+<p class="b1">Primary body text (responsive: text-base → text-xl)</p>
+<p class="b2">Secondary body text (responsive: text-sm → text-lg)</p>
+<p class="b3">Caption text (responsive: text-xs → text-base)</p>
+```
+
+#### Customizing Typography
+```css
+/* Typography classes are defined in main.css using @apply */
+.h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+}
+
+/* Customize by modifying the @apply directives */
+.h1 {
+  @apply text-5xl md:text-6xl lg:text-7xl font-extrabold leading-none;
+}
 ```
 
 ### 2. Typography Best Practices

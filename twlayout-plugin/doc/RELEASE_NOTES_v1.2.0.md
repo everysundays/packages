@@ -21,9 +21,9 @@
 - **Responsive Breakpoints**: Mobile-first design with 4 breakpoints (sm, md, lg, xl)
 
 ### 2. Complete Typography System
-- **Responsive Typography**: Auto-scaling text across breakpoints
+- **Responsive Typography**: Auto-scaling text across breakpoints using Tailwind utilities
 - **Semantic Classes**: `.h1-.h4`, `.s1` (subtitle), `.b1-.b3` (body text)
-- **CSS Variables**: Consistent typography scale using custom properties
+- **Tailwind Integration**: Uses `@apply` directives for easy customization
 - **Accessibility**: Proper heading hierarchy and readable line heights
 
 ### 3. Developer Experience
@@ -85,7 +85,7 @@ project-root/
 │   │   ├── grid-config.js      # Configuration
 │   │   └── debug-mode.js       # Development tools
 │   └── styles/
-│       └── typography.css      # Typography system
+│       └── debug-mode.css      # Debug mode styling
 ├── tests/integration/           # Test suite
 ├── docs/                       # Documentation
 └── dist/                       # Build output
@@ -181,7 +181,7 @@ toggleDebugMode()      # Enable/disable grid overlay
    ```css
    @import "tailwindcss";
    @config "../../tailwind.config.js";
-   @import "../../twlayout-plugin/styles/typography.css";
+   /* Typography classes are now defined in main.css */
    ```
 
 3. **Enable Plugin**

@@ -70,6 +70,11 @@ function generateBaseComponents() {
       alignItems: 'stretch',
     },
     
+    // Fix for rack + fixed positioning conflict
+    '.rack.fixed': {
+      position: 'fixed !important',
+    },
+    
     // Rail-specific styles (horizontal scrolling)
     '.rail': {
       gap: 'var(--tw-rail-gap-standard)', // Default gap for rail

@@ -1,72 +1,111 @@
 @import "tailwindcss";
 @config "../../tailwind.config.js";
 
-/* Import Typography system */
-@import "../../twlayout-plugin/styles/typography.css";
+/* =============================================================================
+   TYPOGRAPHY PRESETS (h1-b3)
+   ============================================================================= */
+/* 
+   Basic typography classes for reference. Customize these as needed.
+   Uses Tailwind utility classes - you can replace with @tailwindcss/typography
+   or your own custom styles.
+
+   ```css
+.h1 - Large headings (text-4xl → text-6xl)
+.h2 - Section headings (text-3xl → text-5xl)
+.h3 - Subsection headings (text-2xl → text-4xl)
+.h4 - Small headings (text-xl → text-3xl)
+.s1 - Subtitle/lead text (text-lg → text-2xl)
+.b1 - Primary body text (text-base → text-xl)
+.b2 - Secondary body text (text-sm → text-lg)
+.b3 - Small body text (text-xs → text-base)
+```
+*/
+
+.h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+}
+
+.h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+}
+
+.h3 {
+  @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-normal;
+}
+
+.h4 {
+  @apply text-xl md:text-2xl lg:text-3xl font-semibold leading-normal;
+}
+
+.s1 {
+  @apply text-lg md:text-xl lg:text-2xl font-medium leading-relaxed;
+}
+
+.b1 {
+  @apply text-base md:text-lg lg:text-xl leading-relaxed;
+}
+
+.b2 {
+  @apply text-sm md:text-base lg:text-lg leading-normal;
+}
+
+.b3 {
+  @apply text-xs md:text-sm lg:text-base leading-normal tracking-wide;
+}
 
 /* =============================================================================
-   PROJECT-SPECIFIC CUSTOMIZATIONS
+   MAINPAGE & PRODUCT_MAIN STYLES (temporary - delete after customization)
    ============================================================================= */
 
-/* Custom variables for this project */
-:root {
-  --brand-primary: #2563eb;
-  --brand-secondary: #64748b;
-  --accent-color: #3b82f6;
+/* Temporary styles for mainpage.html and product_main.html */
+/* Delete this section after you've customized your typography */
+
+/* Navigation and header styles */
+#company-logo {
+  @apply flex items-center justify-center text-white font-semibold;
 }
 
-/* Custom component styles */
+#links {
+  @apply flex items-center justify-center;
+}
+
+#links li {
+  @apply text-white hover:bg-blue-700 transition-colors duration-200 cursor-pointer;
+}
+
+#contact-sales {
+  @apply hover:text-blue-600 transition-colors duration-200 font-medium;
+}
+
+/* Button styles */
 .btn-primary {
-  background-color: #2563eb;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
+  @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors duration-200;
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
+/* Footer styles */
+#footer-link {
+  @apply space-y-2;
 }
 
-.btn-secondary {
-  background-color: #e5e7eb;
-  color: #1f2937;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease-in-out;
+#footer-link li {
+  @apply hover:text-blue-600 cursor-pointer transition-colors duration-200;
 }
 
-.btn-secondary:hover {
-  background-color: #d1d5db;
+#privacy-policy-list {
+  @apply flex space-x-4;
 }
 
-/* Navigation specific styles */
-.nav-link {
-  padding: 0.5rem 1.5rem;
-  transition: color 0.2s, background-color 0.2s;
+#privacy-policy-list li {
+  @apply hover:text-blue-600 cursor-pointer transition-colors duration-200;
 }
 
-.nav-link:hover {
-  background-color: #dbeafe;
-  color: #1e40af;
+/* Layout utilities */
+.border-t {
+  @apply border-t border-gray-300;
 }
 
-/* Section spacing utilities */
-.section-spacing {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
-}
+/* =============================================================================
+   YOUR CUSTOM STYLES
+   ============================================================================= */
 
-@media (min-width: 48rem) { /* md */
-  .section-spacing {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-}
-}
-
-@media (min-width: 90rem) { /* lg */
-  .section-spacing {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-}
+/* Add your project-specific styles below this line */

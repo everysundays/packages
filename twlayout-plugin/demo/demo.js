@@ -4,7 +4,75 @@
  * Viewport controls are now handled by debug-mode.js
  */
 
-import { VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, GRID_COLORS } from '../scripts/grid-config.js';
+// Define constants locally since we can't import in browser
+const VIEWPORTS = {
+  sm: {
+    viewportWidth: 375,
+    minWidth: '23.4375rem',
+    containerPadding: 24,
+    availableSpace: 327,
+    description: 'Mobile devices'
+  },
+  md: {
+    viewportWidth: 768,
+    minWidth: '48rem',
+    containerPadding: 32,
+    availableSpace: 704,
+    description: 'Tablets and small laptops'
+  },
+  lg: {
+    viewportWidth: 1440,
+    minWidth: '90rem',
+    containerPadding: 32,
+    availableSpace: 1376,
+    description: 'Desktop and large laptops'
+  },
+  xl: {
+    viewportWidth: 1920,
+    minWidth: '120rem',
+    containerPadding: 32,
+    availableSpace: 1856,
+    description: 'Large desktop screens'
+  }
+};
+
+const RACK_COLUMNS = {
+  sm: {
+    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
+    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+  },
+  md: {
+    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
+    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+  },
+  lg: {
+    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
+    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+  },
+  xl: {
+    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
+    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+  }
+};
+
+const RAIL_COLUMNS = {
+  sm: {
+    1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '60rem'
+  },
+  md: {
+    1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '60rem'
+  },
+  lg: {
+    1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '64rem'
+  },
+  xl: {
+    1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '64rem'
+  }
+};
 
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', function() {

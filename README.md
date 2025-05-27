@@ -100,6 +100,10 @@ Include the script in your HTML file:
 ```
 The script automatically adds a "Debug Mode" toggle switch to visualize grid structure.
 
+**Note:**
+- Any HTML file in `workfiles/` that references `debug-mode.js` **must** include the correct script tag as shown above.
+- The integration test suite will check all HTML files in `workfiles/` and fail if the script tag is missing or malformed when `debug-mode.js` is referenced.
+
 ## Development
 
 - **Build CSS:** `npm run build`

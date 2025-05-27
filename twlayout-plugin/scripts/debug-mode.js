@@ -1,6 +1,39 @@
-import { SYSTEM, VIEWPORTS } from './grid-config.js';
+// Debug Mode for TWLayout Grid System
+// Provides visual debugging for grid layouts with territory lines and spacing indicators
 
 (function() {
+  // Define VIEWPORTS directly since we can't import in browser
+  const VIEWPORTS = {
+    sm: {
+      viewportWidth: 375,
+      minWidth: '23.4375rem',
+      containerPadding: 24,
+      availableSpace: 327,
+      description: 'Mobile devices'
+    },
+    md: {
+      viewportWidth: 768,
+      minWidth: '48rem',
+      containerPadding: 32,
+      availableSpace: 704,
+      description: 'Tablets and small laptops'
+    },
+    lg: {
+      viewportWidth: 1440,
+      minWidth: '90rem',
+      containerPadding: 32,
+      availableSpace: 1376,
+      description: 'Desktop and large laptops'
+    },
+    xl: {
+      viewportWidth: 1920,
+      minWidth: '120rem',
+      containerPadding: 32,
+      availableSpace: 1856,
+      description: 'Large desktop screens'
+    }
+  };
+
   try {
     // Function to find the correct path to debug-mode.css
     function findDebugCssPath() {
@@ -212,10 +245,8 @@ import { SYSTEM, VIEWPORTS } from './grid-config.js';
       updateViewportDisplay();
     });
 
-    if (!SYSTEM || typeof SYSTEM.DEBUG_MODE_KEY === 'undefined') {
-      console.error('SYSTEM.DEBUG_MODE_KEY is not defined. Check grid-config.js and import.');
-      return;
-    }
+    // Define debug mode key locally
+    const DEBUG_MODE_KEY = 'twlayout-debug-mode';
     
     if (!debugToggleCheckbox) {
       console.error('Debug mode checkbox not found.');
@@ -226,18 +257,18 @@ import { SYSTEM, VIEWPORTS } from './grid-config.js';
     debugToggleCheckbox.addEventListener('change', function() {
       if (this.checked) {
         body.classList.add('debug-mode');
-        localStorage.setItem(SYSTEM.DEBUG_MODE_KEY, 'enabled');
+        localStorage.setItem(DEBUG_MODE_KEY, 'enabled');
         updateViewportDisplay();
       } else {
         body.classList.remove('debug-mode');
-        localStorage.setItem(SYSTEM.DEBUG_MODE_KEY, 'disabled');
+        localStorage.setItem(DEBUG_MODE_KEY, 'disabled');
         closeDropdown();
       }
     });
 
     // Initialization Function
     function initDebugMode() {
-      const savedState = localStorage.getItem(SYSTEM.DEBUG_MODE_KEY);
+      const savedState = localStorage.getItem(DEBUG_MODE_KEY);
       if (savedState === 'enabled') {
         debugToggleCheckbox.checked = true;
         body.classList.add('debug-mode');

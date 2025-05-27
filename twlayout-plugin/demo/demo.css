@@ -54,6 +54,7 @@ section {
   background-color: #e2e8f0;
   cursor: pointer;
   transition: background-color 0.2s;
+  user-select: none;
 }
 
 .toggle-switch label:first-child {

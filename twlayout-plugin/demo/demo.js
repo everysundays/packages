@@ -14,10 +14,10 @@ const VIEWPORTS = {
     description: 'Mobile devices'
   },
   md: {
-    viewportWidth: 768,
-    minWidth: '48rem',
+    viewportWidth: 770,
+    minWidth: '48.125rem',
     containerPadding: 32,
-    availableSpace: 704,
+    availableSpace: 706,
     description: 'Tablets and small laptops'
   },
   lg: {
@@ -38,12 +38,12 @@ const VIEWPORTS = {
 
 const RACK_COLUMNS = {
   sm: {
-    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
-    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+    1: '49.24%', 2: '100%', 3: '100%', 4: '100%', 5: '100%', 6: '100%',
+    7: '100%', 8: '100%', 9: '100%', 10: '100%', 11: '100%', 12: '100%'
   },
   md: {
-    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
-    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+    1: '13.8%', 2: '27.6%', 3: '41.5%', 4: '55.3%', 5: '69.1%', 6: '82.9%',
+    7: '100%', 8: '100%', 9: '100%', 10: '100%', 11: '100%', 12: '100%'
   },
   lg: {
     1: '7.27%', 2: '15.7%', 3: '24.13%', 4: '32.56%', 5: '40.99%', 6: '49.42%',
@@ -81,6 +81,25 @@ const RAIL_GAPS = {
     md: '2rem',       // Matches container padding for seamless slides  
     lg: '2rem',       // Matches container padding for seamless slides
     xl: '2rem',       // Matches container padding for seamless slides
+  }
+};
+
+const OFFSETS = {
+  sm: {
+    0: '0%', 1: '0%', 2: '0%', 3: '0%', 4: '0%', 5: '0%',
+    6: '0%', 7: '0%', 8: '0%', 9: '0%', 10: '0%', 11: '25.38%'
+  },
+  md: {
+    0: '0%', 1: '0%', 2: '0%', 3: '0%', 4: '0%', 5: '0%', 6: '8.5%',
+    7: '15.5%', 8: '22.4%', 9: '29.3%', 10: '36.2%', 11: '43.1%'
+  },
+  lg: {
+    0: '0%', 1: '4.165%', 2: '8.335%', 3: '12.5%', 4: '16.665%', 5: '20.835%',
+    6: '25%', 7: '29.165%', 8: '33.335%', 9: '37.5%', 10: '41.665%', 11: '45.835%'
+  },
+  xl: {
+    0: '0%', 1: '4.165%', 2: '8.335%', 3: '12.5%', 4: '16.665%', 5: '20.835%',
+    6: '25%', 7: '29.165%', 8: '33.335%', 9: '37.5%', 10: '41.665%', 11: '45.835%'
   }
 };
 
@@ -178,26 +197,35 @@ function updateColumnInfo() {
 function updateOffsetInfo() {
   const breakpoint = getCurrentBreakpoint();
   
-  for (let offsetNum = 1; offsetNum <= 11; offsetNum++) {
+  for (let offsetNum = 0; offsetNum <= 11; offsetNum++) {
     const infoElement = document.getElementById(`offset-${offsetNum}-info`);
     if (!infoElement) continue;
     
-    // Get offset value from computed styles
-    const offsetElement = infoElement.closest('[class*="offset-"]');
-    if (!offsetElement) continue;
+    // Get offset value from configuration
+    const offsetPercentage = OFFSETS[breakpoint] && OFFSETS[breakpoint][offsetNum]
+      ? OFFSETS[breakpoint][offsetNum]
+      : '0%';
     
-    const computedMargin = window.getComputedStyle(offsetElement).marginLeft;
-    const marginInPx = parseInt(computedMargin);
+    // Calculate actual pixel value
+    const availableSpace = VIEWPORTS[breakpoint].availableSpace;
+    const offsetPx = Math.round((parseFloat(offsetPercentage) / 100) * availableSpace);
     
-    // Get complementary column percentage
-    const colNumber = 12 - parseInt(offsetNum);
-    const colValue = RACK_COLUMNS[breakpoint] && RACK_COLUMNS[breakpoint][colNumber]
-      ? RACK_COLUMNS[breakpoint][colNumber]
-      : 'auto';
-    
-    infoElement.innerHTML = `
-      Offset: ${formatPx(marginInPx)} (centered), Column: ${colValue}
-    `;
+    // For sm breakpoint, provide special context
+    if (breakpoint === 'sm') {
+      if (offsetNum === 11) {
+        infoElement.innerHTML = `${formatPx(offsetPx)} (positions col-1 in second half)`;
+      } else {
+        infoElement.innerHTML = `${formatPx(offsetPx)} (no offset for mobile layout)`;
+      }
+    } else {
+      // For larger breakpoints, show traditional offset info
+      const colNumber = 12 - parseInt(offsetNum);
+      const colValue = RACK_COLUMNS[breakpoint] && RACK_COLUMNS[breakpoint][colNumber]
+        ? RACK_COLUMNS[breakpoint][colNumber]
+        : 'auto';
+      
+      infoElement.innerHTML = `${formatPx(offsetPx)} (${offsetPercentage}) + col-${colNumber} (${colValue})`;
+    }
   }
 }
 

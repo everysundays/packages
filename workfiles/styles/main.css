@@ -2,39 +2,57 @@
 @config "../../tailwind.config.js";
 
 /* =============================================================================
-   TYPOGRAPHY PRESETS (h1-b3)
+   UNIVERSAL FONT SYSTEM - 4 Variables Control Everything
    ============================================================================= */
-/* 
-   Basic typography classes for reference. Customize these as needed.
-   Uses Tailwind utility classes - you can replace with @tailwindcss/typography
-   or your own custom styles.
+:root {
+  --font-display-en: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body-en: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display-th: "Sarabun", "Noto Sans Thai", "Sukhumvit Set", "Helvetica Neue", Arial, sans-serif;
+  --font-body-th: "Sarabun", "Noto Sans Thai", "Sukhumvit Set", "Helvetica Neue", Arial, sans-serif;
+}
 
-   ```css
-.h1 - Large headings (text-4xl → text-6xl)
-.h2 - Section headings (text-3xl → text-5xl)
-.h3 - Subsection headings (text-2xl → text-4xl)
-.h4 - Small headings (text-xl → text-3xl)
-.s1 - Subtitle/lead text (text-lg → text-2xl)
-.b1 - Primary body text (text-base → text-xl)
-.b2 - Secondary body text (text-sm → text-lg)
-.b3 - Small body text (text-xs → text-base)
-```
-*/
+body {
+  font-family: var(--font-body-en); 
+}
 
-.h1 {
+h1, h2, h3, h4, h5, h6 { 
+  font-family: var(--font-display-en); 
+}
+
+:lang(th) {
+  font-family: var(--font-body-th); 
+}
+
+h1:lang(th), h2:lang(th), h3:lang(th), h4:lang(th), h5:lang(th), h6:lang(th) { 
+  font-family: var(--font-display-th); 
+}
+
+/* =============================================================================
+   TYPOGRAPHY SIZES - Responsive & Semantic
+   ============================================================================= */
+
+h1 {
   @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
 }
 
-.h2 {
+h2 {
   @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
 }
 
-.h3 {
+h3 {
   @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-normal;
 }
 
-.h4 {
+h4 {
   @apply text-xl md:text-2xl lg:text-3xl font-semibold leading-normal;
+}
+
+h5 {
+  @apply text-lg md:text-xl lg:text-2xl font-semibold leading-normal;
+}
+
+h6 {
+  @apply text-base md:text-lg lg:text-xl font-medium leading-normal;
 }
 
 .s1 {
@@ -52,7 +70,7 @@
 .b3 {
   @apply text-xs md:text-sm lg:text-base leading-normal tracking-wide;
 }
-
+    
 /* =============================================================================
    MAINPAGE & PRODUCT_MAIN STYLES (temporary - delete after customization)
    ============================================================================= */
@@ -99,13 +117,23 @@
   @apply hover:text-blue-600 cursor-pointer transition-colors duration-200;
 }
 
-/* Layout utilities */
-.border-t {
-  @apply border-t border-gray-300;
-}
+/* Layout utilities - using Tailwind's border-t directly in HTML */
 
 /* =============================================================================
    YOUR CUSTOM STYLES
    ============================================================================= */
+
+/* Tab Navigation Styles */
+.tab-button {
+  @apply bg-gray-100 text-gray-700 py-4 px-6 rounded-lg font-medium transition-all duration-200 border-none cursor-pointer;
+}
+
+.tab-button:hover {
+  @apply bg-gray-200 text-gray-900;
+}
+
+.tab-button.active {
+  @apply bg-blue-600 text-white shadow-lg;
+}
 
 /* Add your project-specific styles below this line */

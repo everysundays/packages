@@ -24,3 +24,6 @@ yarn-error.log*
 # User files
 workfiles/*
 !workfiles/demo.html
+
+# Tests
+/tests/

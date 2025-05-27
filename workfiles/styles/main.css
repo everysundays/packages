@@ -1,87 +1,72 @@
 @import "tailwindcss";
+@config "../../tailwind.config.js";
 
-/* Import twlayout plugin styles */
-@import "../../twlayout-plugin/styles/layout.css";
+/* Import Typography system */
+@import "../../twlayout-plugin/styles/typography.css";
 
-.h1 {
-    @apply text-[44px] leading-[48px];
+/* =============================================================================
+   PROJECT-SPECIFIC CUSTOMIZATIONS
+   ============================================================================= */
+
+/* Custom variables for this project */
+:root {
+  --brand-primary: #2563eb;
+  --brand-secondary: #64748b;
+  --accent-color: #3b82f6;
 }
 
-.h2 {
-    @apply text-[44px] leading-[48px];
+/* Custom component styles */
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.h3 {
-    @apply text-[28px] leading-[36px];
+.btn-primary:hover {
+  background-color: #1d4ed8;
 }
 
-.h4 {
-    @apply text-[20px] leading-[24px];
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.s1 {
-    @apply text-[20px] leading-[28px];
+.btn-secondary:hover {
+  background-color: #d1d5db;
 }
 
-.b1 {
-    @apply text-[20px] leading-[24px];
+/* Navigation specific styles */
+.nav-link {
+  padding: 0.5rem 1.5rem;
+  transition: color 0.2s, background-color 0.2s;
 }
 
-.b2 {
-    @apply text-[16px] leading-[24px];
+.nav-link:hover {
+  background-color: #dbeafe;
+  color: #1e40af;
 }
 
-.b3 {
-    @apply text-[14px] leading-[24px];
+/* Section spacing utilities */
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
-/* Force inclusion of color classes */
-.text-blue-600-helper {
-    @apply text-blue-600;
+@media (min-width: 48rem) { /* md */
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
 }
 
-.hover\:text-blue-600-helper:hover {
-    @apply hover:text-blue-600;
-}
-
-.bg-blue-600-helper {
-    @apply bg-blue-600;
-}
-
-.hover\:bg-blue-700-helper:hover {
-    @apply hover:bg-blue-700;
-}
-
-.bg-blue-700-helper {
-    @apply bg-blue-700;
-}
-
-.text-pink-600-helper {
-    @apply text-pink-600;
-}
-
-.text-white-helper {
-    @apply text-white;
-}
-
-/* Force inclusion of padding utilities used in product pages */
-.px-10 {
-    padding-inline: calc(var(--spacing) * 10);
-}
-
-.p-20 {
-    padding: calc(var(--spacing) * 20);
-}
-
-.py-24 {
-    padding-block: calc(var(--spacing) * 24);
-}
-
-.py-13 {
-    padding-block: calc(var(--spacing) * 13);
-}
-
-/* Override Tailwind's conflicting grid utilities */
-.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
-    grid-column: unset !important;
+@media (min-width: 90rem) { /* lg */
+  .section-spacing {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
 }

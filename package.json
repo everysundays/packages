@@ -1,12 +1,13 @@
 {
-  "name": "tailwind-layout-demo",
-  "version": "1.0.0",
+  "name": "twlayout",
+  "version": "1.2.0",
   "main": "postcss.config.js",
   "scripts": {
-    "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css",
-    "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --content \"./workfiles/**/*.html\"",
+    "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --content \"./workfiles/**/*.html\" --watch",
     "start": "npm run watch && open workfiles/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node tests/integration/build-test.js",
+    "test:build": "npm run build && npm run test"
   },
   "keywords": [],
   "author": "",

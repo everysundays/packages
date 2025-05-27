@@ -12,7 +12,7 @@
  */
 
 const plugin = require('tailwindcss/plugin');
-const { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, OFFSETS, validateGridConfig } = require('./grid-config');
+const { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, RAIL_GAPS, OFFSETS, validateGridConfig } = require('./grid-config');
 
 /**
  * CSS Variable Generator
@@ -25,6 +25,10 @@ function generateCSSVariables(breakpoint, config) {
     '--tw-layout-gap': SYSTEM.GAP,
     '--tw-layout-max-width': `${config.availableSpace}px`,
     '--tw-layout-breakpoint': breakpoint,
+    
+    // Rail gap variables
+    '--tw-rail-gap-standard': RAIL_GAPS.STANDARD,
+    '--tw-rail-gap-slide': RAIL_GAPS.SLIDE_MODE[breakpoint],
   };
 
   // Column width variables
@@ -53,7 +57,6 @@ function generateBaseComponents() {
     // Base container styles
     '.rack, .rail': {
       display: 'flex',
-      gap: 'var(--tw-layout-gap)',
       paddingLeft: 'var(--tw-layout-padding)',
       paddingRight: 'var(--tw-layout-padding)',
       width: '100%',
@@ -62,12 +65,14 @@ function generateBaseComponents() {
     
     // Rack-specific styles (flexible grid)
     '.rack': {
+      gap: 'var(--tw-layout-gap)',
       flexWrap: 'wrap',
       alignItems: 'stretch',
     },
     
     // Rail-specific styles (horizontal scrolling)
     '.rail': {
+      gap: 'var(--tw-rail-gap-standard)', // Default gap for rail
       flexWrap: 'nowrap',
       overflowX: 'auto',
       scrollbarWidth: 'none', // Firefox
@@ -77,6 +82,16 @@ function generateBaseComponents() {
       '&::-webkit-scrollbar': {
         display: 'none',
       },
+    },
+    
+    // Rail slide mode (gap matches container padding for seamless slides)
+    '.rail.slide-mode': {
+      gap: 'var(--tw-rail-gap-slide)',
+    },
+    
+    // Alternative: Rail with col-12 children automatically gets slide gap
+    '.rail:has(.col-12)': {
+      gap: 'var(--tw-rail-gap-slide)',
     },
     
     // Page wrapper for max-width constraint
@@ -207,6 +222,14 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-evenly',
+      },
+      
+      // Rail gap mode utilities
+      '.rail-standard': {
+        gap: 'var(--tw-rail-gap-standard) !important',
+      },
+      '.rail-slide': {
+        gap: 'var(--tw-rail-gap-slide) !important',
       },
     });
     

@@ -235,13 +235,14 @@
   <div class="page-wrapper">
     <h2 class="h2">Complementary Offset Examples</h2>
     <p>Demonstration of how offsets interact with complementary col-sizes (offset + col-= 12)</p>
-    <p>Each example shows how different offset values create space before the col- showing full-width utilization. Notice how the offset percentages and col-percentages add up to 100% of the available space at each breakpoint.</p>
+    <p>Each example shows how different offset values create centered positioning for the col-. The offset applies half of the calculated margin to the left, visually centering the column with remaining space appearing on the right.</p>
     <div class="formulas">
       <strong>Formula:</strong>
       <ul>
-        <li>offset-X + col-(12-X) = 100% width</li>
-        <li>Example: offset-3 + col-9 = full width</li>
-        <li>Example: offset-8 + col-4 = full width</li>
+        <li>offset-X + col-(12-X) = 100% width (visually centered)</li>
+        <li>Example: offset-3 + col-9 = col-9 centered with 3 columns of space</li>
+        <li>Example: offset-8 + col-4 = col-4 centered with 8 columns of space</li>
+        <li>Note: Offsets use half margin-left for visual centering effect</li>
       </ul>
     </div>
   </div>

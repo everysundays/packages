@@ -46,31 +46,41 @@ const RACK_COLUMNS = {
     7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
   },
   lg: {
-    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
-    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+    1: '7.27%', 2: '15.7%', 3: '24.13%', 4: '32.56%', 5: '40.99%', 6: '49.42%',
+    7: '57.85%', 8: '66.28%', 9: '74.71%', 10: '83.14%', 11: '91.57%', 12: '100%'
   },
   xl: {
-    1: '8.33%', 2: '16.67%', 3: '25%', 4: '33.33%', 5: '41.67%', 6: '50%',
-    7: '58.33%', 8: '66.67%', 9: '75%', 10: '83.33%', 11: '91.67%', 12: '100%'
+    1: '5.76%', 2: '12.44%', 3: '19.12%', 4: '25.81%', 5: '32.49%', 6: '39.17%',
+    7: '45.85%', 8: '52.53%', 9: '59.22%', 10: '65.9%', 11: '72.58%', 12: '100%'
   }
 };
 
 const RAIL_COLUMNS = {
   sm: {
     1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
-    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '60rem'
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '100%'
   },
   md: {
     1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
-    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '60rem'
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '100%'
   },
   lg: {
     1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
-    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '64rem'
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '100%'
   },
   xl: {
     1: '16rem', 2: '20rem', 3: '24rem', 4: '28rem', 5: '32rem', 6: '36rem',
-    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '64rem'
+    7: '40rem', 8: '44rem', 9: '48rem', 10: '52rem', 11: '56rem', 12: '100%'
+  }
+};
+
+const RAIL_GAPS = {
+  STANDARD: '1rem',
+  SLIDE_MODE: {
+    sm: '1.5rem',     // Matches container padding for seamless slides
+    md: '2rem',       // Matches container padding for seamless slides  
+    lg: '2rem',       // Matches container padding for seamless slides
+    xl: '2rem',       // Matches container padding for seamless slides
   }
 };
 
@@ -186,7 +196,7 @@ function updateOffsetInfo() {
       : 'auto';
     
     infoElement.innerHTML = `
-      Offset: ${formatPx(marginInPx)}, Column: ${colValue}
+      Offset: ${formatPx(marginInPx)} (centered), Column: ${colValue}
     `;
   }
 }

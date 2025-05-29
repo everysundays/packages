@@ -296,19 +296,24 @@
       const elementIsFullScreen = (rect.width > viewportWidth * 0.9);
       
       // Standard gap from element
-      const gap = 32; // Increased from 10px to 32px as requested
+      const gap = 12; // Increased from 10px to 32px as requested
       
       // Position calculation
       let top, left;
       
       if (elementIsFullScreen) {
-        // For full-screen elements, position tooltip near mouse cursor
-        top = event.clientY + 10 + scrollY;
-        left = event.clientX + 10;
+        // For full-screen elements, position based on mouse location relative to screen center
+        const isMouseLeftOfCenter = event.clientX < viewportWidth / 2;
         
-        // Ensure tooltip doesn't go off-screen
-        if (left + tooltipWidth > viewportWidth - gap) {
-          left = event.clientX - tooltipWidth - 10;
+        // Set vertical position at top of the element with gap
+        top = rect.top + gap + scrollY;
+        
+        if (isMouseLeftOfCenter) {
+          // When mouse is left of center, place tooltip at top-right corner
+          left = rect.right - tooltipWidth - gap;
+        } else {
+          // When mouse is right of center, place tooltip at top-left corner
+          left = rect.left + gap;
         }
       } else {
         // Determine if element is to the left or right of viewport center

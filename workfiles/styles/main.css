@@ -32,7 +32,7 @@ h1:lang(th), h2:lang(th), h3:lang(th), h4:lang(th), h5:lang(th), h6:lang(th) {
    ============================================================================= */
 
 h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight;
+  @apply text-4xl md:text-5xl lg:text-8xl font-bold leading-tight tracking-tight;
 }
 
 h2 {
@@ -134,6 +134,43 @@ h6 {
 
 .tab-button.active {
   @apply bg-blue-600 text-white shadow-lg;
+}
+
+/* New tab styles to make tabs look like paper */
+
+.tab-button {
+  @apply bg-gray-200 text-gray-600 border-b-0 shadow-sm hover:bg-gray-100;
+  position: relative;
+  bottom: -1px;
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-button.active {
+  @apply bg-white text-blue-600 font-semibold;
+  box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid white;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover:not(.active) {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.product-content {
+  @apply rounded-b-lg rounded-tr-lg;
+  border-radius: 0 8px 8px 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.product-section {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.3s ease;
+}
+
+.product-section.active {
+  opacity: 1;
+  display: block;
 }
 
 /* Add your project-specific styles below this line */

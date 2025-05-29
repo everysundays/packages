@@ -1,12 +1,22 @@
 /**
- * TWLayout Plugin v1.2.0
+ * TWLayout Plugin v1.3.1
  * =======================
  * 
  * A Tailwind CSS plugin that provides a responsive grid system with:
  * - Flexible rack containers (percentage-based columns)
  * - Fixed rail containers (fixed-width columns for horizontal scrolling)
- * - Responsive breakpoints with consistent spacing
- * - Column offsets for precise positioning
+ * - Responsive breakpoints aligned with Tailwind CSS standard breakpoints
+ * - Consistent spacing and column offsets for precise positioning
+ * 
+ * Breakpoints:
+ * - xs: 320px (20rem) - Extra small devices (below sm)
+ * - sm: 640px (40rem) - Tailwind standard
+ * - md: 768px (48rem) - Tailwind standard
+ * - lg: 1024px (64rem) - Tailwind standard, optimized grid calculations
+ * - xl: 1280px (80rem) - Tailwind standard, optimized grid calculations
+ * - 2xl: 1536px (96rem) - Tailwind standard, fine-tuned for 1536-1973px range
+ * - 3xl: 1974px (123.375rem) - Extended breakpoint for 1974-2560px range
+ * - 4xl: 2561px (160rem) - Extended breakpoint for 2561-3420px+ range
  * 
  * Compatible with Tailwind CSS v4.x
  */
@@ -244,7 +254,7 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
       },
     });
     
-    console.log('TWLayout Plugin v1.2.0: Successfully initialized');
+    console.log('TWLayout Plugin v1.3.1: Successfully initialized');
     
   } catch (error) {
     console.error('TWLayout Plugin: Initialization failed:', error);

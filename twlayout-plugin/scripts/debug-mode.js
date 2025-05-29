@@ -5,32 +5,32 @@
   // Define VIEWPORTS directly since we can't import in browser
   const VIEWPORTS = {
     sm: {
-      viewportWidth: 375,
-      minWidth: '23.4375rem',
+      viewportWidth: 640,               // Standard Tailwind sm breakpoint
+      minWidth: '40rem',                // 40rem = 640px
       containerPadding: 24,
-      availableSpace: 327,
-      description: 'Mobile devices'
+      availableSpace: 592,              // 640px - 48px
+      description: 'Small devices (Tailwind sm)'
     },
     md: {
-      viewportWidth: 768,
-      minWidth: '48rem',
+      viewportWidth: 768,               // Standard Tailwind md breakpoint
+      minWidth: '48rem',                // 48rem = 768px
       containerPadding: 32,
-      availableSpace: 704,
-      description: 'Tablets and small laptops'
+      availableSpace: 704,              // 768px - 64px
+      description: 'Medium devices (Tailwind md)'
     },
     lg: {
-      viewportWidth: 1440,
-      minWidth: '90rem',
+      viewportWidth: 1024,              // Standard Tailwind lg breakpoint
+      minWidth: '64rem',                // 64rem = 1024px
       containerPadding: 32,
-      availableSpace: 1376,
-      description: 'Desktop and large laptops'
+      availableSpace: 960,              // 1024px - 64px
+      description: 'Desktop and large laptops (Tailwind lg)'
     },
     xl: {
-      viewportWidth: 1920,
-      minWidth: '120rem',
+      viewportWidth: 1280,              // Standard Tailwind xl breakpoint
+      minWidth: '80rem',                // 80rem = 1280px
       containerPadding: 32,
-      availableSpace: 1856,
-      description: 'Large desktop screens'
+      availableSpace: 1216,             // 1280px - 64px
+      description: 'Large desktop screens (Tailwind xl)'
     }
   };
 
@@ -134,10 +134,11 @@
   try {
     // Constants for viewport management
     const DEFAULT_VIEWPORTS = [
-      { value: 375, label: 'sm: 375px', breakpoint: 'sm', description: '375px (335px available)' },
-      { value: 770, label: 'md: 770px', breakpoint: 'md', description: '770px (690px available)' },
-      { value: 1450, label: 'lg: 1450px', breakpoint: 'lg', description: '1450px (1386px available)' },
-      { value: 1800, label: 'xl: 1800px', breakpoint: 'xl', description: '1800px (1736px available)' }
+      { value: 320, label: 'xs: <640px', breakpoint: 'xs', description: 'Extra small devices (below sm)' },
+      { value: 640, label: 'sm: 640px', breakpoint: 'sm', description: '640px (592px available)' },
+      { value: 768, label: 'md: 768px', breakpoint: 'md', description: '768px (704px available)' },
+      { value: 1024, label: 'lg: 1024px', breakpoint: 'lg', description: '1024px (960px available)' },
+      { value: 1280, label: 'xl: 1280px', breakpoint: 'xl', description: '1280px (1216px available)' }
     ];
 
     // State management
@@ -153,10 +154,11 @@
     // Get current breakpoint
     function getCurrentBreakpoint() {
       const width = currentViewportWidth;
-      if (width >= VIEWPORTS.xl.viewportWidth) return 'xl';
-      if (width >= VIEWPORTS.lg.viewportWidth) return 'lg';
-      if (width >= VIEWPORTS.md.viewportWidth) return 'md';
-      return 'sm';
+      if (width >= VIEWPORTS.xl.viewportWidth) return 'xl';     // ≥ 1280px
+      if (width >= VIEWPORTS.lg.viewportWidth) return 'lg';     // ≥ 1024px
+      if (width >= VIEWPORTS.md.viewportWidth) return 'md';     // ≥ 768px
+      if (width >= VIEWPORTS.sm.viewportWidth) return 'sm';     // ≥ 640px
+      return 'xs';                                              // < 640px
     }
 
     // Update viewport input display with color coding
@@ -166,7 +168,7 @@
         viewportInput.value = `${currentViewportWidth}px (${breakpoint})`;
         
         // Remove previous breakpoint classes
-        viewportInput.classList.remove('sm', 'md', 'lg', 'xl');
+        viewportInput.classList.remove('xs', 'sm', 'md', 'lg', 'xl');
         // Add current breakpoint class for color coding
         viewportInput.classList.add(breakpoint);
       }

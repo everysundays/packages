@@ -9,8 +9,8 @@
  * - Consistent spacing and column offsets for precise positioning
  * 
  * Breakpoints:
- * - xs: 320px (20rem) - Extra small devices (below sm)
- * - sm: 640px (40rem) - Tailwind standard
+ * - xs: Merged into sm, no longer used separately
+ * - sm: 0px (0rem) - Default starting point, includes former xs range
  * - md: 768px (48rem) - Tailwind standard
  * - lg: 1024px (64rem) - Tailwind standard, optimized grid calculations
  * - xl: 1280px (80rem) - Tailwind standard, optimized grid calculations
@@ -29,6 +29,11 @@ const { SYSTEM, VIEWPORTS, RACK_COLUMNS, RAIL_COLUMNS, RAIL_GAPS, OFFSETS, valid
  * Creates CSS custom properties for the grid system
  */
 function generateCSSVariables(breakpoint, config) {
+  // Skip xs breakpoint since it's merged into sm
+  if (breakpoint === 'xs') {
+    return {};
+  }
+  
   const vars = {
     // Base system variables
     '--tw-layout-padding': SYSTEM.CONTAINER_PADDING,

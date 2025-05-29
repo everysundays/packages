@@ -19,11 +19,12 @@
  * 
  * The following values have been manually fine-tuned from calculated defaults:
  * 
- * 1. RACK_COLUMNS - MOBILE OPTIMIZED (sm breakpoint):
- *    - Target: 375px viewport (327px available space)
- *    - col-1: 49.24% (161px) - allows 2 columns per row
- *    - col-2 to col-12: 100% - simplified mobile layout
- *    - Purpose: Mobile-first responsive behavior
+ * 1. RACK_COLUMNS - MOBILE OPTIMIZED (xs/sm breakpoints):
+ *    - Target: 320-639px viewports
+ *    - col-1 to col-4: 47.5% - allows 2 columns per row with gap
+ *    - col-5 to col-12: 100% - simplified mobile layout
+ *    - Purpose: Mobile-first responsive behavior with 2-column grid
+ *    - Note: Reduced from 49.24% to account for 1rem (16px) gap between columns
  * 
  * 2. RACK_COLUMNS - PERFECT HARMONIC THEORY (md breakpoint):
  *    - Target: 770px viewport (706px available space) with mathematical precision
@@ -125,10 +126,10 @@ const VIEWPORTS = {
   },
   sm: {
     viewportWidth: 640,               // Tailwind sm breakpoint (40rem)
-    minWidth: '40rem',                // CSS min-width (640px)
+    minWidth: '0',                    // Starting from 0 to include xs range
     containerPadding: 24,             // Container padding (px)
     availableSpace: 592,              // Available space for content (640px - 48px)
-    description: 'Small devices (Tailwind sm)'
+    description: 'Small devices (Tailwind sm), covers 0-639px range including xs'
   },
   md: {
     viewportWidth: 768,               // Tailwind md breakpoint (48rem)
@@ -186,10 +187,10 @@ const VIEWPORTS = {
  */
 const RACK_COLUMNS = {
   xs: {
-    1: '49.24%',    // Half-width on mobile - allows 2 col-1 side by side (161px / 327px available space)
-    2: '100%',      // Stack vertically on small screens
-    3: '100%',
-    4: '100%',
+    1: '47.5%',    // Half-width on mobile - allows 2 col-1 side by side with gap
+    2: '47.5%',    // Reduced from 49.24% to account for 1rem (16px) gap
+    3: '47.5%',    
+    4: '47.5%',    // Two columns per row on small screens
     5: '100%',
     6: '100%',
     7: '100%',
@@ -200,10 +201,10 @@ const RACK_COLUMNS = {
     12: '100%',
   },
   sm: {
-    1: '49.24%',    // Half-width on mobile - allows 2 col-1 side by side (161px / 327px available space)
-    2: '100%',      // Stack vertically on small screens
-    3: '100%',
-    4: '100%',
+    1: '47.5%',    // Half-width on mobile - allows 2 col-1 side by side with gap
+    2: '47.5%',    // Reduced from 49.24% to account for 1rem (16px) gap
+    3: '47.5%',
+    4: '47.5%',
     5: '100%',
     6: '100%',
     7: '100%',
@@ -478,7 +479,7 @@ const RAIL_GAPS = {
 const OFFSETS = {
   xs: {
     0: '0%',        // No offset
-    1: '0%',        // No meaningful offset for mobile - cols are 49.24% or 100%
+    1: '0%',        // No meaningful offset for mobile - cols are 47.5% or 100%
     2: '0%',        // No meaningful offset for mobile
     3: '0%',        // No meaningful offset for mobile
     4: '0%',        // No meaningful offset for mobile
@@ -488,11 +489,11 @@ const OFFSETS = {
     8: '0%',        // No meaningful offset for mobile
     9: '0%',        // No meaningful offset for mobile
     10: '0%',       // No meaningful offset for mobile
-    11: '25.38%',   // Perfect centering: (327px - 161px) ÷ 2 ÷ 327px = 83px/327px - MOBILE-OPTIMIZED
+    11: '26.25%',   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
   },
   sm: {
     0: '0%',        // No offset
-    1: '0%',        // No meaningful offset for mobile - cols are 49.24% or 100%
+    1: '0%',        // No meaningful offset for mobile - cols are 47.5% or 100%
     2: '0%',        // No meaningful offset for mobile
     3: '0%',        // No meaningful offset for mobile
     4: '0%',        // No meaningful offset for mobile
@@ -502,7 +503,7 @@ const OFFSETS = {
     8: '0%',        // No meaningful offset for mobile
     9: '0%',        // No meaningful offset for mobile
     10: '0%',       // No meaningful offset for mobile
-    11: '25.38%',   // Perfect centering: (327px - 161px) ÷ 2 ÷ 327px = 83px/327px - MOBILE-OPTIMIZED
+    11: '26.25%',   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
   },
   md: {
     0: '0%',        // No offset - col-12 full width

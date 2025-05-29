@@ -422,17 +422,19 @@ body.debug-mode .viewport-container.debug-only {
 /* Inspector tooltip */
 .debug-inspector-tooltip {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(15, 23, 42, 0.9); /* Darker background for better visibility */
   color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
+  padding: 10px 14px;
+  border-radius: 6px;
   font-size: 12px;
   pointer-events: none;
   z-index: 10000;
   max-width: 320px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
   display: none;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  backdrop-filter: blur(4px); /* Add blur effect for better readability */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
 }
 
 .tooltip-tag {
@@ -473,6 +475,7 @@ body.debug-mode .viewport-container.debug-only {
   outline-offset: -2px;
   position: relative;
   z-index: 1;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.3) !important; /* Add a subtle glow */
 }
 
 /* Inspector mode cursor */

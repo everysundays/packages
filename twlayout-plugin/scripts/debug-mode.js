@@ -291,75 +291,66 @@
       // Get element position relative to viewport
       const elementCenterX = rect.left + (rect.width / 2);
       const elementCenterY = rect.top + (rect.height / 2);
-      const elementIsFullScreen = (rect.width > viewportWidth * 0.9 && rect.height > viewportHeight * 0.9);
       
-      // Default margins
-      const margin = 18;
+      // Check if element is a full-screen tag
+      const elementIsFullScreen = (rect.width > viewportWidth * 0.9);
+      
+      // Standard gap from element
+      const gap = 32; // Increased from 10px to 32px as requested
       
       // Position calculation
       let top, left;
       
       if (elementIsFullScreen) {
-        // For full screen elements, position at top-right with margin
-        top = margin + scrollY;
-        left = viewportWidth - tooltipWidth - margin;
+        // For full-screen elements, position tooltip near mouse cursor
+        top = event.clientY + 10 + scrollY;
+        left = event.clientX + 10;
+        
+        // Ensure tooltip doesn't go off-screen
+        if (left + tooltipWidth > viewportWidth - gap) {
+          left = event.clientX - tooltipWidth - 10;
+        }
       } else {
-        // Determine if element is above or below viewport center
-        const isAboveCenter = elementCenterY < viewportHeight / 2;
-        // Determine if element is left or right of viewport center
+        // Determine if element is to the left or right of viewport center
         const isLeftOfCenter = elementCenterX < viewportWidth / 2;
         
-        // Position vertically
-        if (isAboveCenter) {
+        // Determine vertical placement (above or below element)
+        const placeBelow = elementCenterY < viewportHeight / 2;
+        
+        if (placeBelow) {
           // Position below the element
-          top = rect.bottom + 10 + scrollY;
+          top = rect.bottom + gap + scrollY;
+          
           // Check if tooltip would go off bottom of viewport
-          if (top + tooltipHeight > scrollY + viewportHeight - margin) {
-            // Adjust to be above element instead
-            top = rect.top - tooltipHeight - 10 + scrollY;
+          if (top + tooltipHeight > scrollY + viewportHeight - gap) {
+            // Position above the element instead
+            top = rect.top - tooltipHeight - gap + scrollY;
           }
         } else {
           // Position above the element
-          top = rect.top - tooltipHeight - 10 + scrollY;
+          top = rect.top - tooltipHeight - gap + scrollY;
+          
           // Check if tooltip would go off top of viewport
-          if (top < scrollY + margin) {
-            // Adjust to be below element instead
-            top = rect.bottom + 10 + scrollY;
+          if (top < scrollY + gap) {
+            // Position below the element instead
+            top = rect.bottom + gap + scrollY;
           }
         }
         
-        // Position horizontally
+        // Horizontal positioning based on element position relative to center
         if (isLeftOfCenter) {
-          // Position to the right of the element
-          left = rect.right + 10;
-          // Check if tooltip would go off right of viewport
-          if (left + tooltipWidth > viewportWidth - margin) {
-            // Adjust to be left of element instead
-            left = rect.left - tooltipWidth - 10;
-          }
+          // For elements on the left side, align tooltip with left edge of element
+          left = rect.left;
         } else {
-          // Position to the left of the element
-          left = rect.left - tooltipWidth - 10;
-          // Check if tooltip would go off left of viewport
-          if (left < margin) {
-            // Adjust to be right of element instead
-            left = rect.right + 10;
-          }
+          // For elements on the right side, align tooltip with right edge of element
+          left = rect.right - tooltipWidth;
         }
         
-        // Final viewport boundary checks
-        if (left + tooltipWidth > viewportWidth - margin) {
-          left = viewportWidth - tooltipWidth - margin;
-        }
-        if (left < margin) {
-          left = margin;
-        }
-        
-        if (top + tooltipHeight > scrollY + viewportHeight - margin) {
-          top = scrollY + viewportHeight - tooltipHeight - margin;
-        }
-        if (top < scrollY + margin) {
-          top = scrollY + margin;
+        // Final boundary checks to keep tooltip on screen
+        if (left < gap) {
+          left = gap;
+        } else if (left + tooltipWidth > viewportWidth - gap) {
+          left = viewportWidth - tooltipWidth - gap;
         }
       }
       

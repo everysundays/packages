@@ -188,11 +188,14 @@ body.debug-mode .viewport-container.debug-only {
   user-select: none;
 }
 
-.breakpoint-badge.xs {
+/* xs merged into sm */
+/* sm now includes xs range (0-767px) */
+.breakpoint-badge.sm {
   background-color: #f3f4f6;
   color: #a6a8aa;
 }
 
+/* sm now includes xs range (0-767px) */
 .breakpoint-badge.sm {
   background-color: #e5e7eb;
   color: #4b5563;
@@ -214,12 +217,8 @@ body.debug-mode .viewport-container.debug-only {
 }
 
 /* Viewport input with color coding */
-.viewport-input.xs {
-  background-color: #f3f4f6;
-  border-color: #d1d5db;
-  color: #6b7280;
-}
 
+/* sm now includes xs range (0-767px) */
 .viewport-input.sm {
   background-color: #f9fafb;
   border-color: #9ca3af;
@@ -400,7 +399,8 @@ body.debug-mode .viewport-container.debug-only {
   outline-offset: -2px; /* Inside the column to avoid overlapping with container territory lines */
 }
 
-/* Show column class names */
+/* Show column class names - COMMENTED OUT */
+/*
 .debug-mode .rack > [class*="col-"]::after,
 .debug-mode .rail > [class*="col-"]::after {
   content: attr(class);
@@ -416,4 +416,66 @@ body.debug-mode .viewport-container.debug-only {
   z-index: 2;
   white-space: nowrap;
   max-width: none;
+}
+*/
+
+/* Inspector tooltip */
+.debug-inspector-tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10000;
+  max-width: 320px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.tooltip-tag {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #93c5fd; /* Blue color for tag */
+}
+
+.tooltip-id {
+  margin-bottom: 4px;
+  color: #fde68a; /* Yellow color for ID */
+}
+
+.tooltip-classes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.tooltip-class {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: #a7f3d0; /* Green color for classes */
+}
+
+.tooltip-dimensions {
+  color: #c4b5fd; /* Purple color for dimensions */
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* Highlight element being inspected */
+.debug-inspected-element {
+  outline: 2px solid #8b5cf6 !important; /* Purple outline */
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Inspector mode cursor */
+body.debug-inspector-active * {
+  cursor: crosshair !important;
 }

@@ -6,10 +6,10 @@
   const VIEWPORTS = {
     sm: {
       viewportWidth: 640,               // Standard Tailwind sm breakpoint
-      minWidth: '40rem',                // 40rem = 640px
+      minWidth: '0',                    // Changed from '40rem' to '0' to include xs range
       containerPadding: 24,
       availableSpace: 592,              // 640px - 48px
-      description: 'Small devices (Tailwind sm)'
+      description: 'Small devices (Tailwind sm), includes xs range'
     },
     md: {
       viewportWidth: 768,               // Standard Tailwind md breakpoint
@@ -134,7 +134,7 @@
   try {
     // Constants for viewport management
     const DEFAULT_VIEWPORTS = [
-      { value: 320, label: 'xs: <640px', breakpoint: 'xs', description: 'Extra small devices (below sm)' },
+      { value: 320, label: 'sm: 0-639px', breakpoint: 'sm', description: 'Small devices (0-639px)' },
       { value: 640, label: 'sm: 640px', breakpoint: 'sm', description: '640px (592px available)' },
       { value: 768, label: 'md: 768px', breakpoint: 'md', description: '768px (704px available)' },
       { value: 1024, label: 'lg: 1024px', breakpoint: 'lg', description: '1024px (960px available)' },
@@ -144,6 +144,7 @@
     // State management
     let currentViewportWidth = window.innerWidth;
     let isDropdownOpen = false;
+    let inspectorTooltip = null;
 
     // DOM elements
     const debugToggleCheckbox = document.getElementById('debug-mode-toggle');
@@ -157,8 +158,7 @@
       if (width >= VIEWPORTS.xl.viewportWidth) return 'xl';     // ≥ 1280px
       if (width >= VIEWPORTS.lg.viewportWidth) return 'lg';     // ≥ 1024px
       if (width >= VIEWPORTS.md.viewportWidth) return 'md';     // ≥ 768px
-      if (width >= VIEWPORTS.sm.viewportWidth) return 'sm';     // ≥ 640px
-      return 'xs';                                              // < 640px
+      return 'sm';                                              // Includes both xs and sm (0-767px)
     }
 
     // Update viewport input display with color coding
@@ -168,7 +168,7 @@
         viewportInput.value = `${currentViewportWidth}px (${breakpoint})`;
         
         // Remove previous breakpoint classes
-        viewportInput.classList.remove('xs', 'sm', 'md', 'lg', 'xl');
+        viewportInput.classList.remove('sm', 'md', 'lg', 'xl');
         // Add current breakpoint class for color coding
         viewportInput.classList.add(breakpoint);
       }
@@ -221,6 +221,185 @@
       isDropdownOpen = false;
     }
 
+    // Define debug mode key locally
+    const DEBUG_MODE_KEY = 'twlayout-debug-mode';
+    
+    // Create inspector tooltip
+    function createInspectorTooltip() {
+      inspectorTooltip = document.createElement('div');
+      inspectorTooltip.id = 'debug-inspector-tooltip';
+      inspectorTooltip.className = 'debug-inspector-tooltip';
+      document.body.appendChild(inspectorTooltip);
+    }
+
+    // Update inspector tooltip position and content
+    function updateInspectorTooltip(event) {
+      if (!inspectorTooltip) return;
+      
+      const target = event.target;
+      
+      // Skip showing tooltip for debug mode UI elements
+      if (target.closest('.debug-container') || 
+          target.closest('.debug-toggle-container') || 
+          target.closest('.viewport-container') ||
+          target.closest('.debug-inspector-tooltip')) {
+        hideInspectorTooltip(event);
+        return;
+      }
+      
+      const rect = target.getBoundingClientRect();
+      const elementInfo = {
+        tag: target.tagName.toLowerCase(),
+        classes: target.className,
+        id: target.id,
+        dimensions: `${Math.round(rect.width)}x${Math.round(rect.height)}`
+      };
+      
+      // Format the tooltip content
+      let tooltipContent = `<div class="tooltip-tag">${elementInfo.tag}</div>`;
+      
+      if (elementInfo.id) {
+        tooltipContent += `<div class="tooltip-id">#${elementInfo.id}</div>`;
+      }
+      
+      if (elementInfo.classes && typeof elementInfo.classes === 'string') {
+        const classes = elementInfo.classes.split(' ').filter(c => c.trim() !== '');
+        tooltipContent += '<div class="tooltip-classes">';
+        classes.forEach(className => {
+          tooltipContent += `<span class="tooltip-class">${className}</span>`;
+        });
+        tooltipContent += '</div>';
+      }
+      
+      tooltipContent += `<div class="tooltip-dimensions">${elementInfo.dimensions}</div>`;
+      
+      // Update tooltip content
+      inspectorTooltip.innerHTML = tooltipContent;
+      
+      // Set display to block so we can measure dimensions
+      inspectorTooltip.style.display = 'block';
+      
+      // Get tooltip dimensions after updating content
+      const tooltipHeight = inspectorTooltip.offsetHeight;
+      const tooltipWidth = inspectorTooltip.offsetWidth;
+      
+      // Get viewport dimensions
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      
+      // Get element position relative to viewport
+      const elementCenterX = rect.left + (rect.width / 2);
+      const elementCenterY = rect.top + (rect.height / 2);
+      const elementIsFullScreen = (rect.width > viewportWidth * 0.9 && rect.height > viewportHeight * 0.9);
+      
+      // Default margins
+      const margin = 18;
+      
+      // Position calculation
+      let top, left;
+      
+      if (elementIsFullScreen) {
+        // For full screen elements, position at top-right with margin
+        top = margin + scrollY;
+        left = viewportWidth - tooltipWidth - margin;
+      } else {
+        // Determine if element is above or below viewport center
+        const isAboveCenter = elementCenterY < viewportHeight / 2;
+        // Determine if element is left or right of viewport center
+        const isLeftOfCenter = elementCenterX < viewportWidth / 2;
+        
+        // Position vertically
+        if (isAboveCenter) {
+          // Position below the element
+          top = rect.bottom + 10 + scrollY;
+          // Check if tooltip would go off bottom of viewport
+          if (top + tooltipHeight > scrollY + viewportHeight - margin) {
+            // Adjust to be above element instead
+            top = rect.top - tooltipHeight - 10 + scrollY;
+          }
+        } else {
+          // Position above the element
+          top = rect.top - tooltipHeight - 10 + scrollY;
+          // Check if tooltip would go off top of viewport
+          if (top < scrollY + margin) {
+            // Adjust to be below element instead
+            top = rect.bottom + 10 + scrollY;
+          }
+        }
+        
+        // Position horizontally
+        if (isLeftOfCenter) {
+          // Position to the right of the element
+          left = rect.right + 10;
+          // Check if tooltip would go off right of viewport
+          if (left + tooltipWidth > viewportWidth - margin) {
+            // Adjust to be left of element instead
+            left = rect.left - tooltipWidth - 10;
+          }
+        } else {
+          // Position to the left of the element
+          left = rect.left - tooltipWidth - 10;
+          // Check if tooltip would go off left of viewport
+          if (left < margin) {
+            // Adjust to be right of element instead
+            left = rect.right + 10;
+          }
+        }
+        
+        // Final viewport boundary checks
+        if (left + tooltipWidth > viewportWidth - margin) {
+          left = viewportWidth - tooltipWidth - margin;
+        }
+        if (left < margin) {
+          left = margin;
+        }
+        
+        if (top + tooltipHeight > scrollY + viewportHeight - margin) {
+          top = scrollY + viewportHeight - tooltipHeight - margin;
+        }
+        if (top < scrollY + margin) {
+          top = scrollY + margin;
+        }
+      }
+      
+      // Set tooltip position
+      inspectorTooltip.style.top = `${top}px`;
+      inspectorTooltip.style.left = `${left}px`;
+      
+      // Highlight the current element
+      target.classList.add('debug-inspected-element');
+    }
+    
+    // Hide inspector tooltip
+    function hideInspectorTooltip(event) {
+      if (!inspectorTooltip) return;
+      
+      const target = event.target;
+      target.classList.remove('debug-inspected-element');
+      inspectorTooltip.style.display = 'none';
+    }
+    
+    // Enable inspector
+    function enableInspector() {
+      if (!inspectorTooltip) {
+        createInspectorTooltip();
+      }
+      document.body.classList.add('debug-inspector-active');
+      document.addEventListener('mouseover', updateInspectorTooltip);
+      document.addEventListener('mouseout', hideInspectorTooltip);
+    }
+    
+    // Disable inspector
+    function disableInspector() {
+      document.body.classList.remove('debug-inspector-active');
+      document.removeEventListener('mouseover', updateInspectorTooltip);
+      document.removeEventListener('mouseout', hideInspectorTooltip);
+      if (inspectorTooltip) {
+        inspectorTooltip.style.display = 'none';
+      }
+    }
+
     // Event listeners
     if (viewportInput) {
       viewportInput.addEventListener('click', () => {
@@ -247,38 +426,36 @@
       updateViewportDisplay();
     });
 
-    // Define debug mode key locally
-    const DEBUG_MODE_KEY = 'twlayout-debug-mode';
-    
-    if (!debugToggleCheckbox) {
-      console.error('Debug mode checkbox not found.');
-      return;
-    }
-
-    // Event Listener for debug mode toggle
-    debugToggleCheckbox.addEventListener('change', function() {
-      if (this.checked) {
-        body.classList.add('debug-mode');
-        localStorage.setItem(DEBUG_MODE_KEY, 'enabled');
-        updateViewportDisplay();
-      } else {
-        body.classList.remove('debug-mode');
-        localStorage.setItem(DEBUG_MODE_KEY, 'disabled');
-        closeDropdown();
-      }
-    });
-
     // Initialization Function
     function initDebugMode() {
       const savedState = localStorage.getItem(DEBUG_MODE_KEY);
       if (savedState === 'enabled') {
         debugToggleCheckbox.checked = true;
         body.classList.add('debug-mode');
+        enableInspector();
       } else {
         debugToggleCheckbox.checked = false;
         body.classList.remove('debug-mode');
+        disableInspector();
       }
       updateViewportDisplay();
+    }
+    
+    // Update debug toggle event listener
+    if (debugToggleCheckbox) {
+      debugToggleCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          body.classList.add('debug-mode');
+          localStorage.setItem(DEBUG_MODE_KEY, 'enabled');
+          updateViewportDisplay();
+          enableInspector();
+        } else {
+          body.classList.remove('debug-mode');
+          localStorage.setItem(DEBUG_MODE_KEY, 'disabled');
+          closeDropdown();
+          disableInspector();
+        }
+      });
     }
 
     // Call Initialization

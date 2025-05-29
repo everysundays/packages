@@ -14,24 +14,24 @@ const VIEWPORTS = {
     description: 'Mobile devices'
   },
   md: {
-    viewportWidth: 770,
-    minWidth: '48.125rem',
+    viewportWidth: 768,               // Updated to match Tailwind's standard md breakpoint
+    minWidth: '48rem',                // Updated to match Tailwind's standard (48rem = 768px)
     containerPadding: 32,
-    availableSpace: 706,
+    availableSpace: 704,              // Updated: 768px - 64px (32px padding on each side)
     description: 'Tablets and small laptops'
   },
   lg: {
-    viewportWidth: 1440,
-    minWidth: '90rem',
+    viewportWidth: 1024,              // Standard Tailwind lg breakpoint
+    minWidth: '64rem',                // Updated to match Tailwind's standard (64rem = 1024px)
     containerPadding: 32,
-    availableSpace: 1376,
+    availableSpace: 960,              // Updated: 1024px - 64px
     description: 'Desktop and large laptops'
   },
   xl: {
-    viewportWidth: 1920,
-    minWidth: '120rem',
+    viewportWidth: 1280,              // Updated to match Tailwind's standard xl breakpoint
+    minWidth: '80rem',                // Updated to match Tailwind's standard (80rem = 1280px)
     containerPadding: 32,
-    availableSpace: 1856,
+    availableSpace: 1216,             // Updated: 1280px - 64px
     description: 'Large desktop screens'
   }
 };
@@ -42,16 +42,46 @@ const RACK_COLUMNS = {
     7: '100%', 8: '100%', 9: '100%', 10: '100%', 11: '100%', 12: '100%'
   },
   md: {
-    1: '13.8%', 2: '27.6%', 3: '41.5%', 4: '55.3%', 5: '69.1%', 6: '82.9%',
-    7: '100%', 8: '100%', 9: '100%', 10: '100%', 11: '100%', 12: '100%'
+    1: '16.29%',    // Perfect harmonic: 1/6 of 690px available space (115px)
+    2: '32.58%',    // Perfect harmonic: 2/6 of 690px available space (230px)
+    3: '48.87%',    // Perfect harmonic: 3/6 of 690px available space (345px)
+    4: '48.87%',    // Perfect harmonic: 3/6 of 690px available space (345px) - EQUAL to col-3
+    5: '65.16%',    // Perfect harmonic: 4/6 of 690px available space (460px)
+    6: '81.44%',    // Perfect harmonic: 5/6 of 690px available space (575px)
+    7: '100%',      // Full width on md+ for simplified layout
+    8: '100%',      // Full width on md+ for simplified layout
+    9: '100%',      // Full width on md+ for simplified layout
+    10: '100%',     // Full width on md+ for simplified layout
+    11: '100%',     // Full width on md+ for simplified layout
+    12: '100%'      // Full width on md+ for simplified layout
   },
   lg: {
-    1: '7.27%', 2: '15.7%', 3: '24.13%', 4: '32.56%', 5: '40.99%', 6: '49.42%',
-    7: '57.85%', 8: '66.28%', 9: '74.71%', 10: '83.14%', 11: '91.57%', 12: '100%'
+    1: '6.75%',     // Optimized: 64.8px (base) = 64.8/960
+    2: '15.18%',    // Optimized: 145.6px (64.8×2 + 16px gap) = 145.6/960
+    3: '23.60%',    // Optimized: 226.4px (64.8×3 + 32px gaps) = 226.4/960
+    4: '32.02%',    // Optimized: 307.2px (64.8×4 + 48px gaps) = 307.2/960
+    5: '40.44%',    // Optimized: 388px (64.8×5 + 64px gaps) = 388/960
+    6: '48.86%',    // Optimized: 468.8px (64.8×6 + 80px gaps) = 468.8/960
+    7: '57.28%',    // Optimized: 549.6px (64.8×7 + 96px gaps) = 549.6/960
+    8: '65.70%',    // Optimized: 630.4px (64.8×8 + 112px gaps) = 630.4/960
+    9: '74.12%',    // Optimized: 711.2px (64.8×9 + 128px gaps) = 711.2/960
+    10: '82.54%',   // Optimized: 792px (64.8×10 + 144px gaps) = 792/960
+    11: '90.96%',   // Optimized: 872.8px (64.8×11 + 160px gaps) = 872.8/960
+    12: '100%'      // Full width regardless of gaps
   },
   xl: {
-    1: '5.76%', 2: '12.44%', 3: '19.12%', 4: '25.81%', 5: '32.49%', 6: '39.17%',
-    7: '45.85%', 8: '52.53%', 9: '59.22%', 10: '65.9%', 11: '72.58%', 12: '100%'
+    1: '7.06%',     // Optimized: 85.8px (base) = 85.8/1216
+    2: '15.43%',    // Optimized: 187.6px (85.8×2 + 16px gap) = 187.6/1216
+    3: '23.81%',    // Optimized: 289.4px (85.8×3 + 32px gaps) = 289.4/1216
+    4: '32.18%',    // Optimized: 391.2px (85.8×4 + 48px gaps) = 391.2/1216
+    5: '40.56%',    // Optimized: 493px (85.8×5 + 64px gaps) = 493/1216
+    6: '48.93%',    // Optimized: 594.8px (85.8×6 + 80px gaps) = 594.8/1216
+    7: '57.31%',    // Optimized: 696.6px (85.8×7 + 96px gaps) = 696.6/1216
+    8: '65.68%',    // Optimized: 798.4px (85.8×8 + 112px gaps) = 798.4/1216
+    9: '74.06%',    // Optimized: 900.2px (85.8×9 + 128px gaps) = 900.2/1216
+    10: '82.43%',   // Optimized: 1002px (85.8×10 + 144px gaps) = 1002/1216
+    11: '90.81%',   // Optimized: 1103.8px (85.8×11 + 160px gaps) = 1103.8/1216
+    12: '100%'      // Full width
   }
 };
 
@@ -90,16 +120,46 @@ const OFFSETS = {
     6: '0%', 7: '0%', 8: '0%', 9: '0%', 10: '0%', 11: '25.38%'
   },
   md: {
-    0: '0%', 1: '0%', 2: '0%', 3: '0%', 4: '0%', 5: '0%', 6: '8.5%',
-    7: '15.5%', 8: '22.4%', 9: '29.3%', 10: '36.2%', 11: '43.1%'
+    0: '0%',        // No offset - col-12 full width
+    1: '0%',        // No offset - col-11 full width  
+    2: '0%',        // No offset - col-10 full width
+    3: '0%',        // No offset - col-9 full width
+    4: '0%',        // No offset - col-8 full width
+    5: '0%',        // No offset - col-7 full width
+    6: '9.28%',     // (100% - 81.44%) ÷ 2 = 9.28% - CENTERED col-6 (perfect harmonic)
+    7: '17.42%',    // (100% - 65.16%) ÷ 2 = 17.42% - CENTERED col-5 (perfect harmonic)
+    8: '25.57%',    // (100% - 48.87%) ÷ 2 = 25.57% - CENTERED col-4 (perfect harmonic)
+    9: '25.57%',    // (100% - 48.87%) ÷ 2 = 25.57% - CENTERED col-3 (perfect harmonic)
+    10: '33.71%',   // (100% - 32.58%) ÷ 2 = 33.71% - CENTERED col-2 (perfect harmonic)
+    11: '41.86%'    // (100% - 16.29%) ÷ 2 = 41.86% - CENTERED col-1 (perfect harmonic)
   },
   lg: {
-    0: '0%', 1: '4.165%', 2: '8.335%', 3: '12.5%', 4: '16.665%', 5: '20.835%',
-    6: '25%', 7: '29.165%', 8: '33.335%', 9: '37.5%', 10: '41.665%', 11: '45.835%'
+    0: '0%',        // No offset
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.39%',    // Half of 6 column offset - Maintaining style
+    7: '29.165%',   // Half of 7 column offset - Maintaining style
+    8: '33.335%',   // Half of 8 column offset - Maintaining style
+    9: '37.5%',     // Half of 9 column offset - Maintaining style
+    10: '41.665%',  // Half of 10 column offset - Maintaining style
+    11: '45.835%'   // Half of 11 column offset - Maintaining style
   },
   xl: {
-    0: '0%', 1: '4.165%', 2: '8.335%', 3: '12.5%', 4: '16.665%', 5: '20.835%',
-    6: '25%', 7: '29.165%', 8: '33.335%', 9: '37.5%', 10: '41.665%', 11: '45.835%'
+    0: '0%',        // No offset
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.23%',    // (100% - 49.54%) ÷ 2 = 25.23% - CENTERED col-6 (original)
+    7: '29.43%',    // (100% - 41.13%) ÷ 2 = 29.43% - CENTERED col-5 (original)
+    8: '33.64%',    // (100% - 32.72%) ÷ 2 = 33.64% - CENTERED col-4 (original)
+    9: '37.84%',    // (100% - 24.31%) ÷ 2 = 37.84% - CENTERED col-3 (original)
+    10: '42.05%',   // (100% - 15.90%) ÷ 2 = 42.05% - CENTERED col-2 (original)
+    11: '46.26%'    // (100% - 7.49%) ÷ 2 = 46.26% - CENTERED col-1 (original)
   }
 };
 

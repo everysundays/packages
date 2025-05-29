@@ -51,17 +51,24 @@
  *    - xl values: Base column = 130px (from 1856px ÷ 12 - gaps)
  *    - See documentation in twlayout-plugin/doc/12_COLUMN_GRID_THEORY.md
  * 
- * 4. RAIL_COLUMNS col-12:
+ * 4. NEW EXTENDED BREAKPOINTS (3xl/4xl):
+ *    - Purpose: Better support for ultra-wide viewports (1974px-3420px)
+ *    - Method: 12-column grid optimized for specific viewport ranges
+ *    - 3xl breakpoint: Optimized for 1974px-2560px range
+ *    - 4xl breakpoint: Optimized for 2561px-3420px+ range
+ *    - Calculation: Precision-tuned column percentages to minimize wasted space
+ *
+ * 5. RAIL_COLUMNS col-12:
  *    - Purpose: Full-width sliding content (100% instead of fixed rem)
  *    - Use case: Slide-to-slide navigation without edge peeking
  *    - All breakpoints: Changed from 60rem/64rem to 100%
  * 
- * 5. RAIL_GAPS:
+ * 6. RAIL_GAPS:
  *    - Purpose: Match container padding for seamless slide transitions
  *    - Effect: Prevents next slide from showing at viewport edge
  *    - Critical for: Multi-screen sliding content experiences
  * 
- * 6. OFFSETS - CENTERING SYSTEM:
+ * 7. OFFSETS - CENTERING SYSTEM:
  *    - sm: offset-11 = 25.38% for perfect col-1 centering, others = 0%
  *    - md: Perfect harmonic centering calculation 
  *      • Formula: offset = (100% - harmonic_column_width) ÷ 2
@@ -95,7 +102,7 @@ const SYSTEM = {
   // Grid validation settings
   MAX_COLUMNS: 12,                    // Maximum number of columns supported
   MIN_VIEWPORT_WIDTH: 320,            // Minimum supported viewport width (px)
-  MAX_VIEWPORT_WIDTH: 2560,           // Maximum supported viewport width (px)
+  MAX_VIEWPORT_WIDTH: 3420,           // Maximum supported viewport width (px)
 };
 
 // =============================================================================
@@ -105,35 +112,65 @@ const SYSTEM = {
 /**
  * Responsive breakpoint configuration
  * Each breakpoint defines screen size thresholds and available space calculations
+ * Aligned with Tailwind CSS breakpoints for standardization
+ * Extended with additional breakpoints for ultra-wide screens
  */
 const VIEWPORTS = {
+  xs: {
+    viewportWidth: 320,               // Extra small devices (below sm)
+    minWidth: '0',                    // CSS min-width (0px)
+    containerPadding: 16,             // Container padding (px)
+    availableSpace: 288,              // Available space for content (320px - 32px)
+    description: 'Extra small devices (below sm)'
+  },
   sm: {
-    viewportWidth: 375,               // Target viewport width (px)
-    minWidth: '23.4375rem',           // CSS min-width (375px)
+    viewportWidth: 640,               // Tailwind sm breakpoint (40rem)
+    minWidth: '40rem',                // CSS min-width (640px)
     containerPadding: 24,             // Container padding (px)
-    availableSpace: 327,              // Available space for content (375px - 48px)
-    description: 'Mobile devices'
+    availableSpace: 592,              // Available space for content (640px - 48px)
+    description: 'Small devices (Tailwind sm)'
   },
   md: {
-    viewportWidth: 770,               // Target viewport width (px) - UPDATED for mockup  
-    minWidth: '48.125rem',            // CSS min-width (770px)
+    viewportWidth: 768,               // Tailwind md breakpoint (48rem)
+    minWidth: '48rem',                // CSS min-width (768px)
     containerPadding: 32,             // Container padding (px)
-    availableSpace: 706,              // Available space for content (770px - 64px)
-    description: 'Tablets and small laptops'
+    availableSpace: 704,              // Available space for content (768px - 64px)
+    description: 'Medium devices (Tailwind md)'
   },
   lg: {
-    viewportWidth: 1440,              // Target viewport width (px)
-    minWidth: '90rem',                // CSS min-width (1440px)
+    viewportWidth: 1024,              // Tailwind lg breakpoint (64rem)
+    minWidth: '64rem',                // CSS min-width (1024px)
     containerPadding: 32,             // Container padding (px)
-    availableSpace: 1376,             // Available space for content (1440px - 64px)
-    description: 'Desktop and large laptops'
+    availableSpace: 960,              // Available space for content (1024px - 64px)
+    description: 'Large devices (Tailwind lg)'
   },
   xl: {
-    viewportWidth: 1920,              // Target viewport width (px)
-    minWidth: '120rem',               // CSS min-width (1920px)
+    viewportWidth: 1280,              // Tailwind xl breakpoint (80rem)
+    minWidth: '80rem',                // CSS min-width (1280px)
     containerPadding: 32,             // Container padding (px)
-    availableSpace: 1856,             // Available space for content (1920px - 64px)
-    description: 'Large desktop screens'
+    availableSpace: 1216,             // Available space for content (1280px - 64px)
+    description: 'Extra large devices (Tailwind xl)'
+  },
+  '2xl': {
+    viewportWidth: 1536,              // Tailwind 2xl breakpoint (96rem)
+    minWidth: '96rem',                // CSS min-width (1536px)
+    containerPadding: 32,             // Container padding (px)
+    availableSpace: 1472,             // Available space for content (1536px - 64px)
+    description: '2X-Large devices (Tailwind 2xl)'
+  },
+  '3xl': {
+    viewportWidth: 1974,              // First extended breakpoint (123.375rem)
+    minWidth: '123.375rem',           // CSS min-width (1974px)
+    containerPadding: 40,             // Container padding (px)
+    availableSpace: 1894,             // Available space for content (1974px - 80px)
+    description: '3X-Large devices (Range 1240px-1973px)'
+  },
+  '4xl': {
+    viewportWidth: 2560,              // Second extended breakpoint (160rem)
+    minWidth: '160rem',               // CSS min-width (2560px)
+    containerPadding: 48,             // Container padding (px)
+    availableSpace: 2464,             // Available space for content (2560px - 96px)
+    description: '4X-Large devices (Range 1974px-3420px)'
   }
 };
 
@@ -145,9 +182,23 @@ const VIEWPORTS = {
  * Rack column widths as percentages of available space
  * These columns are flexible and will adapt to the container width
  * 
- * HAND-TUNED VALUES (lg/xl): Optimized for visual balance and gap accommodation
+ * HAND-TUNED VALUES: Optimized for visual balance and gap accommodation
  */
 const RACK_COLUMNS = {
+  xs: {
+    1: '49.24%',    // Half-width on mobile - allows 2 col-1 side by side (161px / 327px available space)
+    2: '100%',      // Stack vertically on small screens
+    3: '100%',
+    4: '100%',
+    5: '100%',
+    6: '100%',
+    7: '100%',
+    8: '100%',
+    9: '100%',
+    10: '100%',
+    11: '100%',
+    12: '100%',
+  },
   sm: {
     1: '49.24%',    // Half-width on mobile - allows 2 col-1 side by side (161px / 327px available space)
     2: '100%',      // Stack vertically on small screens
@@ -177,32 +228,74 @@ const RACK_COLUMNS = {
     12: '100%',     // Full width on md+ for simplified layout
   },
   lg: {
-    1: '7.27%',     // Hand-tuned: 100px / 1376px - optimized for visual balance
-    2: '15.7%',     // Hand-tuned: 216px / 1376px
-    3: '24.13%',    // Hand-tuned: 332px / 1376px
-    4: '32.56%',    // Hand-tuned: 448px / 1376px
-    5: '40.99%',    // Hand-tuned: 564px / 1376px
-    6: '49.42%',    // Hand-tuned: 680px / 1376px
-    7: '57.85%',    // Hand-tuned: 796px / 1376px
-    8: '66.28%',    // Hand-tuned: 912px / 1376px
-    9: '74.71%',    // Hand-tuned: 1028px / 1376px
-    10: '83.14%',   // Hand-tuned: 1144px / 1376px
-    11: '91.57%',   // Hand-tuned: 1260px / 1376px
+    1: '6.75%',     // Optimized: 64.8px (base) = 64.8/960
+    2: '15.18%',    // Optimized: 145.6px (64.8×2 + 16px gap) = 145.6/960
+    3: '23.60%',    // Optimized: 226.4px (64.8×3 + 32px gaps) = 226.4/960
+    4: '32.02%',    // Optimized: 307.2px (64.8×4 + 48px gaps) = 307.2/960
+    5: '40.44%',    // Optimized: 388px (64.8×5 + 64px gaps) = 388/960
+    6: '48.86%',    // Optimized: 468.8px (64.8×6 + 80px gaps) = 468.8/960
+    7: '57.28%',    // Optimized: 549.6px (64.8×7 + 96px gaps) = 549.6/960
+    8: '65.70%',    // Optimized: 630.4px (64.8×8 + 112px gaps) = 630.4/960
+    9: '74.12%',    // Optimized: 711.2px (64.8×9 + 128px gaps) = 711.2/960
+    10: '82.54%',   // Optimized: 792px (64.8×10 + 144px gaps) = 792/960
+    11: '90.96%',   // Optimized: 872.8px (64.8×11 + 160px gaps) = 872.8/960
     12: '100%',     // Full width regardless of gaps
   },
   xl: {
-    1: '7.49%',     // 12-Grid: 130px (base) = 130/1736
-    2: '15.90%',    // 12-Grid: 276px (130×2 + 16px gap) = 276/1736
-    3: '24.31%',    // 12-Grid: 422px (130×3 + 32px gaps) = 422/1736
-    4: '32.72%',    // 12-Grid: 568px (130×4 + 48px gaps) = 568/1736
-    5: '41.13%',    // 12-Grid: 714px (130×5 + 64px gaps) = 714/1736
-    6: '49.54%',    // 12-Grid: 860px (130×6 + 80px gaps) = 860/1736
-    7: '57.95%',    // 12-Grid: 1006px (130×7 + 96px gaps) = 1006/1736
-    8: '66.36%',    // 12-Grid: 1152px (130×8 + 112px gaps) = 1152/1736
-    9: '74.77%',    // 12-Grid: 1298px (130×9 + 128px gaps) = 1298/1736
-    10: '83.18%',   // 12-Grid: 1444px (130×10 + 144px gaps) = 1444/1736
-    11: '91.59%',   // 12-Grid: 1590px (130×11 + 160px gaps) = 1590/1736
-    12: '100%',     // 12-Grid: 1736px (full width) = 1736/1736
+    1: '7.06%',     // Optimized: 85.8px (base) = 85.8/1216
+    2: '15.43%',    // Optimized: 187.6px (85.8×2 + 16px gap) = 187.6/1216
+    3: '23.81%',    // Optimized: 289.4px (85.8×3 + 32px gaps) = 289.4/1216
+    4: '32.18%',    // Optimized: 391.2px (85.8×4 + 48px gaps) = 391.2/1216
+    5: '40.56%',    // Optimized: 493px (85.8×5 + 64px gaps) = 493/1216
+    6: '48.93%',    // Optimized: 594.8px (85.8×6 + 80px gaps) = 594.8/1216
+    7: '57.31%',    // Optimized: 696.6px (85.8×7 + 96px gaps) = 696.6/1216
+    8: '65.68%',    // Optimized: 798.4px (85.8×8 + 112px gaps) = 798.4/1216
+    9: '74.06%',    // Optimized: 900.2px (85.8×9 + 128px gaps) = 900.2/1216
+    10: '82.43%',   // Optimized: 1002px (85.8×10 + 144px gaps) = 1002/1216
+    11: '90.81%',   // Optimized: 1103.8px (85.8×11 + 160px gaps) = 1103.8/1216
+    12: '100%',     // Full width
+  },
+  '2xl': {
+    1: '7.40%',     // Tuned for 1536-1785px: 109px = 109/1472
+    2: '15.69%',    // Tuned for 1536-1785px: 231px = 231/1472
+    3: '23.98%',    // Tuned for 1536-1785px: 353px = 353/1472
+    4: '32.27%',    // Tuned for 1536-1785px: 475px = 475/1472
+    5: '40.56%',    // Tuned for 1536-1785px: 597px = 597/1472
+    6: '48.85%',    // Tuned for 1536-1785px: 719px = 719/1472
+    7: '57.13%',    // Tuned for 1536-1785px: 841px = 841/1472
+    8: '65.42%',    // Tuned for 1536-1785px: 963px = 963/1472
+    9: '73.71%',    // Tuned for 1536-1785px: 1085px = 1085/1472
+    10: '82.00%',   // Tuned for 1536-1785px: 1207px = 1207/1472
+    11: '90.29%',   // Tuned for 1536-1785px: 1329px = 1329/1472
+    12: '100%',     // Full width
+  },
+  '3xl': {
+    1: '7.97%',     // Optimized for 1974px: 151px/1894 (1 column)
+    2: '16.16%',    // Optimized for 1974px: 306px/1894 (2 columns + 1 gap)
+    3: '24.34%',    // Optimized for 1974px: 461px/1894 (3 columns + 2 gaps)
+    4: '32.52%',    // Optimized for 1974px: 616px/1894 (4 columns + 3 gaps)
+    5: '40.71%',    // Optimized for 1974px: 771px/1894 (5 columns + 4 gaps)
+    6: '48.89%',    // Optimized for 1974px: 926px/1894 (6 columns + 5 gaps)
+    7: '57.08%',    // Optimized for 1974px: 1081px/1894 (7 columns + 6 gaps)
+    8: '65.26%',    // Optimized for 1974px: 1236px/1894 (8 columns + 7 gaps)
+    9: '73.44%',    // Optimized for 1974px: 1391px/1894 (9 columns + 8 gaps)
+    10: '81.63%',   // Optimized for 1974px: 1546px/1894 (10 columns + 9 gaps)
+    11: '89.81%',   // Optimized for 1974px: 1701px/1894 (11 columns + 10 gaps)
+    12: '100%',     // Full width
+  },
+  '4xl': {
+    1: '8.03%',     // Re-optimized for 2560-2851px: 198px/2464 (1 column)
+    2: '16.23%',    // Re-optimized for 2560-2851px: 400px/2464 (2 columns + 1 gap)
+    3: '24.43%',    // Re-optimized for 2560-2851px: 602px/2464 (3 columns + 2 gaps)
+    4: '32.63%',    // Re-optimized for 2560-2851px: 804px/2464 (4 columns + 3 gaps)
+    5: '40.83%',    // Re-optimized for 2560-2851px: 1006px/2464 (5 columns + 4 gaps)
+    6: '49.03%',    // Re-optimized for 2560-2851px: 1208px/2464 (6 columns + 5 gaps)
+    7: '57.23%',    // Re-optimized for 2560-2851px: 1410px/2464 (7 columns + 6 gaps)
+    8: '65.43%',    // Re-optimized for 2560-2851px: 1612px/2464 (8 columns + 7 gaps)
+    9: '73.62%',    // Re-optimized for 2560-2851px: 1814px/2464 (9 columns + 8 gaps)
+    10: '81.82%',   // Re-optimized for 2560-2851px: 2016px/2464 (10 columns + 9 gaps)
+    11: '90.02%',   // Re-optimized for 2560-2851px: 2218px/2464 (11 columns + 10 gaps)
+    12: '100%',     // Full width
   }
 };
 
@@ -218,6 +311,20 @@ const RACK_COLUMNS = {
  * SPECIAL CASE: col-12 uses 100% for slide effect (HAND-TUNED)
  */
 const RAIL_COLUMNS = {
+  xs: {
+    1: '16rem',     // 256px - Compact card size
+    2: '20rem',     // 320px - Standard card size
+    3: '24rem',     // 384px - Extended card size
+    4: '28rem',     // 448px - Large card size
+    5: '32rem',     // 512px - Extra large card
+    6: '36rem',     // 576px - Oversized card
+    7: '40rem',     // 640px - Banner size
+    8: '44rem',     // 704px - Large banner
+    9: '48rem',     // 768px - Tablet width
+    10: '52rem',    // 832px - Extended tablet
+    11: '56rem',    // 896px - Small desktop
+    12: '100%',     // HAND-TUNED: Full available width for slide effect
+  },
   sm: {
     1: '16rem',     // 256px - Compact card size
     2: '20rem',     // 320px - Standard card size
@@ -273,6 +380,48 @@ const RAIL_COLUMNS = {
     10: '52rem',    // 832px
     11: '56rem',    // 896px
     12: '100%',     // HAND-TUNED: Full available width for slide effect
+  },
+  '2xl': {
+    1: '16rem',     // 256px - Reusing xl values for 2xl breakpoint
+    2: '20rem',     // 320px - Reusing xl values for 2xl breakpoint
+    3: '24rem',     // 384px - Reusing xl values for 2xl breakpoint
+    4: '28rem',     // 448px - Reusing xl values for 2xl breakpoint
+    5: '32rem',     // 512px - Reusing xl values for 2xl breakpoint
+    6: '36rem',     // 576px - Reusing xl values for 2xl breakpoint
+    7: '40rem',     // 640px - Reusing xl values for 2xl breakpoint
+    8: '44rem',     // 704px - Reusing xl values for 2xl breakpoint
+    9: '48rem',     // 768px - Reusing xl values for 2xl breakpoint
+    10: '52rem',    // 832px - Reusing xl values for 2xl breakpoint
+    11: '56rem',    // 896px - Reusing xl values for 2xl breakpoint
+    12: '100%',     // HAND-TUNED: Full available width for slide effect
+  },
+  '3xl': {
+    1: '20rem',     // 320px - Increased for larger viewports
+    2: '25rem',     // 400px - Increased for larger viewports
+    3: '30rem',     // 480px - Increased for larger viewports
+    4: '35rem',     // 560px - Increased for larger viewports
+    5: '40rem',     // 640px - Increased for larger viewports
+    6: '45rem',     // 720px - Increased for larger viewports
+    7: '50rem',     // 800px - Increased for larger viewports
+    8: '55rem',     // 880px - Increased for larger viewports
+    9: '60rem',     // 960px - Increased for larger viewports
+    10: '65rem',    // 1040px - Increased for larger viewports
+    11: '70rem',    // 1120px - Increased for larger viewports
+    12: '100%',     // HAND-TUNED: Full available width for slide effect
+  },
+  '4xl': {
+    1: '24rem',     // 384px - Further increased for ultra-wide viewports
+    2: '30rem',     // 480px - Further increased for ultra-wide viewports
+    3: '36rem',     // 576px - Further increased for ultra-wide viewports
+    4: '42rem',     // 672px - Further increased for ultra-wide viewports
+    5: '48rem',     // 768px - Further increased for ultra-wide viewports
+    6: '54rem',     // 864px - Further increased for ultra-wide viewports
+    7: '60rem',     // 960px - Further increased for ultra-wide viewports
+    8: '66rem',     // 1056px - Further increased for ultra-wide viewports
+    9: '72rem',     // 1152px - Further increased for ultra-wide viewports
+    10: '78rem',    // 1248px - Further increased for ultra-wide viewports
+    11: '84rem',    // 1344px - Further increased for ultra-wide viewports
+    12: '100%',     // HAND-TUNED: Full available width for slide effect
   }
 };
 
@@ -294,10 +443,14 @@ const RAIL_GAPS = {
   
   // Special gap for slide-mode (matches container padding)
   SLIDE_MODE: {
+    xs: '1rem',      // Matches xs containerPadding (16px)
     sm: '1.5rem',     // Matches sm containerPadding (24px)
     md: '2rem',       // Matches md containerPadding (32px)  
     lg: '2rem',       // Matches lg containerPadding (32px)
     xl: '2rem',       // Matches xl containerPadding (32px)
+    '2xl': '2rem',    // Matches 2xl containerPadding (32px)
+    '3xl': '2.5rem',  // Matches 3xl containerPadding (40px)
+    '4xl': '3rem'     // Matches 4xl containerPadding (48px)
   }
 };
 
@@ -312,9 +465,9 @@ const RAIL_GAPS = {
  * CENTERING FORMULA: offset = (available_space - column_width) ÷ 2 ÷ available_space
  * 
  * BREAKPOINT-SPECIFIC BEHAVIOR:
- * - sm: Simplified mobile layout - only offset-11 centers col-1
+ * - xs/sm: Simplified mobile layout - only offset-11 centers col-1
  * - md: True mathematical centering for col-6 to col-1
- * - lg/xl: Half-margin technique for visual balance
+ * - lg/xl/2xl/3xl/4xl: Perfect centering for all columns
  * 
  * EXAMPLE CALCULATION (md breakpoint):
  * - Available space: 706px (770px viewport - 64px padding)
@@ -323,6 +476,20 @@ const RAIL_GAPS = {
  * - Result: col-6 perfectly centered with 125px margin on both sides
  */
 const OFFSETS = {
+  xs: {
+    0: '0%',        // No offset
+    1: '0%',        // No meaningful offset for mobile - cols are 49.24% or 100%
+    2: '0%',        // No meaningful offset for mobile
+    3: '0%',        // No meaningful offset for mobile
+    4: '0%',        // No meaningful offset for mobile
+    5: '0%',        // No meaningful offset for mobile
+    6: '0%',        // No meaningful offset for mobile
+    7: '0%',        // No meaningful offset for mobile
+    8: '0%',        // No meaningful offset for mobile
+    9: '0%',        // No meaningful offset for mobile
+    10: '0%',       // No meaningful offset for mobile
+    11: '25.38%',   // Perfect centering: (327px - 161px) ÷ 2 ÷ 327px = 83px/327px - MOBILE-OPTIMIZED
+  },
   sm: {
     0: '0%',        // No offset
     1: '0%',        // No meaningful offset for mobile - cols are 49.24% or 100%
@@ -353,31 +520,73 @@ const OFFSETS = {
   },
   lg: {
     0: '0%',        // No offset
-    1: '4.165%',    // Half of 1 column offset - HAND-TUNED
-    2: '8.335%',    // Half of 2 column offset - HAND-TUNED
-    3: '12.5%',     // Half of 3 column offset - HAND-TUNED
-    4: '16.665%',   // Half of 4 column offset - HAND-TUNED
-    5: '20.835%',   // Half of 5 column offset - HAND-TUNED
-    6: '25%',       // Half of 6 column offset - HAND-TUNED
-    7: '29.165%',   // Half of 7 column offset - HAND-TUNED
-    8: '33.335%',   // Half of 8 column offset - HAND-TUNED
-    9: '37.5%',     // Half of 9 column offset - HAND-TUNED
-    10: '41.665%',  // Half of 10 column offset - HAND-TUNED
-    11: '45.835%',  // Half of 11 column offset - HAND-TUNED
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.39%',    // Half of 6 column offset - Maintaining style
+    7: '29.165%',   // Half of 7 column offset - Maintaining style
+    8: '33.335%',   // Half of 8 column offset - Maintaining style
+    9: '37.5%',     // Half of 9 column offset - Maintaining style
+    10: '41.665%',  // Half of 10 column offset - Maintaining style
+    11: '45.835%',  // Half of 11 column offset - Maintaining style
   },
   xl: {
     0: '0%',        // No offset
-    1: '4.165%',    // Half of 1 column offset - LG compatibility
-    2: '8.335%',    // Half of 2 column offset - LG compatibility
-    3: '12.5%',     // Half of 3 column offset - LG compatibility
-    4: '16.665%',   // Half of 4 column offset - LG compatibility
-    5: '20.835%',   // Half of 5 column offset - LG compatibility
-    6: '25.23%',    // (100% - 49.54%) ÷ 2 = 25.23% - CENTERED col-6 (12-grid)
-    7: '29.43%',    // (100% - 41.13%) ÷ 2 = 29.43% - CENTERED col-5 (12-grid)
-    8: '33.64%',    // (100% - 32.72%) ÷ 2 = 33.64% - CENTERED col-4 (12-grid)
-    9: '37.84%',    // (100% - 24.31%) ÷ 2 = 37.84% - CENTERED col-3 (12-grid)
-    10: '42.05%',   // (100% - 15.90%) ÷ 2 = 42.05% - CENTERED col-2 (12-grid)
-    11: '46.26%',   // (100% - 7.49%) ÷ 2 = 46.26% - CENTERED col-1 (12-grid)
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.23%',    // (100% - 49.54%) ÷ 2 = 25.23% - CENTERED col-6 (original)
+    7: '29.43%',    // (100% - 41.13%) ÷ 2 = 29.43% - CENTERED col-5 (original)
+    8: '33.64%',    // (100% - 32.72%) ÷ 2 = 33.64% - CENTERED col-4 (original)
+    9: '37.84%',    // (100% - 24.31%) ÷ 2 = 37.84% - CENTERED col-3 (original)
+    10: '42.05%',   // (100% - 15.90%) ÷ 2 = 42.05% - CENTERED col-2 (original)
+    11: '46.26%',   // (100% - 7.49%) ÷ 2 = 46.26% - CENTERED col-1 (original)
+  },
+  '2xl': {
+    0: '0%',        // No offset
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.58%',    // (100% - 48.85%) ÷ 2 = 25.58% - CENTERED col-6 (adjusted)
+    7: '29.72%',    // (100% - 40.56%) ÷ 2 = 29.72% - CENTERED col-5 (adjusted)
+    8: '33.87%',    // (100% - 32.27%) ÷ 2 = 33.87% - CENTERED col-4 (adjusted)
+    9: '38.01%',    // (100% - 23.98%) ÷ 2 = 38.01% - CENTERED col-3 (adjusted)
+    10: '42.16%',   // (100% - 15.69%) ÷ 2 = 42.16% - CENTERED col-2 (adjusted)
+    11: '46.30%',   // (100% - 7.40%) ÷ 2 = 46.30% - CENTERED col-1 (adjusted)
+  },
+  '3xl': {
+    0: '0%',        // No offset
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.56%',    // (100% - 48.89%) ÷ 2 = 25.56% - CENTERED col-6 (3xl adjusted)
+    7: '29.65%',    // (100% - 40.71%) ÷ 2 = 29.65% - CENTERED col-5 (3xl adjusted)
+    8: '33.74%',    // (100% - 32.52%) ÷ 2 = 33.74% - CENTERED col-4 (3xl adjusted)
+    9: '37.83%',    // (100% - 24.34%) ÷ 2 = 37.83% - CENTERED col-3 (3xl adjusted)
+    10: '41.92%',   // (100% - 16.16%) ÷ 2 = 41.92% - CENTERED col-2 (3xl adjusted)
+    11: '46.02%',   // (100% - 7.97%) ÷ 2 = 46.02% - CENTERED col-1 (3xl adjusted)
+  },
+  '4xl': {
+    0: '0%',        // No offset
+    1: '4.165%',    // Half of 1 column offset - Maintaining style for small offsets
+    2: '8.335%',    // Half of 2 column offset - Maintaining style for small offsets
+    3: '12.5%',     // Half of 3 column offset - Maintaining style for small offsets
+    4: '16.665%',   // Half of 4 column offset - Maintaining style for small offsets
+    5: '20.835%',   // Half of 5 column offset - Maintaining style for small offsets
+    6: '25.49%',    // (100% - 49.03%) ÷ 2 = 25.49% - CENTERED col-6 (4xl re-adjusted)
+    7: '29.59%',    // (100% - 40.83%) ÷ 2 = 29.59% - CENTERED col-5 (4xl re-adjusted)
+    8: '33.69%',    // (100% - 32.63%) ÷ 2 = 33.69% - CENTERED col-4 (4xl re-adjusted)
+    9: '37.79%',    // (100% - 24.43%) ÷ 2 = 37.79% - CENTERED col-3 (4xl re-adjusted)
+    10: '41.89%',   // (100% - 16.23%) ÷ 2 = 41.89% - CENTERED col-2 (4xl re-adjusted)
+    11: '45.99%',   // (100% - 8.03%) ÷ 2 = 45.99% - CENTERED col-1 (4xl re-adjusted)
   }
 };
 

@@ -188,6 +188,11 @@ body.debug-mode .viewport-container.debug-only {
   user-select: none;
 }
 
+.breakpoint-badge.xs {
+  background-color: #f3f4f6;
+  color: #a6a8aa;
+}
+
 .breakpoint-badge.sm {
   background-color: #e5e7eb;
   color: #4b5563;
@@ -209,6 +214,12 @@ body.debug-mode .viewport-container.debug-only {
 }
 
 /* Viewport input with color coding */
+.viewport-input.xs {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+  color: #6b7280;
+}
+
 .viewport-input.sm {
   background-color: #f9fafb;
   border-color: #9ca3af;

@@ -21,9 +21,9 @@
  * 
  * 1. RACK_COLUMNS - MOBILE OPTIMIZED (xs/sm breakpoints):
  *    - Target: 320-639px viewports
- *    - col-1 to col-4: 47.5% - allows 2 columns per row with gap
- *    - col-5 to col-12: 100% - simplified mobile layout
- *    - Purpose: Mobile-first responsive behavior with 2-column grid
+ *    - col-1 to col-2: 47.5% - allows 2 columns per row with gap
+ *    - col-3 to col-12: 100% - simplified mobile layout
+ *    - Purpose: Mobile-first responsive behavior with 2-column grid for small components
  *    - Note: Reduced from 49.24% to account for 1rem (16px) gap between columns
  * 
  * 2. RACK_COLUMNS - PERFECT HARMONIC THEORY (md breakpoint):
@@ -189,8 +189,8 @@ const RACK_COLUMNS = {
   xs: {
     1: '47.5%',    // Half-width on mobile - allows 2 col-1 side by side with gap
     2: '47.5%',    // Reduced from 49.24% to account for 1rem (16px) gap
-    3: '47.5%',    
-    4: '47.5%',    // Two columns per row on small screens
+    3: '100%',     // Full width for col-3 on mobile
+    4: '100%',     // Full width for col-4 on mobile
     5: '100%',
     6: '100%',
     7: '100%',
@@ -203,8 +203,8 @@ const RACK_COLUMNS = {
   sm: {
     1: '47.5%',    // Half-width on mobile - allows 2 col-1 side by side with gap
     2: '47.5%',    // Reduced from 49.24% to account for 1rem (16px) gap
-    3: '47.5%',
-    4: '47.5%',
+    3: '100%',     // Full width for col-3 on mobile
+    4: '100%',     // Full width for col-4 on mobile
     5: '100%',
     6: '100%',
     7: '100%',

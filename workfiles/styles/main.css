@@ -31,46 +31,91 @@ h1:lang(th), h2:lang(th), h3:lang(th), h4:lang(th), h5:lang(th), h6:lang(th) {
    TYPOGRAPHY SIZES - Responsive & Semantic
    ============================================================================= */
 
+/* Heading Styles */
 h1 {
-  @apply text-4xl md:text-5xl lg:text-8xl font-bold leading-tight tracking-tight;
+  @apply text-5xl leading-tight tracking-tighter font-semibold;
+  @apply md:text-6xl md:leading-tight md:tracking-normal;
+  @apply lg:text-7xl lg:leading-[72px] lg:tracking-normal;
+  line-height: 1.1 !important;
 }
 
 h2 {
-  @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+  @apply text-5xl leading-tight tracking-tight font-semibold;
+  @apply md:text-6xl md:leading-tight md:tracking-tight;
+  @apply lg:text-7xl lg:leading-[72px] lg:tracking-tighter;
 }
 
 h3 {
-  @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-normal;
+  @apply text-2xl leading-9 tracking-tight font-semibold mb-3;
+  @apply md:text-2xl md:leading-9 md:tracking-tight;
+  @apply lg:text-3xl lg:leading-9 lg:tracking-tight;
 }
 
 h4 {
-  @apply text-xl md:text-2xl lg:text-3xl font-semibold leading-normal;
+  @apply text-xl leading-9 tracking-tight font-semibold mb-2;
+  @apply md:text-xl md:leading-9 md:tracking-tight;
+  @apply lg:text-2xl lg:leading-9 lg:tracking-tight;
 }
 
-h5 {
-  @apply text-lg md:text-xl lg:text-2xl font-semibold leading-normal;
+/* Paragraph Styles */
+/* Default paragraph styling */
+p {
+  @apply text-base leading-6 font-normal;
+  @apply md:text-base md:leading-6;
+  @apply lg:text-base lg:leading-6;
 }
 
-h6 {
-  @apply text-base md:text-lg lg:text-xl font-medium leading-normal;
-}
-
+/* Subheading - slightly larger than normal text with medium weight */
 .s1 {
-  @apply text-lg md:text-xl lg:text-2xl font-medium leading-relaxed;
+  @apply text-base leading-5 font-medium;
+  @apply md:text-base md:leading-6;
+  @apply lg:text-xl lg:leading-6;
+  
 }
 
+/* S1 with highlight background */
+.s1-highlight {
+  @apply text-base leading-5 font-medium pr-10;
+  @apply md:text-base md:leading-6;
+  @apply lg:text-xl lg:leading-6;
+  background: linear-gradient(to right, #c8e3fc 0%, rgba(200, 227, 252, 0) 100%);
+  display: inline;
+  border-radius: 9999px;
+  padding: 0.7rem 1.5rem 0.7rem 1.2rem;
+  color: #1e3a8a;
+}
+
+/* Body 1 - bold paragraph text */
 .b1 {
-  @apply text-base md:text-lg lg:text-xl leading-relaxed;
+  @apply text-sm leading-6 font-normal;
+  @apply md:text-base md:leading-6 md:font-bold;
+  @apply lg:text-base lg:leading-6 lg:font-bold;
 }
 
-.b2 {
-  @apply text-sm md:text-base lg:text-lg leading-normal;
-}
-
+/* Body 3 - smaller text for captions, etc. */
 .b3 {
-  @apply text-xs md:text-sm lg:text-base leading-normal tracking-wide;
+  @apply text-sm leading-5 font-normal;
+  @apply md:text-sm md:leading-5;
+  @apply lg:text-sm lg:leading-5;
 }
-    
+
+/* Body 2 - identical to p for backward compatibility */
+.b2 {
+  @apply text-base leading-6 font-normal;
+  @apply md:text-base md:leading-6;
+  @apply lg:text-base lg:leading-6;
+}
+
+/* Form Elements */
+label {
+  @apply font-medium;
+}
+
+/* Stats and Numbers */
+.text-6xl {
+  @apply font-bold;
+}
+
 /* =============================================================================
    MAINPAGE & PRODUCT_MAIN STYLES (temporary - delete after customization)
    ============================================================================= */
@@ -171,6 +216,278 @@ h6 {
 .product-section.active {
   opacity: 1;
   display: block;
+}
+
+/* =============================================================================
+   COMPONENT STYLES
+   ============================================================================= */
+
+/* Feature Card Component */
+.feature-card {
+  @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.feature-card h4 {
+  @apply mb-2;
+}
+
+.feature-card.text-center img {
+  @apply mx-auto;
+}
+
+.feature-card.text-center {
+  @apply text-center;
+}
+
+/* Module Card Component with screenshot area */
+.module-card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow;
+}
+
+.module-card .card-image {
+  @apply bg-gray-50 p-8 text-center;
+}
+
+.module-card .card-content {
+  @apply p-6;
+}
+
+/* Text Highlight Styles */
+.yellow-highlight {
+  @apply bg-yellow-300/70 text-gray-900 px-2 py-0;
+  position: relative;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(transparent 0%, rgba(255, 232, 0, 0.6) 0%);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 85%;
+  animation: highlightIn 800ms ease-in-out forwards;
+  animation-play-state: paused;
+}
+
+.cyan-highlight {
+  @apply bg-cyan-300/70 text-gray-900 px-2 py-0;
+  position: relative;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(transparent 0%, rgba(6, 182, 212, 0.6) 0%);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 85%;
+  animation: highlightIn 800ms ease-in-out forwards;
+  animation-play-state: paused;
+}
+
+.yellow-highlight.animate,
+.cyan-highlight.animate {
+  animation-play-state: running;
+}
+
+@keyframes highlightIn {
+  0% {
+    background-size: 0% 85%;
+  }
+  100% {
+    background-size: 100% 85%;
+  }
+}
+
+/* Language Selector Styles */
+.relative.group .absolute {
+  transform: translateY(0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+  top: calc(100% - 2px);
+  pointer-events: none;
+  border-top: 2px solid transparent;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.relative.group:hover .absolute {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.language-selector {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.language-selector button {
+  height: 100%;
+  padding: 1rem 0;
+}
+
+.language-option {
+  transition: all 0.15s ease;
+}
+
+.language-option:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.language-option.active {
+  font-weight: 600;
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Navbar Active State */
+.nav-link {
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.nav-link.active {
+  color: white;
+  background-color: rgba(93, 134, 205, 0.432);
+  font-weight: 500;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+}
+
+/* =============================================================================
+   MAP COMPONENT STYLES
+   ============================================================================= */
+
+/* Map Container and Image */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Custom Map Pin with Animation */
+.map-pin {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    z-index: 10;
+}
+
+.pin-outer {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: #0047AB;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite;
+}
+
+.pin-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 71, 171, 0.7);
+    }
+    70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 71, 171, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 71, 171, 0);
+    }
+}
+
+/* =============================================================================
+   PRODUCT TAB STYLES
+   ============================================================================= */
+
+/* Tab and content panel styling */
+#product-content {
+  position: relative;
+  overflow: hidden;
+}
+
+#product-content > div {
+  display: none;
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+#product-content > div.active-panel {
+  display: block;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Tab button styling */
+.tab-button {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab-button.active {
+  background-color: #2563EB;
+  color: white;
+}
+
+.tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #2563EB;
+  transition: all 200ms ease;
+  transform: translateX(-50%);
+}
+
+.tab-button.active::after {
+  width: 80%;
+}
+
+/* =============================================================================
+   NEWS PAGE STYLES
+   ============================================================================= */
+
+.news-gradient-overlay {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
 }
 
 /* Add your project-specific styles below this line */

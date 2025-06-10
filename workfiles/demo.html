@@ -1,0 +1,175 @@
+# PSP Designer Tools
+
+A comprehensive toolkit for frontend developers with a responsive grid system and development environment setup.
+
+## 📦 Packages
+
+This monorepo contains two main packages:
+
+### 🎨 [@psp/layoutsystem](./packages/layoutsystem/)
+Responsive grid system for Tailwind CSS with **Rack** and **Rail** containers
+- Flexible wrapping columns (Rack)
+- Horizontal scrolling rows (Rail)
+- Extended breakpoints for ultra-wide screens
+- Mathematical grid with precise offsets
+
+### 🏗️ [@psp/environment](./packages/environment/)
+Node.js development environment setup for frontend projects
+- Project templates and scaffolding
+- Development scripts and tooling
+- Build configurations
+
+## 🚀 Quick Start
+
+### Install Specific Package
+
+```bash
+# Layout system only
+npm install @psp/layoutsystem
+
+# Development environment only
+npm install @psp/environment
+
+# Both packages
+npm install @psp/layoutsystem @psp/environment
+```
+
+### Development Setup
+
+```bash
+# Clone the entire repository
+git clone https://github.com/everysundays/psp-designertools.git
+cd psp-designertools
+
+# Install all dependencies
+npm install
+
+# Build all packages
+npm run build
+
+# Start development mode
+npm run dev
+```
+
+### Get Only What You Need
+
+```bash
+# Get only the layout system
+git clone --filter=blob:none --sparse https://github.com/everysundays/psp-designertools.git
+cd psp-designertools
+git sparse-checkout init --cone
+git sparse-checkout set packages/layoutsystem
+
+# Get only the environment tools
+git sparse-checkout set packages/environment
+```
+
+## 📋 Available Scripts
+
+```bash
+npm run build        # Build all packages
+npm run dev          # Start development mode for all packages
+npm run clean        # Clean all build artifacts
+npm run lint         # Lint all packages
+npm run test         # Run tests for all packages
+npm run demo         # Open layout system demo
+```
+
+## 🎨 Layout System Usage
+
+### Rack Container (Flexible Wrapping)
+
+```html
+<div class="rack">
+  <div class="col-12 xs:col-6 md:col-4 xl:col-3">Column content</div>
+  <div class="col-12 xs:col-6 md:col-4 xl:col-3">Column content</div>
+</div>
+```
+
+### Rail Container (Horizontal Scrolling)
+
+```html
+<div class="rail">
+  <div class="col-4">Card 1</div>
+  <div class="col-4">Card 2</div>
+  <div class="col-4">Card 3</div>
+</div>
+```
+
+### Column Offsets
+
+```html
+<div class="rack">
+  <div class="col-6 offset-3">Centered column</div>
+</div>
+```
+
+## 🔧 Breakpoints
+
+| Breakpoint | Min Width | Description |
+|------------|-----------|-------------|
+| xs | 0px | Extra small devices |
+| sm | 640px | Small devices |
+| md | 768px | Medium devices |
+| lg | 1024px | Large devices |
+| xl | 1280px | Extra large devices |
+| 2xl | 1536px | 2X-Large devices |
+| 3xl | 1974px | 3X-Large devices |
+| 4xl | 2561px | 4X-Large devices |
+
+## 🛠️ Development Environment Features
+
+- **Project Templates**: Pre-configured setups for common frontend frameworks
+- **Build Scripts**: Optimized build processes for development and production
+- **Development Server**: Live reload and hot module replacement
+- **Code Quality**: ESLint, Prettier, and Stylelint configurations
+
+## 📁 Repository Structure
+
+```
+psp-designertools/
+├── packages/
+│   ├── environment/          # Development environment tools
+│   │   ├── package.json
+│   │   ├── scripts/
+│   │   ├── templates/
+│   │   └── README.md
+│   └── layoutsystem/         # Layout system plugin
+│       ├── package.json
+│       ├── index.js
+│       ├── demo/
+│       ├── dist/
+│       └── README.md
+├── package.json              # Root package.json
+├── lerna.json                # Lerna configuration
+└── README.md                 # This file
+```
+
+## 🔄 Updating
+
+```bash
+# Update all packages
+npm run update
+
+# Update specific package
+cd packages/layoutsystem
+npm update
+```
+
+## 📚 Documentation
+
+- [Layout System Documentation](./packages/layoutsystem/README.md)
+- [Environment Tools Documentation](./packages/environment/README.md)
+
+## 🤝 Contributing
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Make your changes in the appropriate package
+4. Run tests: `npm test`
+5. Build: `npm run build`
+6. Submit a pull request
+
+## 📄 License
+
+MIT License

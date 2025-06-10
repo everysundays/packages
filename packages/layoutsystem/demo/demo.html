@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rack & Rail Grid System</title>
+  <link href="../dist/styles.css" rel="stylesheet">
+  <link href="demo.css" rel="stylesheet">
+  <script type="module" src="scripts/debug-mode.js"></script>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <h1>Rack & Rail Grid System</h1>
+
+  <p>A responsive grid system with two container types: <strong>Rack</strong> (end-to-end col- that wrap) and <strong>Rail</strong> (horizontally scrollable rows).</p>
+
+</div>
+
+<section>
+
+  <div class="page-wrapper">
+    <h2>Column Width Demo</h2>
+    <div class="toggle-container">
+      <input type="radio" name="container-type" id="rack-toggle" checked>
+      <input type="radio" name="container-type" id="rail-toggle">
+
+      <div class="toggle-switch">
+        <label for="rack-toggle" class="rack-label">Rack Container</label>
+        <label for="rail-toggle" class="rail-label">Rail Container</label>
+      </div>
+    </div>
+
+    <div id="rack-code-block" class="code-block">
+      <pre>     &lt;div class="rack"&gt;
+        &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+        &lt;div class="col-2"&gt;col-2&lt;/div&gt;
+        &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+        &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+        ...
+      &lt;/div&gt;</pre>
+    </div>
+
+    <div id="rail-code-block" class="code-block" style="display: none;">
+      <pre>     &lt;div class="rail"&gt;
+        &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+        &lt;div class="col-2"&gt;col-2&lt;/div&gt;
+        &lt;div class="col-3"&gt;col-3&lt;/div&gt;
+        &lt;div class="col-4"&gt;col-4&lt;/div&gt;
+        ...
+      &lt;/div&gt;</pre>
+    </div>
+  </div>
+
+  <div class="rack">
+    <div class="col-12">
+      <strong>col-12</strong> <span id="col-12-info">Loading...</span>
+    </div>
+    <div class="col-1">
+      <strong>col-1</strong> <span id="col-1-info">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="col-2-info">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="col-3-info">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="col-4-info">Loading...</span>
+    </div>
+    <div class="col-5">
+      <strong>col-5</strong> <span id="col-5-info">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="col-6-info">Loading...</span>
+    </div>
+    <div class="col-7">
+      <strong>col-7</strong> <span id="col-7-info">Loading...</span>
+    </div>
+    <div class="col-8">
+      <strong>col-8</strong> <span id="col-8-info">Loading...</span>
+    </div>
+    <div class="col-9">
+      <strong>col-9</strong> <span id="col-9-info">Loading...</span>
+    </div>
+    <div class="col-10">
+      <strong>col-10</strong> <span id="col-10-info">Loading...</span>
+    </div>
+    <div class="col-11">
+      <strong>col-11</strong> <span id="col-11-info">Loading...</span>
+    </div>
+    <div class="col-12">
+      <strong>col-12</strong> <span id="col-12-info">Loading...</span>
+    </div>
+  </div>
+
+</section>
+
+<section>
+
+  <div class="page-wrapper">
+    <h2 id="responsive-col-">Responsive col- Example (Rack Container Only)</h2>
+    <p>These col- automatically adjust their width according to the breakpoint without needing explicit classes for each viewport. Note how shorter col- can inline with longer ones depending on the viewport size.</p>
+  </div>
+
+  <div class="rack">
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-1">Loading...</span>
+    </div>
+    <div class="col-8">
+      <strong>col-8</strong> <span id="responsive-col-8-info-1">Loading...</span>
+      <ul id="link-listing" class="flex flex-row">
+        <li>link 1</li>
+        <li>link 2</li>
+        <li>link 3</li>
+        <li>link 4</li>
+        <li>link 5</li>
+      </ul> 
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-2">Loading...</span>
+    </div>
+    <div class="col-12">
+      <strong>col-12</strong> <span id="responsive-col-12-info-1">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="responsive-col-6-info-1">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="responsive-col-6-info-2">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-1">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-2">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-3">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-1">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-2">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-3">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-4">Loading...</span>
+    </div>
+    <div class="col-8">
+      <strong>col-8</strong> <span id="responsive-col-8-info-2">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-4">Loading...</span>
+    </div>
+    <div class="col-9">
+      <strong>col-9</strong> <span id="responsive-col-9-info-1">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-5">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-3">Loading...</span>
+    </div>
+    <div class="col-10">
+      <strong>col-10</strong> <span id="responsive-col-10-info-1">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-6">Loading...</span>
+    </div>
+    <div class="col-9">
+      <strong>col-9</strong> <span id="responsive-col-9-info-2">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-7">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="responsive-col-6-info-3">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-8">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-4">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-5">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="responsive-col-6-info-4">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-5">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-6">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-6">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-7">Loading...</span>
+    </div>
+    <div class="col-1">
+      <strong>col-1</strong> <span id="responsive-col-1-info-1">Loading...</span>
+    </div>
+    <div class="col-6">
+      <strong>col-6</strong> <span id="responsive-col-6-info-5">Loading...</span>
+    </div>
+    <div class="col-2">
+      <strong>col-2</strong> <span id="responsive-col-2-info-7">Loading...</span>
+    </div>
+    <div class="col-5">
+      <strong>col-5</strong> <span id="responsive-col-5-info-1">Loading...</span>
+    </div>
+    <div class="col-3">
+      <strong>col-3</strong> <span id="responsive-col-3-info-9">Loading...</span>
+    </div>
+    <div class="col-4">
+      <strong>col-4</strong> <span id="responsive-col-4-info-8">Loading...</span>
+    </div>
+    <div class="col-10">
+      <strong>col-10</strong> <span id="responsive-col-10-info-1">Loading...</span>
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="page-wrapper">
+    <h2>Complementary Offset Examples</h2>
+    <p>Demonstration of how offsets interact with complementary col-sizes (offset + col-= 12)</p>
+    <p>Each example shows how different offset values create centered positioning for the col-. The offset applies half of the calculated margin to the left, visually centering the column with remaining space appearing on the right.</p>
+    <div class="formulas">
+      <strong>Formula:</strong>
+      <ul>
+        <li>offset-X + col-(12-X) = 100% width (visually centered)</li>
+        <li>Example: offset-3 + col-9 = col-9 centered with 3 columns of space</li>
+        <li>Example: offset-8 + col-4 = col-4 centered with 8 columns of space</li>
+        <li>Note: Offsets use half margin-left for visual centering effect</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="offset-demo">
+    <div class="rack">
+      <div class="col-12">
+        <strong>offset-0 + col-12</strong>
+        <div>
+          <span>No offset (0%) + Full width col-(100%)</span>
+        </div>
+      </div>
+
+      <div class="col-11 offset-1">
+        <strong>offset-1 + col-11</strong> - <span id="offset-1-info" data-offset="1">Loading...</span>
+      </div>
+
+      <div class="col-10 offset-2">
+        <strong>offset-2 + col-10</strong> - <span id="offset-2-info" data-offset="2">Loading...</span>
+      </div>
+
+      <div class="col-9 offset-3">
+        <strong>offset-3 + col-9</strong> - <span id="offset-3-info" data-offset="3">Loading...</span>
+      </div>
+
+      <div class="col-8 offset-4">
+        <strong>offset-4 + col-8</strong> - <span id="offset-4-info" data-offset="4">Loading...</span>
+      </div>
+
+      <div class="col-7 offset-5">
+        <strong>offset-5 + col-7</strong> - <span id="offset-5-info" data-offset="5">Loading...</span>
+      </div>
+
+      <div class="col-6 offset-6">
+        <strong>offset-6 + col-6</strong> - <span id="offset-6-info" data-offset="6">Loading...</span>
+      </div>
+
+      <div class="col-5 offset-7">
+        <strong>offset-7 + col-5</strong> - <span id="offset-7-info" data-offset="7">Loading...</span>
+      </div>
+
+      <div class="col-4 offset-8">
+        <strong>offset-8 + col-4</strong> - <span id="offset-8-info" data-offset="8">Loading...</span>
+      </div>
+
+      <div class="col-3 offset-9">
+        <strong>offset-9 + col-3</strong> - <span id="offset-9-info" data-offset="9">Loading...</span>
+      </div>
+
+      <div class="col-2 offset-10">
+        <strong>offset-10 + col-2</strong> - <span id="offset-10-info" data-offset="10">Loading...</span>
+      </div>
+
+      <div class="col-1 offset-11">
+        <strong>offset-11 + col-1</strong> - <span id="offset-11-info" data-offset="11">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script src="demo.js"></script>
+</body>
+</html>

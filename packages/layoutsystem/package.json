@@ -1,0 +1,63 @@
+{
+  "name": "@psp/layoutsystem",
+  "version": "1.2.0",
+  "description": "Responsive grid system with Rack and Rail containers for Tailwind CSS",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "dist/",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run watch\" \"npm run serve\"",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/styles.css --config ./tailwind.config.js",
+    "build:min": "tailwindcss -i ./src/input.css -o ./dist/styles.min.css --config ./tailwind.config.js --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/styles.css --config ./tailwind.config.js --watch",
+    "serve": "live-server demo --port=3001 --open=/demo.html",
+    "demo": "open-cli demo/demo.html",
+    "clean": "rimraf dist/*.css",
+    "lint": "stylelint \"**/*.css\" --config .stylelintrc.json",
+    "lint:fix": "stylelint \"**/*.css\" --config .stylelintrc.json --fix",
+    "test": "echo \"Tests for layoutsystem package\" && exit 0",
+    "prebuild": "npm run clean",
+    "update": "npm update"
+  },
+  "keywords": [
+    "tailwindcss",
+    "css",
+    "grid",
+    "responsive",
+    "rack",
+    "rail",
+    "plugin"
+  ],
+  "author": "everysundays",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/everysundays/psp-designertools.git",
+    "directory": "packages/layoutsystem"
+  },
+  "bugs": {
+    "url": "https://github.com/everysundays/psp-designertools/issues"
+  },
+  "homepage": "https://github.com/everysundays/psp-designertools/tree/main/packages/layoutsystem#readme",
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.1.5",
+    "@tailwindcss/cli": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "concurrently": "^8.2.2",
+    "live-server": "^1.2.2",
+    "open-cli": "^8.0.0",
+    "rimraf": "^5.0.5",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

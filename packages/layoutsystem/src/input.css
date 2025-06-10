@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities and components */
+@layer components {
+  .rack {
+    @apply flex flex-wrap;
+  }
+  
+  .rail {
+    @apply flex overflow-x-auto;
+  }
+}

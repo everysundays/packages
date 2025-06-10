@@ -1,25 +1,50 @@
 {
-  "name": "twlayout",
-  "version": "1.2.0",
-  "main": "postcss.config.js",
+  "name": "psp-designertools",
+  "version": "2.0.0",
+  "description": "A comprehensive toolkit for frontend developers with responsive grid system and development environment",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --content \"./workfiles/**/*.html\"",
-    "watch": "tailwindcss -i ./workfiles/styles/main.css -o ./dist/output.css --content \"./workfiles/**/*.html\" --watch",
-    "start": "npm run watch && open workfiles/",
-    "test": "node tests/integration/build-test.js",
-    "test:build": "npm run build && npm run test"
+    "build": "lerna run build",
+    "dev": "lerna run dev --parallel",
+    "clean": "lerna run clean && lerna clean --yes",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "test": "lerna run test",
+    "demo": "cd packages/layoutsystem && npm run demo",
+    "update": "lerna run update",
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
+    "version": "lerna version",
+    "start": "npm run dev"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "Tailwind CSS demo project with organized structure",
+  "keywords": [
+    "frontend",
+    "development",
+    "tailwindcss",
+    "grid",
+    "responsive",
+    "monorepo"
+  ],
+  "author": "everysundays",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/everysundays/psp-designertools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/everysundays/psp-designertools/issues"
+  },
+  "homepage": "https://github.com/everysundays/psp-designertools#readme",
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.5"
+    "lerna": "^8.1.2",
+    "rimraf": "^5.0.5",
+    "concurrently": "^8.2.2"
   },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.5"
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

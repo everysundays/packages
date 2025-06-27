@@ -1,0 +1,31 @@
+{
+  "name": "@psp-designertools/debugmode",
+  "version": "1.0.0",
+  "description": "Debug mode visualization tools for grid layouts and design systems",
+  "main": "scripts/debug-mode.js",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Debug mode tools ready'",
+    "demo": "open demo/debug-demo.html"
+  },
+  "keywords": [
+    "debug",
+    "grid",
+    "layout",
+    "visualization",
+    "design-system"
+  ],
+  "author": "PSP Designer Tools",
+  "license": "MIT",
+  "files": [
+    "scripts/",
+    "styles/",
+    "demo/",
+    "doc/"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {
+    "tailwindcss": "^3.0.0"
+  }
+}

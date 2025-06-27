@@ -50,7 +50,7 @@
  *    - Formula: column_width = (base_column × n) + (gap_width × (n-1))
  *    - lg values: Base column = 100px (from 1376px ÷ 12 - gaps)
  *    - xl values: Base column = 130px (from 1856px ÷ 12 - gaps)
- *    - See documentation in twlayout-plugin/doc/12_COLUMN_GRID_THEORY.md
+ *    - See documentation in packages/layoutsystem/doc/12_COLUMN_GRID_THEORY.md
  * 
  * 4. NEW EXTENDED BREAKPOINTS (3xl/4xl):
  *    - Purpose: Better support for ultra-wide viewports (1974px-3420px)
@@ -103,7 +103,7 @@ const SYSTEM = {
   // Grid validation settings
   MAX_COLUMNS: 12,                    // Maximum number of columns supported
   MIN_VIEWPORT_WIDTH: 320,            // Minimum supported viewport width (px)
-  MAX_VIEWPORT_WIDTH: 3420,           // Maximum supported viewport width (px)
+  MAX_VIEWPORT_WIDTH: 3420           // Maximum supported viewport width (px)
 };
 
 // =============================================================================
@@ -198,7 +198,7 @@ const RACK_COLUMNS = {
     9: '100%',
     10: '100%',
     11: '100%',
-    12: '100%',
+    12: '100%'
   },
   sm: {
     1: '47.5%',    // Half-width on mobile - allows 2 col-1 side by side with gap
@@ -212,7 +212,7 @@ const RACK_COLUMNS = {
     9: '100%',
     10: '100%',
     11: '100%',
-    12: '100%',
+    12: '100%'
   },
   md: {
     1: '16.29%',    // Perfect harmonic: 1/6 of 690px available space (115px)
@@ -226,7 +226,7 @@ const RACK_COLUMNS = {
     9: '100%',      // Full width on md+ for simplified layout
     10: '100%',     // Full width on md+ for simplified layout
     11: '100%',     // Full width on md+ for simplified layout
-    12: '100%',     // Full width on md+ for simplified layout
+    12: '100%'     // Full width on md+ for simplified layout
   },
   lg: {
     1: '6.75%',     // Optimized: 64.8px (base) = 64.8/960
@@ -240,7 +240,7 @@ const RACK_COLUMNS = {
     9: '74.12%',    // Optimized: 711.2px (64.8×9 + 128px gaps) = 711.2/960
     10: '82.54%',   // Optimized: 792px (64.8×10 + 144px gaps) = 792/960
     11: '90.96%',   // Optimized: 872.8px (64.8×11 + 160px gaps) = 872.8/960
-    12: '100%',     // Full width regardless of gaps
+    12: '100%'     // Full width regardless of gaps
   },
   xl: {
     1: '7.06%',     // Optimized: 85.8px (base) = 85.8/1216
@@ -254,7 +254,7 @@ const RACK_COLUMNS = {
     9: '74.06%',    // Optimized: 900.2px (85.8×9 + 128px gaps) = 900.2/1216
     10: '82.43%',   // Optimized: 1002px (85.8×10 + 144px gaps) = 1002/1216
     11: '90.81%',   // Optimized: 1103.8px (85.8×11 + 160px gaps) = 1103.8/1216
-    12: '100%',     // Full width
+    12: '100%'     // Full width
   },
   '2xl': {
     1: '7.40%',     // Tuned for 1536-1785px: 109px = 109/1472
@@ -268,7 +268,7 @@ const RACK_COLUMNS = {
     9: '73.71%',    // Tuned for 1536-1785px: 1085px = 1085/1472
     10: '82.00%',   // Tuned for 1536-1785px: 1207px = 1207/1472
     11: '90.29%',   // Tuned for 1536-1785px: 1329px = 1329/1472
-    12: '100%',     // Full width
+    12: '100%'     // Full width
   },
   '3xl': {
     1: '7.97%',     // Optimized for 1974px: 151px/1894 (1 column)
@@ -282,7 +282,7 @@ const RACK_COLUMNS = {
     9: '73.44%',    // Optimized for 1974px: 1391px/1894 (9 columns + 8 gaps)
     10: '81.63%',   // Optimized for 1974px: 1546px/1894 (10 columns + 9 gaps)
     11: '89.81%',   // Optimized for 1974px: 1701px/1894 (11 columns + 10 gaps)
-    12: '100%',     // Full width
+    12: '100%'     // Full width
   },
   '4xl': {
     1: '8.03%',     // Re-optimized for 2560-2851px: 198px/2464 (1 column)
@@ -296,7 +296,7 @@ const RACK_COLUMNS = {
     9: '73.62%',    // Re-optimized for 2560-2851px: 1814px/2464 (9 columns + 8 gaps)
     10: '81.82%',   // Re-optimized for 2560-2851px: 2016px/2464 (10 columns + 9 gaps)
     11: '90.02%',   // Re-optimized for 2560-2851px: 2218px/2464 (11 columns + 10 gaps)
-    12: '100%',     // Full width
+    12: '100%'     // Full width
   }
 };
 
@@ -324,7 +324,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px - Tablet width
     10: '52rem',    // 832px - Extended tablet
     11: '56rem',    // 896px - Small desktop
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   sm: {
     1: '16rem',     // 256px - Compact card size
@@ -338,7 +338,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px - Tablet width
     10: '52rem',    // 832px - Extended tablet
     11: '56rem',    // 896px - Small desktop
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   md: {
     1: '16rem',     // 256px
@@ -352,7 +352,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px
     10: '52rem',    // 832px
     11: '56rem',    // 896px
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   lg: {
     1: '16rem',     // 256px
@@ -366,7 +366,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px
     10: '52rem',    // 832px
     11: '56rem',    // 896px
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   xl: {
     1: '16rem',     // 256px
@@ -380,7 +380,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px
     10: '52rem',    // 832px
     11: '56rem',    // 896px
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   '2xl': {
     1: '16rem',     // 256px - Reusing xl values for 2xl breakpoint
@@ -394,7 +394,7 @@ const RAIL_COLUMNS = {
     9: '48rem',     // 768px - Reusing xl values for 2xl breakpoint
     10: '52rem',    // 832px - Reusing xl values for 2xl breakpoint
     11: '56rem',    // 896px - Reusing xl values for 2xl breakpoint
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   '3xl': {
     1: '20rem',     // 320px - Increased for larger viewports
@@ -408,7 +408,7 @@ const RAIL_COLUMNS = {
     9: '60rem',     // 960px - Increased for larger viewports
     10: '65rem',    // 1040px - Increased for larger viewports
     11: '70rem',    // 1120px - Increased for larger viewports
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   },
   '4xl': {
     1: '24rem',     // 384px - Further increased for ultra-wide viewports
@@ -422,7 +422,7 @@ const RAIL_COLUMNS = {
     9: '72rem',     // 1152px - Further increased for ultra-wide viewports
     10: '78rem',    // 1248px - Further increased for ultra-wide viewports
     11: '84rem',    // 1344px - Further increased for ultra-wide viewports
-    12: '100%',     // HAND-TUNED: Full available width for slide effect
+    12: '100%'     // HAND-TUNED: Full available width for slide effect
   }
 };
 
@@ -489,7 +489,7 @@ const OFFSETS = {
     8: '0%',        // No meaningful offset for mobile
     9: '0%',        // No meaningful offset for mobile
     10: '0%',       // No meaningful offset for mobile
-    11: '26.25%',   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
+    11: '26.25%'   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
   },
   sm: {
     0: '0%',        // No offset
@@ -503,7 +503,7 @@ const OFFSETS = {
     8: '0%',        // No meaningful offset for mobile
     9: '0%',        // No meaningful offset for mobile
     10: '0%',       // No meaningful offset for mobile
-    11: '26.25%',   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
+    11: '26.25%'   // Perfect centering: (100% - 47.5%) ÷ 2 = 26.25%
   },
   md: {
     0: '0%',        // No offset - col-12 full width
@@ -517,7 +517,7 @@ const OFFSETS = {
     8: '25.57%',    // (100% - 48.87%) ÷ 2 = 25.57% - CENTERED col-4 (perfect harmonic)
     9: '25.57%',    // (100% - 48.87%) ÷ 2 = 25.57% - CENTERED col-3 (perfect harmonic)
     10: '33.71%',   // (100% - 32.58%) ÷ 2 = 33.71% - CENTERED col-2 (perfect harmonic)
-    11: '41.86%',   // (100% - 16.29%) ÷ 2 = 41.86% - CENTERED col-1 (perfect harmonic)
+    11: '41.86%'   // (100% - 16.29%) ÷ 2 = 41.86% - CENTERED col-1 (perfect harmonic)
   },
   lg: {
     0: '0%',        // No offset
@@ -531,7 +531,7 @@ const OFFSETS = {
     8: '33.335%',   // Half of 8 column offset - Maintaining style
     9: '37.5%',     // Half of 9 column offset - Maintaining style
     10: '41.665%',  // Half of 10 column offset - Maintaining style
-    11: '45.835%',  // Half of 11 column offset - Maintaining style
+    11: '45.835%'  // Half of 11 column offset - Maintaining style
   },
   xl: {
     0: '0%',        // No offset
@@ -545,7 +545,7 @@ const OFFSETS = {
     8: '33.64%',    // (100% - 32.72%) ÷ 2 = 33.64% - CENTERED col-4 (original)
     9: '37.84%',    // (100% - 24.31%) ÷ 2 = 37.84% - CENTERED col-3 (original)
     10: '42.05%',   // (100% - 15.90%) ÷ 2 = 42.05% - CENTERED col-2 (original)
-    11: '46.26%',   // (100% - 7.49%) ÷ 2 = 46.26% - CENTERED col-1 (original)
+    11: '46.26%'   // (100% - 7.49%) ÷ 2 = 46.26% - CENTERED col-1 (original)
   },
   '2xl': {
     0: '0%',        // No offset
@@ -559,7 +559,7 @@ const OFFSETS = {
     8: '33.87%',    // (100% - 32.27%) ÷ 2 = 33.87% - CENTERED col-4 (adjusted)
     9: '38.01%',    // (100% - 23.98%) ÷ 2 = 38.01% - CENTERED col-3 (adjusted)
     10: '42.16%',   // (100% - 15.69%) ÷ 2 = 42.16% - CENTERED col-2 (adjusted)
-    11: '46.30%',   // (100% - 7.40%) ÷ 2 = 46.30% - CENTERED col-1 (adjusted)
+    11: '46.30%'   // (100% - 7.40%) ÷ 2 = 46.30% - CENTERED col-1 (adjusted)
   },
   '3xl': {
     0: '0%',        // No offset
@@ -573,7 +573,7 @@ const OFFSETS = {
     8: '33.74%',    // (100% - 32.52%) ÷ 2 = 33.74% - CENTERED col-4 (3xl adjusted)
     9: '37.83%',    // (100% - 24.34%) ÷ 2 = 37.83% - CENTERED col-3 (3xl adjusted)
     10: '41.92%',   // (100% - 16.16%) ÷ 2 = 41.92% - CENTERED col-2 (3xl adjusted)
-    11: '46.02%',   // (100% - 7.97%) ÷ 2 = 46.02% - CENTERED col-1 (3xl adjusted)
+    11: '46.02%'   // (100% - 7.97%) ÷ 2 = 46.02% - CENTERED col-1 (3xl adjusted)
   },
   '4xl': {
     0: '0%',        // No offset
@@ -587,7 +587,7 @@ const OFFSETS = {
     8: '33.69%',    // (100% - 32.63%) ÷ 2 = 33.69% - CENTERED col-4 (4xl re-adjusted)
     9: '37.79%',    // (100% - 24.43%) ÷ 2 = 37.79% - CENTERED col-3 (4xl re-adjusted)
     10: '41.89%',   // (100% - 16.23%) ÷ 2 = 41.89% - CENTERED col-2 (4xl re-adjusted)
-    11: '45.99%',   // (100% - 8.03%) ÷ 2 = 45.99% - CENTERED col-1 (4xl re-adjusted)
+    11: '45.99%'   // (100% - 8.03%) ÷ 2 = 45.99% - CENTERED col-1 (4xl re-adjusted)
   }
 };
 

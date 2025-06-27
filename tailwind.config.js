@@ -3,7 +3,7 @@ module.exports = {
   content: [
       "./workfiles/**/*.html", 
       "./workfiles/**/*.{js,jsx,ts,tsx}",
-      "./twlayout-plugin/demo/**/*.html"
+      "./packages/layoutsystem/demo/**/*.html"
   ],
   theme: {
     extend: {},
@@ -15,6 +15,6 @@ module.exports = {
     gridColumnEnd: false,
   },
   plugins: [
-    require("./twlayout-plugin/scripts/twlayout-plugin")
+    require("./packages/layoutsystem/scripts/twlayout-plugin")
   ],
 } 

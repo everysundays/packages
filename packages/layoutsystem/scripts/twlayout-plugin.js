@@ -43,7 +43,7 @@ function generateCSSVariables(breakpoint, config) {
     
     // Rail gap variables
     '--tw-rail-gap-standard': RAIL_GAPS.STANDARD,
-    '--tw-rail-gap-slide': RAIL_GAPS.SLIDE_MODE[breakpoint],
+    '--tw-rail-gap-slide': RAIL_GAPS.SLIDE_MODE[breakpoint]
   };
 
   // Column width variables
@@ -73,19 +73,19 @@ function generateBaseComponents() {
     '.rack, .rail': {
       display: 'flex',
       width: '100%',
-      boxSizing: 'border-box',
+      boxSizing: 'border-box'
     },
     
     // Rack-specific styles (flexible grid)
     '.rack': {
       gap: 'var(--tw-layout-gap)',
       flexWrap: 'wrap',
-      alignItems: 'stretch',
+      alignItems: 'stretch'
     },
     
     // Fix for rack + fixed positioning conflict
     '.rack.fixed': {
-      position: 'fixed !important',
+      position: 'fixed !important'
     },
     
     // Rail-specific styles (horizontal scrolling)
@@ -98,18 +98,18 @@ function generateBaseComponents() {
       
       // Hide scrollbar in WebKit browsers
       '&::-webkit-scrollbar': {
-        display: 'none',
-      },
+        display: 'none'
+      }
     },
     
     // Rail slide mode (gap matches container padding for seamless slides)
     '.rail.slide-mode': {
-      gap: 'var(--tw-rail-gap-slide)',
+      gap: 'var(--tw-rail-gap-slide)'
     },
     
     // Alternative: Rail with col-12 children automatically gets slide gap
     '.rail:has(.col-12)': {
-      gap: 'var(--tw-rail-gap-slide)',
+      gap: 'var(--tw-rail-gap-slide)'
     },
     
     // Page wrapper for max-width constraint
@@ -117,8 +117,8 @@ function generateBaseComponents() {
       width: '100%',
       margin: '0 auto',
       paddingLeft: 'var(--tw-layout-padding)',
-      paddingRight: 'var(--tw-layout-padding)',
-    },
+      paddingRight: 'var(--tw-layout-padding)'
+    }
   };
 }
 
@@ -133,7 +133,7 @@ function generateColumnClasses(breakpoint) {
   Object.entries(RACK_COLUMNS[breakpoint]).forEach(([col, width]) => {
     classes[`.rack .col-${col}`] = {
       width: `var(--tw-rack-col-${col})`,
-      flexShrink: 0,
+      flexShrink: 0
     };
   });
   
@@ -142,7 +142,7 @@ function generateColumnClasses(breakpoint) {
     classes[`.rail .col-${col}`] = {
       width: `var(--tw-rail-col-${col})`,
       minWidth: `var(--tw-rail-col-${col})`,
-      flexShrink: 0,
+      flexShrink: 0
     };
   });
   
@@ -150,14 +150,14 @@ function generateColumnClasses(breakpoint) {
   Object.entries(OFFSETS[breakpoint]).forEach(([offset, marginLeft]) => {
     if (offset !== '0') { // Skip offset-0 as it's redundant
       classes[`.rack .offset-${offset}`] = {
-        marginLeft: `var(--tw-offset-${offset})`,
+        marginLeft: `var(--tw-offset-${offset})`
       };
     }
   });
   
   // Page wrapper max-width
   classes['.page-wrapper'] = {
-    maxWidth: 'var(--tw-layout-max-width)',
+    maxWidth: 'var(--tw-layout-max-width)'
   };
   
   return classes;
@@ -201,8 +201,8 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
     addBase({
       '.rack, .rail': {
         paddingLeft: 'var(--tw-layout-padding)',
-        paddingRight: 'var(--tw-layout-padding)',
-      },
+        paddingRight: 'var(--tw-layout-padding)'
+      }
     });
     
     // Generate responsive styles for each breakpoint
@@ -218,12 +218,12 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
       // Combine variables and classes
       const responsiveStyles = {
         ':root': cssVars,
-        ...columnClasses,
+        ...columnClasses
       };
       
       // Add styles within media query
       addBase({
-        [mediaQuery]: responsiveStyles,
+        [mediaQuery]: responsiveStyles
       });
     });
     
@@ -232,31 +232,31 @@ module.exports = plugin(function({ addBase, addComponents, addUtilities, theme }
       '.flex-center': {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
       },
       '.flex-between': {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-between'
       },
       '.flex-around': {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'space-around'
       },
       '.flex-evenly': {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-evenly'
       },
       
       // Rail gap mode utilities
       '.rail-standard': {
-        gap: 'var(--tw-rail-gap-standard) !important',
+        gap: 'var(--tw-rail-gap-standard) !important'
       },
       '.rail-slide': {
-        gap: 'var(--tw-rail-gap-slide) !important',
-      },
+        gap: 'var(--tw-rail-gap-slide) !important'
+      }
     });
     
     console.log('TWLayout Plugin v1.3.1: Successfully initialized');

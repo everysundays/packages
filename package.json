@@ -18,7 +18,16 @@
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
     "version": "lerna version",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "watch": "tailwindcss build -i ./workfiles/styles/main.css -o ./workfiles/styles/output.css --watch",
+    "build:workfiles": "tailwindcss build -i ./workfiles/styles/main.css -o ./workfiles/styles/output.css",
+    "build:workfiles:min": "tailwindcss build -i ./workfiles/styles/main.css -o ./workfiles/styles/output.css --minify",
+    "lint:js": "eslint workfiles/js/*.js packages/*/scripts/*.js",
+    "lint:css": "stylelint workfiles/styles/main.css packages/*/styles/*.css",
+    "lint:fix:js": "eslint workfiles/js/*.js packages/*/scripts/*.js --fix",
+    "lint:fix:css": "stylelint workfiles/styles/main.css packages/*/styles/*.css --fix",
+    "dev:workfiles": "concurrently \"npm run watch\" \"npm run serve\"",
+    "serve": "browser-sync start --server workfiles --files 'workfiles/**/*.html,workfiles/styles/output.css,workfiles/js/*.js' --no-notify --port 3000"
   },
   "keywords": [
     "frontend",
@@ -39,9 +48,16 @@
   },
   "homepage": "https://github.com/everysundays/psp-designertools#readme",
   "devDependencies": {
+    "autoprefixer": "latest",
+    "browser-sync": "^2.29.3",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
     "lerna": "^8.1.2",
+    "postcss": "latest",
     "rimraf": "^5.0.5",
-    "concurrently": "^8.2.2"
+    "stylelint": "^16.20.0",
+    "stylelint-config-standard": "^36.0.1",
+    "tailwindcss": "^3.4.15"
   },
   "engines": {
     "node": ">=18.0.0",

@@ -121,6 +121,20 @@ Follow these steps to set up the project:
 - Added 2xl breakpoint (1536px/96rem)
 - Updated demo with responsive test examples
 
+## Demo Files
+
+The project includes several demo and template files in the `workfiles/` directory:
+
+- `demo.html` - Main demonstration of the grid system
+- `product-main.html` - Product page template
+- `product-main-jp-testimonials.html` - Product page variant with Japanese hospital testimonials section (5 featured hospitals)
+- `news-main.html` - News page template
+- Various news detail pages
+
+### Japanese Testimonials Variant
+
+The `product-main-jp-testimonials.html` file includes a dedicated testimonials section featuring 5 Japanese hospitals. This variant demonstrates localized content integration and can be used as a template for international market adaptations.
+
 For a good TailwindCSS cheatsheet
 1. Cheatsheet https://tailwindcss.504b.cc/
 2. Flexbox examples https://www.shortcutfoo.com/app/dojos/tailwind-flexbox/cheatsheet
